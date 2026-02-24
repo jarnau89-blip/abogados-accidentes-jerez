@@ -7,11 +7,11 @@ import "./globals.css";
 const _inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Abogados Accidentes Jerez | Calcula tu Indemnizacion Gratis",
+  title: "Accidentelegalabogados.com | Abogados Accidentes Jerez | Calcula tu Indemnizacion Gratis",
   description:
-    "Abogados especialistas en accidentes de trafico en Jerez de la Frontera. Calcula tu indemnizacion gratis. Atencion 24 horas. Primera consulta gratuita.",
+    "Máxima indemnización sin adelantos y sin riesgos. Sólo cobramos si tu cobras.",
   keywords:
-    "abogados accidentes jerez, indemnizacion accidente trafico, abogado trafico jerez, reclamacion accidente",
+    "abogados accidentes españa, indemnizacion accidente trafico, abogado trafico toda españa, reclamacion accidente",
 };
 
 export const viewport: Viewport = {
