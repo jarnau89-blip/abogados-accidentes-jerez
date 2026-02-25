@@ -22,20 +22,21 @@ export function Header() {
         <a href="#inicio" className="flex items-center gap-3 p-2">
   <Image 
     src="/generated-image-4.png"
-    alt="¡PRUEBA JEREZ!"
+    alt="Accidente Legal Abogados"
     width={140}
     height={70}
     className="h-16 w-auto object-contain drop-shadow-xl rounded-lg"
   />
   <div className="flex flex-col leading-tight hidden md:block">
-    <span className="text-xl font-black bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent tracking-tight">
+    <span className="text-xl font-black bg-gradient-to-r from-red-600 to-red-500 bg-clip-text text-transparent tracking-tight">
       Accidente Legal Abogados
     </span>
     <span className="text-sm font-bold text-muted-foreground">
-      Accidentes de Tráfico de toda España
+      
     </span>
   </div>
 </a>
+
 
 
         {/* Desktop nav */}
@@ -59,7 +60,7 @@ export function Header() {
           >
             <a href="tel:+34722160466">
               <Phone className="mr-2 h-4 w-4" />
-              Llamar en horario de atencion al publico (8:00 a 15:00) de lunes a viernes
+              Llamar ahora
             </a>
           </Button>
           <Button
