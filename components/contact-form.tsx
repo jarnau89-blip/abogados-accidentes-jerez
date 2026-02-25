@@ -47,13 +47,13 @@ export function ContactForm() {
                   </div>
                   <div>
                     <p className="text-sm font-medium text-card-foreground">
-                      Telefono 24h
+                      Telefono en horario de atencion al publico (8:00 a 15:00) de lunes a viernes
                     </p>
                     <a
                       href="tel:+34900000000"
                       className="text-sm text-primary hover:underline"
                     >
-                      900 000 000
+                      722160466
                     </a>
                   </div>
                 </div>
@@ -70,7 +70,7 @@ export function ContactForm() {
                       href="mailto:info@abogadosjerez.es"
                       className="text-sm text-primary hover:underline"
                     >
-                      info@abogadosjerez.es
+                      info.accidentes@accidentelegalabogados.com
                     </a>
                   </div>
                 </div>
@@ -84,9 +84,9 @@ export function ContactForm() {
                       Oficina
                     </p>
                     <p className="text-sm text-muted-foreground">
-                      C/ Larga, 45 - 2a planta
+                      Avenida Prado de la feria nº10
                       <br />
-                      11403 Jerez de la Frontera, Cadiz
+                      11170 Medina Sidonia, Cadiz
                     </p>
                   </div>
                 </div>
@@ -100,9 +100,9 @@ export function ContactForm() {
                       Horario
                     </p>
                     <p className="text-sm text-muted-foreground">
-                      Lunes a Viernes: 9:00 - 20:00
+                      Lunes a Viernes: 8:00 - 15:00
                       <br />
-                      Urgencias: 24 horas
+                      Urgencias: contactar por correo
                     </p>
                   </div>
                 </div>

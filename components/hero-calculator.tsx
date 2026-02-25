@@ -63,8 +63,7 @@ export function HeroCalculator() {
               Accidente Legal
             </h1>
             <p className="mb-8 max-w-lg text-pretty text-lg leading-relaxed text-primary-foreground/80 lg:text-xl">
-              Abogados especialistas en accidentes de trafico en Jerez de la
-              Frontera. Solo cobramos si ganamos tu caso.
+              Abogados especialistas en accidentes de trafico. Solo cobramos si ganamos tu caso.
             </p>
             <div className="flex flex-col gap-4 sm:flex-row sm:justify-center lg:justify-start">
               <div className="flex items-center gap-2 text-sm text-primary-foreground/70">
@@ -73,7 +72,7 @@ export function HeroCalculator() {
               </div>
               <div className="flex items-center gap-2 text-sm text-primary-foreground/70">
                 <Clock className="h-4 w-4 text-primary-foreground" />
-                Atencion 24 horas
+                Horario de atención al público de (8:00 a 15:00) de lunes a viernes
               </div>
               <div className="flex items-center gap-2 text-sm text-primary-foreground/70">
                 <CheckCircle2 className="h-4 w-4 text-primary-foreground" />

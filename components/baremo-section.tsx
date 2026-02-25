@@ -39,7 +39,7 @@ export function BaremoSection() {
             </h2>
             <p className="mb-6 text-pretty text-lg leading-relaxed text-muted-foreground">
               El baremo de trafico (Ley 35/2015) establece un sistema de
-              valoracion de danos y perjuicios para las victimas de accidentes
+              valoracion de daños y perjuicios para las victimas de accidentes
               de trafico. Se actualiza anualmente y tiene en cuenta:
             </p>
             <ul className="mb-8 flex flex-col gap-3">
@@ -47,7 +47,7 @@ export function BaremoSection() {
                 "Dias de baja e incapacidad temporal",
                 "Secuelas permanentes (puntos)",
                 "Perjuicio estetico",
-                "Lucro cesante y dano moral",
+                "Lucro cesante y daño moral",
                 "Gastos medicos y de rehabilitacion",
               ].map((item) => (
                 <li
