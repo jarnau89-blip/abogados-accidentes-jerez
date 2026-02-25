@@ -1,7 +1,6 @@
 const stats = [
   { value: "+500", label: "Casos resueltos" },
   { value: "98%", label: "Casos ganados" },
-  { value: "24h", label: "Atencion inmediata" },
   { value: "0\u20AC", label: "Coste inicial" },
 ];
 

@@ -7,15 +7,15 @@ import "./globals.css";
 const _inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Accidentelegalabogados.com | Abogados Accidentes Jerez | Calcula tu Indemnizacion Gratis",
+  title: "Accidentelegalabogados.com | Accidente Legal Abogados| Calcula tu Indemnización Gratis",
   description:
     "Máxima indemnización sin adelantos y sin riesgos. Sólo cobramos si tu cobras.",
   keywords:
-    "abogados accidentes españa, indemnizacion accidente trafico, abogado trafico toda españa, reclamacion accidente",
+    "Abogados accidentes españa, indemnización accidente trafico, abogado trafico toda españa, reclamacion accidente",
 };
 
 export const viewport: Viewport = {
-  themeColor: "#1e3a8a",
+  themeColor: "#7b8dbe",
   width: "device-width",
   initialScale: 1,
 };

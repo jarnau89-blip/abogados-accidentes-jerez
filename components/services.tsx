@@ -18,13 +18,13 @@ const services = [
     icon: Car,
     title: "Danos materiales",
     description:
-      "Gestionamos la reparacion o indemnizacion por valor venal de tu vehiculo, incluyendo vehiculo de sustitucion y perdida de valor.",
+      "Gestionamos la reparación o indemnización por valor venal de tu vehiculo, incluyendo vehiculo de sustitución y perdida de valor.",
   },
   {
     icon: HeartPulse,
-    title: "Secuelas y rehabilitacion",
+    title: "Secuelas y rehabilitación",
     description:
-      "Valoramos todas las secuelas derivadas del accidente y gestionamos los tratamientos de rehabilitacion necesarios.",
+      "Valoramos todas las secuelas derivadas del accidente y gestionamos los tratamientos de rehabilitación necesarios.",
   },
   {
     icon: Banknote,
@@ -34,15 +34,15 @@ const services = [
   },
   {
     icon: FileText,
-    title: "Gestion de seguros",
+    title: "Gestión de seguros",
     description:
-      "Nos encargamos de toda la documentacion y negociacion con las companias de seguros para que no tengas que preocuparte.",
+      "Nos encargamos de toda la documentación y negociación con las compañías de seguros para que no tengas que preocuparte.",
   },
   {
     icon: Gavel,
     title: "Procedimiento judicial",
     description:
-      "Si la aseguradora no ofrece una indemnizacion justa, llevamos tu caso a juicio con la maxima garantia de exito.",
+      "Si la aseguradora no ofrece una indemnización justa, llevamos tu caso a juicio con la maxima garantía de exito.",
   },
 ];
 
@@ -59,7 +59,7 @@ export function Services() {
           </h2>
           <p className="text-pretty text-lg leading-relaxed text-muted-foreground">
             Cubrimos todos los aspectos legales de tu accidente para que te
-            centres en tu recuperacion.
+            centres en tu recuperación.
           </p>
         </div>
 

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Phone, Menu, X, Scale } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 const navLinks = [
   { label: "Inicio", href: "#inicio" },
@@ -18,19 +19,24 @@ export function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/95 backdrop-blur-sm">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-8">
         {/* Logo */}
-        <a href="#inicio" className="flex items-center gap-2">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
-            <Scale className="h-5 w-5 text-primary-foreground" />
-          </div>
-          <div className="flex flex-col leading-tight">
-            <span className="text-sm font-bold tracking-tight text-foreground lg:text-base">
-              Abogados Accidentes
-            </span>
-            <span className="text-xs font-medium text-muted-foreground">
-              Jerez de la Frontera
-            </span>
-          </div>
-        </a>
+        <a href="#inicio" className="flex items-center gap-3 p-2">
+  <Image 
+    src="/generated-image-4.png"
+    alt="¡PRUEBA JEREZ!"
+    width={140}
+    height={70}
+    className="h-16 w-auto object-contain drop-shadow-xl rounded-lg"
+  />
+  <div className="flex flex-col leading-tight hidden md:block">
+    <span className="text-xl font-black bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent tracking-tight">
+      Accidente Legal Abogados
+    </span>
+    <span className="text-sm font-bold text-muted-foreground">
+      Accidentes de Tráfico de toda España
+    </span>
+  </div>
+</a>
+
 
         {/* Desktop nav */}
         <nav className="hidden items-center gap-8 lg:flex" aria-label="Principal">
@@ -51,9 +57,9 @@ export function Header() {
             asChild
             className="hidden bg-destructive text-destructive-foreground hover:bg-destructive/90 sm:inline-flex"
           >
-            <a href="tel:+34900000000">
+            <a href="tel:+34722160466">
               <Phone className="mr-2 h-4 w-4" />
-              Llamar 24h
+              Llamar en horario de atencion al publico (8:00 a 15:00) de lunes a viernes
             </a>
           </Button>
           <Button
@@ -61,7 +67,7 @@ export function Header() {
             size="icon"
             className="bg-destructive text-destructive-foreground hover:bg-destructive/90 sm:hidden"
           >
-            <a href="tel:+34900000000" aria-label="Llamar 24 horas">
+            <a href="tel:+34722160466" aria-label="Llamar en horario de atencion al publico (8:00 a 15:00) de lunes a viernes">
               <Phone className="h-4 w-4" />
             </a>
           </Button>

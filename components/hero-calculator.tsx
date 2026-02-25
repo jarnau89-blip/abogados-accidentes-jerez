@@ -60,7 +60,7 @@ export function HeroCalculator() {
               Primera consulta 100% gratuita
             </div>
             <h1 className="mb-6 text-balance text-4xl font-bold tracking-tight text-primary-foreground md:text-5xl lg:text-6xl">
-              Accidente Legal
+              Accidente Legal Abogados
             </h1>
             <p className="mb-8 max-w-lg text-pretty text-lg leading-relaxed text-primary-foreground/80 lg:text-xl">
               Abogados especialistas en accidentes de trafico. Solo cobramos si ganamos tu caso.

@@ -16,7 +16,7 @@ export function Footer() {
                   Abogados Accidentes
                 </span>
                 <span className="text-xs text-primary-foreground/60">
-                  Jerez de la Frontera
+                  España
                 </span>
               </div>
             </a>
@@ -95,7 +95,7 @@ export function Footer() {
 
         <div className="mt-10 border-t border-primary-foreground/10 pt-6">
           <p className="text-center text-xs text-primary-foreground/40">
-            {"\u00A9"} {new Date().getFullYear()} Abogados Accidentes Jerez. Todos los derechos
+            {"\u00A9"} {new Date().getFullYear()} Abogados Accidentes. Todos los derechos
             reservados. Las cantidades mostradas en la web son orientativas.
           </p>
         </div>
