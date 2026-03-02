@@ -12,13 +12,13 @@ const services = [
     icon: UserRound,
     title: "Lesiones personales",
     description:
-      "Reclamamos la maxima indemnizacion por lesiones sufridas en accidentes de trafico, incluyendo latigazo cervical, fracturas y traumatismos.",
+      "Reclamamos la máxima indemnización por lesiones sufridas en accidentes de tráfico propias y a terceros, incluyendo latigazo cervical, fracturas y traumatismos.",
   },
   {
     icon: Car,
-    title: "Danos materiales",
+    title: "Daños materiales",
     description:
-      "Gestionamos la reparación o indemnización por valor venal de tu vehiculo, incluyendo vehiculo de sustitución y perdida de valor.",
+      "Gestionamos la reparación o indemnización por valor venal de tu vehículo, incluyendo vehículo de sustitución y pérdida de valor.",
   },
   {
     icon: HeartPulse,
@@ -30,7 +30,7 @@ const services = [
     icon: Banknote,
     title: "Lucro cesante",
     description:
-      "Reclamamos las perdidas economicas derivadas de la imposibilidad de trabajar durante el periodo de recuperacion.",
+      "Reclamamos las pérdidas económicas derivadas de la imposibilidad de trabajar durante el período de recuperación.",
   },
   {
     icon: FileText,
@@ -42,7 +42,7 @@ const services = [
     icon: Gavel,
     title: "Procedimiento judicial",
     description:
-      "Si la aseguradora no ofrece una indemnización justa, llevamos tu caso a juicio con la maxima garantía de exito.",
+      "Si la aseguradora no ofrece una indemnización justa, llevamos tu caso a juicio con la máxima garantía de éxito.",
   },
 ];
 
