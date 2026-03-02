@@ -39,43 +39,44 @@ export function HeroCalculator() {
   }
 
   return (
-    <section id="inicio" className="relative overflow-hidden bg-primary pt-24 pb-16 lg:pt-32 lg:pb-24">
-      {/* Background pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 25% 25%, rgba(255,255,255,0.2) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 0%, transparent 50%)",
-          }}
-        />
-      </div>
-
-      <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
+    <section 
+      id="inicio" 
+      className="relative overflow-hidden pt-24 pb-16 lg:pt-32 lg:pb-24 min-h-screen"
+      style={{
+        backgroundImage: `url('/generated-image-4.jpg')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
+      {/* Overlay claro */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/20" />
+      
+      <div className="relative z-10 mx-auto max-w-7xl px-4 lg:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           {/* Left content */}
           <div className="text-center lg:text-left">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary-foreground/20 bg-primary-foreground/10 px-4 py-1.5 text-sm text-primary-foreground">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-1.5 text-sm text-white backdrop-blur-sm">
               <Shield className="h-4 w-4" />
               Primera consulta 100% gratuita
             </div>
-            <h1 className="mb-6 text-balance text-4xl font-bold tracking-tight text-primary-foreground md:text-5xl lg:text-6xl">
+            <h1 className="mb-6 text-balance text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl drop-shadow-2xl">
               Accidente Legal Abogados
             </h1>
-            <p className="mb-8 max-w-lg text-pretty text-lg leading-relaxed text-primary-foreground/80 lg:text-xl">
+            <p className="mb-8 max-w-lg text-pretty text-lg leading-relaxed text-white/90 lg:text-xl drop-shadow-md">
               Abogados especialistas en accidentes de trafico. Solo cobramos si ganamos tu caso.
             </p>
             <div className="flex flex-col gap-4 sm:flex-row sm:justify-center lg:justify-start">
-              <div className="flex items-center gap-2 text-sm text-primary-foreground/70">
-                <CheckCircle2 className="h-4 w-4 text-primary-foreground" />
+              <div className="flex items-center gap-2 text-sm text-white/80 drop-shadow-sm">
+                <CheckCircle2 className="h-4 w-4 text-white" />
                 Sin coste inicial
               </div>
-              <div className="flex items-center gap-2 text-sm text-primary-foreground/70">
-                <Clock className="h-4 w-4 text-primary-foreground" />
+              <div className="flex items-center gap-2 text-sm text-white/80 drop-shadow-sm">
+                <Clock className="h-4 w-4 text-white" />
                 Horario de atención al público de (8:00 a 15:00) de lunes a viernes
               </div>
-              <div className="flex items-center gap-2 text-sm text-primary-foreground/70">
-                <CheckCircle2 className="h-4 w-4 text-primary-foreground" />
+              <div className="flex items-center gap-2 text-sm text-white/80 drop-shadow-sm">
+                <CheckCircle2 className="h-4 w-4 text-white" />
                 +500 casos ganados
               </div>
             </div>
@@ -84,17 +85,17 @@ export function HeroCalculator() {
           {/* Calculator card */}
           <div
             id="calculadora"
-            className="mx-auto w-full max-w-md rounded-2xl border border-border bg-card p-6 shadow-2xl lg:p-8"
+            className="mx-auto w-full max-w-md rounded-2xl border border-white/20 bg-white/95 backdrop-blur-xl p-6 shadow-2xl lg:p-8 drop-shadow-2xl"
           >
             <div className="mb-6 flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary">
-                <Calculator className="h-5 w-5 text-primary-foreground" />
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 to-blue-700">
+                <Calculator className="h-5 w-5 text-white" />
               </div>
               <div>
-                <h2 className="text-lg font-bold text-card-foreground">
+                <h2 className="text-lg font-bold text-gray-900">
                   Calculadora de indemnizacion
                 </h2>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-gray-600">
                   Estimacion orientativa basada en el baremo
                 </p>
               </div>
@@ -102,7 +103,7 @@ export function HeroCalculator() {
 
             <div className="flex flex-col gap-5">
               <div className="flex flex-col gap-2">
-                <Label htmlFor="dias" className="text-sm font-medium text-card-foreground">
+                <Label htmlFor="dias" className="text-sm font-medium text-gray-900">
                   Dias de curacion / baja
                 </Label>
                 <Input
@@ -112,19 +113,19 @@ export function HeroCalculator() {
                   placeholder="Ej: 30"
                   value={diasCuracion}
                   onChange={(e) => setDiasCuracion(e.target.value)}
-                  className="bg-secondary text-secondary-foreground"
+                  className="bg-gray-50 border-gray-200 focus:border-blue-500 focus:ring-blue-500"
                 />
-                <p className="text-xs text-muted-foreground">
-                  {"Se valoran a ~50\u20AC/dia segun baremo vigente"}
+                <p className="text-xs text-gray-500">
+                  Se valoran a ~50€/dia segun baremo vigente
                 </p>
               </div>
 
               <div className="flex flex-col gap-2">
-                <Label htmlFor="secuelas" className="text-sm font-medium text-card-foreground">
+                <Label htmlFor="secuelas" className="text-sm font-medium text-gray-900">
                   Gravedad de las secuelas
                 </Label>
                 <Select value={secuelas} onValueChange={setSecuelas}>
-                  <SelectTrigger id="secuelas" className="bg-secondary text-secondary-foreground">
+                  <SelectTrigger id="secuelas" className="bg-gray-50 border-gray-200 focus:ring-blue-500">
                     <SelectValue placeholder="Selecciona gravedad" />
                   </SelectTrigger>
                   <SelectContent>
@@ -139,7 +140,7 @@ export function HeroCalculator() {
 
               <Button
                 onClick={calcular}
-                className="w-full bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white shadow-lg hover:shadow-xl transition-all duration-200"
                 size="lg"
               >
                 <Calculator className="mr-2 h-4 w-4" />
@@ -147,14 +148,14 @@ export function HeroCalculator() {
               </Button>
 
               {resultado !== null && (
-                <div className="rounded-xl border border-primary/20 bg-primary/5 p-4 text-center">
-                  <p className="mb-1 text-sm font-medium text-muted-foreground">
+                <div className="rounded-xl border-2 border-blue-500/30 bg-gradient-to-r from-blue-50 to-indigo-50 p-6 text-center shadow-xl">
+                  <p className="mb-2 text-sm font-semibold text-gray-700">
                     Indemnizacion estimada
                   </p>
-                  <p className="text-3xl font-bold text-primary">
-                    {resultado.toLocaleString("es-ES")}{"\u20AC"}
+                  <p className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-700">
+                    {resultado.toLocaleString("es-ES")}€
                   </p>
-                  <p className="mt-2 text-xs text-muted-foreground">
+                  <p className="mt-3 text-xs text-gray-500">
                     *Estimacion orientativa. Contacta para una valoracion personalizada.
                   </p>
                 </div>
