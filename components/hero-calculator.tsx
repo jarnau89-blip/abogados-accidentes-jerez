@@ -144,7 +144,7 @@ export function HeroCalculator() {
               <div className="flex flex-col gap-2">
                 <Label htmlFor="perjuicio" className="text-sm font-medium text-gray-900 flex items-center gap-2">
                   <Stethoscope className="h-4 w-4" />
-                  Tipo de perjuicio (baremo 2026) [web:3][page:0]
+                  Tipo de perjuicio (baremo 2026)
                 </Label>
                 <Select value={perjuicio} onValueChange={setPerjuicio}>
                   <SelectTrigger id="perjuicio" className="bg-gray-50 border-gray-200 focus:ring-blue-500">
