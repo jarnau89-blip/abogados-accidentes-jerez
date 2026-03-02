@@ -2,19 +2,19 @@ import { BookOpen, ArrowRight } from "lucide-react";
 
 const baremoItems = [
   {
-    label: "Dias de baja (perjuicio basico)",
-    value: "~34\u20AC/dia",
-    description: "Por cada dia de hospitalizacion o incapacidad temporal.",
+    label: "ías de baja (perjuicio basico)",
+    value: "~34\u20AC/día",
+    description: "Por cada día de hospitalización o incapacidad temporal.",
   },
   {
-    label: "Dias de baja (moderado)",
-    value: "~52\u20AC/dia",
-    description: "Cuando impide la ocupacion habitual de la victima.",
+    label: "Días de baja (moderado)",
+    value: "~52\u20AC/día",
+    description: "Cuando impide la ocupación habitual de la victima.",
   },
   {
-    label: "Dias de baja (grave)",
-    value: "~75\u20AC/dia",
-    description: "Lesiones que requieren hospitalizacion o intervencion.",
+    label: "Días de baja (grave)",
+    value: "~75\u20AC/día",
+    description: "Lesiones que requieren hospitalización o intervención.",
   },
   {
     label: "Puntos por secuelas",
@@ -35,20 +35,20 @@ export function BaremoSection() {
               Baremo de accidentes
             </div>
             <h2 className="mb-4 text-balance text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-              {"Como se calcula tu indemnizacion"}
+              {"Como se calcula tu indemnización"}
             </h2>
             <p className="mb-6 text-pretty text-lg leading-relaxed text-muted-foreground">
-              El baremo de trafico (Ley 35/2015) establece un sistema de
-              valoracion de daños y perjuicios para las victimas de accidentes
-              de trafico. Se actualiza anualmente y tiene en cuenta:
+              El baremo de tráfico (Ley 35/2015) establece un sistema de
+              valoración de daños y perjuicios para las victimas de accidentes
+              de tráfico. Se actualiza anualmente y tiene en cuenta:
             </p>
             <ul className="mb-8 flex flex-col gap-3">
               {[
-                "Dias de baja e incapacidad temporal",
+                "Días de baja e incapacidad temporal",
                 "Secuelas permanentes (puntos)",
-                "Perjuicio estetico",
+                "Perjuicio estético",
                 "Lucro cesante y daño moral",
-                "Gastos medicos y de rehabilitacion",
+                "Gastos médicos y de rehabilitación",
               ].map((item) => (
                 <li
                   key={item}

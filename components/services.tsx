@@ -55,7 +55,7 @@ export function Services() {
             Nuestros servicios
           </p>
           <h2 className="mb-4 text-balance text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-            Especialistas en accidentes de trafico
+            Especialistas en accidentes de tráfico
           </h2>
           <p className="text-pretty text-lg leading-relaxed text-muted-foreground">
             Cubrimos todos los aspectos legales de tu accidente para que te

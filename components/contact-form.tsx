@@ -47,7 +47,7 @@ export function ContactForm() {
                   </div>
                   <div>
                     <p className="text-sm font-medium text-card-foreground">
-                      Telefono en horario de atencion al publico (8:00 a 15:00) de lunes a viernes
+                      Teléfono en horario de atencion al publico (8:00 a 15:00) de lunes a viernes
                     </p>
                     <a
                       href="tel:+34900000000"
@@ -154,10 +154,10 @@ export function ContactForm() {
                         htmlFor="telefono"
                         className="text-sm font-medium text-card-foreground"
                       >
-                        Telefono *
+                        Teléfono *
                       </Label>
                       <Input
-                        id="telefono"
+                        id="teléfono"
                         type="tel"
                         required
                         placeholder="600 000 000"
@@ -207,7 +207,7 @@ export function ContactForm() {
                   </Button>
 
                   <p className="text-center text-xs text-muted-foreground">
-                    Al enviar este formulario aceptas nuestra politica de
+                    Al enviar este formulario aceptas nuestra política de
                     privacidad. Tus datos seran tratados de forma confidencial.
                   </p>
                 </form>

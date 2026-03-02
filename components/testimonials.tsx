@@ -96,7 +96,7 @@ export function Testimonials() {
                 </div>
                 <div className="rounded-lg bg-primary/10 px-4 py-2">
                   <p className="text-xs text-muted-foreground">
-                    Indemnizacion obtenida
+                    Indemnización obtenida
                   </p>
                   <p className="text-lg font-bold text-primary">{t.amount}</p>
                 </div>
