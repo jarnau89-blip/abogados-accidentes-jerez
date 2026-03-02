@@ -88,7 +88,7 @@ export function HeroCalculator() {
               Accidente Legal Abogados
             </h1>
             <p className="mb-8 max-w-lg text-pretty text-lg leading-relaxed text-white/90 lg:text-xl drop-shadow-md">
-              Máxima indemnización sin adelantos y ni riesgos. Sólo cobramos si tu cobras.
+              Máxima indemnización sin adelantos ni riesgos. Sólo cobramos si tu cobras.
             </p>
             <div className="flex flex-col gap-4 sm:flex-row sm:justify-center lg:justify-start">
               <div className="flex items-center gap-2 text-sm text-white/80 drop-shadow-sm">
