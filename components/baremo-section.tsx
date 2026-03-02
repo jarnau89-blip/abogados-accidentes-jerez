@@ -2,24 +2,24 @@ import { BookOpen, ArrowRight } from "lucide-react";
 
 const baremoItems = [
   {
-    label: "ías de baja (perjuicio basico)",
-    value: "~34\u20AC/día",
+    label: "Días de baja (perjuicio basico)",
+    value: "~39\u20AC/día",
     description: "Por cada día de hospitalización o incapacidad temporal.",
   },
   {
     label: "Días de baja (moderado)",
-    value: "~52\u20AC/día",
+    value: "~68\u20AC/día",
     description: "Cuando impide la ocupación habitual de la victima.",
   },
   {
     label: "Días de baja (grave)",
-    value: "~75\u20AC/día",
+    value: "~98\u20AC/día",
     description: "Lesiones que requieren hospitalización o intervención.",
   },
   {
     label: "Puntos por secuelas",
-    value: "800-1.200\u20AC/pto",
-    description: "Segun gravedad, edad y estado anterior del lesionado.",
+    value: "779-1.176\u20AC/pto",
+    description: "Según gravedad, edad y estado anterior del lesionado.",
   },
 ];
 

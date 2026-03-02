@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Calculator, Shield, Clock, CheckCircle2, Hospital, Stethoscope } from "lucide-react";
+import { Calculator, Shield, Clock, CheckCircle2, Stethoscope } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -13,45 +13,24 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-const secuelasOptions = [
-  { value: "0", label: "Sin secuelas", puntos: 0 },
-  { value: "1", label: "Leves (1-5 puntos)", puntos: 3 },
-  { value: "2", label: "Moderadas (6-15 puntos)", puntos: 10 },
-  { value: "3", label: "Graves (16-30 puntos)", puntos: 23 },
-  { value: "4", label: "Muy graves (31+ puntos)", puntos: 40 },
-];
-
 const PRECIOS_2026 = {
-  basico: 39.2,      // días sin baja/rehabilitación [web:3][page:0]
-  moderado: 67.96,   // días con baja/rehabilitación [web:3][page:0]
-  grave: 98.02,      // días hospitalización [web:3][page:0]
-  muygrave: 130.69,  // UCI/intervenciones graves [web:3][page:0]
+  basico: 39.2,      // días sin baja/rehabilitación
+  moderado: 67.96,   // días con baja/rehabilitación
+  grave: 98.02,      // días hospitalización
+  muygrave: 130.69,  // UCI/intervenciones graves
 };
-const PRECIO_PUNTO_SECUELA = 900;  // Aproximado baremo 2026 [web:3]
 
 export function HeroCalculator() {
   const [dias, setDias] = useState("");
   const [perjuicio, setPerjuicio] = useState("");
-  const [secuelas, setSecuelas] = useState("");
   const [resultado, setResultado] = useState<number | null>(null);
-  const [resultadoBreakdown, setResultadoBreakdown] = useState<{[key: string]: number} | null>(null);
 
   function calcular() {
     const numDias = Number.parseInt(dias) || 0;
     const tipoPerjuicio = perjuicio;
-    const secuelaSeleccionada = secuelasOptions.find((s) => s.value === secuelas);
-    const puntos = secuelaSeleccionada?.puntos || 0;
-
     const precioDia = PRECIOS_2026[tipoPerjuicio as keyof typeof PRECIOS_2026] || 0;
-    const indemnizacionTemporal = numDias * precioDia;
-    const indemnizacionSecuelas = puntos * PRECIO_PUNTO_SECUELA;
-    const total = indemnizacionTemporal + indemnizacionSecuelas;
+    const total = numDias * precioDia;
 
-    setResultadoBreakdown({
-      temporal: indemnizacionTemporal,
-      secuelas: indemnizacionSecuelas,
-      total,
-    });
     setResultado(total);
   }
 
@@ -120,7 +99,7 @@ export function HeroCalculator() {
                   Calculadora de indemnización
                 </h2>
                 <p className="text-sm text-gray-600">
-                  Estimación orientativa basada en el baremo 2026 [web:3]
+                  Estimación orientativa basada en el baremo 2026
                 </p>
               </div>
             </div>
@@ -160,24 +139,6 @@ export function HeroCalculator() {
                 </Select>
               </div>
 
-              <div className="flex flex-col gap-2">
-                <Label htmlFor="secuelas" className="text-sm font-medium text-gray-900">
-                  Gravedad de las secuelas
-                </Label>
-                <Select value={secuelas} onValueChange={setSecuelas}>
-                  <SelectTrigger id="secuelas" className="bg-gray-50 border-gray-200 focus:ring-blue-500">
-                    <SelectValue placeholder="Selecciona gravedad" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {secuelasOptions.map((opt) => (
-                      <SelectItem key={opt.value} value={opt.value}>
-                        {opt.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-
               <Button
                 onClick={calcular}
                 className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white shadow-lg hover:shadow-xl transition-all duration-200"
@@ -187,7 +148,7 @@ export function HeroCalculator() {
                 Calcular indemnización
               </Button>
 
-              {resultado !== null && resultadoBreakdown && (
+              {resultado !== null && (
                 <div className="rounded-xl border-2 border-blue-500/30 bg-gradient-to-r from-blue-50 to-indigo-50 p-6 text-center shadow-xl space-y-3">
                   <p className="mb-2 text-sm font-semibold text-gray-700">Indemnización estimada</p>
                   <p className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-700">
@@ -195,8 +156,7 @@ export function HeroCalculator() {
                   </p>
                   
                   <div className="text-left text-sm space-y-1">
-                    <div>- Temporal ({dias} días): {resultadoBreakdown.temporal.toLocaleString("es-ES")}€</div>
-                    <div>- Secuelas ({secuelasOptions.find(s => s.value === secuelas)?.puntos || 0} pts): {resultadoBreakdown.secuelas.toLocaleString("es-ES")}€</div>
+                    <div>- Temporal ({dias} días × {(PRECIOS_2026[perjuicio as keyof typeof PRECIOS_2026] || 0).toFixed(2)}€/día): {resultado.toLocaleString("es-ES")}€</div>
                   </div>
                   
                   <p className="mt-3 text-xs text-gray-500">
