@@ -200,7 +200,7 @@ export function HeroCalculator() {
                   </div>
                   
                   <p className="mt-3 text-xs text-gray-500">
-                    *Estimación orientativa baremo 2026. Contacta para valoración personalizada. [web:3][web:4]
+                    *Estimación orientativa baremo 2026. Contacta para valoración personalizada.
                   </p>
                 </div>
               )}
