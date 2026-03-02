@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Calculator, Shield, Clock, CheckCircle2 } from "lucide-react";
+import { Calculator, Shield, Clock, CheckCircle2, Hospital, Stethoscope } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -21,22 +21,46 @@ const secuelasOptions = [
   { value: "4", label: "Muy graves (31+ puntos)", puntos: 40 },
 ];
 
-const PRECIO_DIA = 50;
-const PRECIO_PUNTO_SECUELA = 900;
+const PRECIOS_2026 = {
+  basico: 39.2,      // días sin baja/rehabilitación [web:3][page:0]
+  moderado: 67.96,   // días con baja/rehabilitación [web:3][page:0]
+  grave: 98.02,      // días hospitalización [web:3][page:0]
+  muygrave: 130.69,  // UCI/intervenciones graves [web:3][page:0]
+};
+const PRECIO_PUNTO_SECUELA = 900;  // Aproximado baremo 2026 [web:3]
 
 export function HeroCalculator() {
-  const [diasCuracion, setDiasCuracion] = useState("");
+  const [dias, setDias] = useState("");
+  const [perjuicio, setPerjuicio] = useState("");
   const [secuelas, setSecuelas] = useState("");
   const [resultado, setResultado] = useState<number | null>(null);
+  const [resultadoBreakdown, setResultadoBreakdown] = useState<{[key: string]: number} | null>(null);
 
   function calcular() {
-    const dias = Number.parseInt(diasCuracion) || 0;
+    const numDias = Number.parseInt(dias) || 0;
+    const tipoPerjuicio = perjuicio;
     const secuelaSeleccionada = secuelasOptions.find((s) => s.value === secuelas);
     const puntos = secuelaSeleccionada?.puntos || 0;
 
-    const indemnizacion = dias * PRECIO_DIA + puntos * PRECIO_PUNTO_SECUELA;
-    setResultado(indemnizacion);
+    const precioDia = PRECIOS_2026[tipoPerjuicio as keyof typeof PRECIOS_2026] || 0;
+    const indemnizacionTemporal = numDias * precioDia;
+    const indemnizacionSecuelas = puntos * PRECIO_PUNTO_SECUELA;
+    const total = indemnizacionTemporal + indemnizacionSecuelas;
+
+    setResultadoBreakdown({
+      temporal: indemnizacionTemporal,
+      secuelas: indemnizacionSecuelas,
+      total,
+    });
+    setResultado(total);
   }
+
+  const perjuicioLabels = {
+    basico: "Básico (tratamiento sin baja)",
+    moderado: "Moderado (baja + rehabilitación)",
+    grave: "Grave (hospitalización)",
+    muygrave: "Muy grave (UCI/intervenciones)",
+  };
 
   return (
     <section 
@@ -64,7 +88,7 @@ export function HeroCalculator() {
               Accidente Legal Abogados
             </h1>
             <p className="mb-8 max-w-lg text-pretty text-lg leading-relaxed text-white/90 lg:text-xl drop-shadow-md">
-              Abogados especialistas en accidentes de trafico. Solo cobramos si ganamos tu caso.
+              Máxima indemnización sin adelantos y ni riesgos. Sólo cobramos si tu cobras.
             </p>
             <div className="flex flex-col gap-4 sm:flex-row sm:justify-center lg:justify-start">
               <div className="flex items-center gap-2 text-sm text-white/80 drop-shadow-sm">
@@ -93,10 +117,10 @@ export function HeroCalculator() {
               </div>
               <div>
                 <h2 className="text-lg font-bold text-gray-900">
-                  Calculadora de indemnizacion
+                  Calculadora de indemnización
                 </h2>
                 <p className="text-sm text-gray-600">
-                  Estimacion orientativa basada en el baremo
+                  Estimación orientativa basada en el baremo 2026 [web:3]
                 </p>
               </div>
             </div>
@@ -104,20 +128,36 @@ export function HeroCalculator() {
             <div className="flex flex-col gap-5">
               <div className="flex flex-col gap-2">
                 <Label htmlFor="dias" className="text-sm font-medium text-gray-900">
-                  Dias de curacion / baja
+                  Días de curación / baja
                 </Label>
                 <Input
                   id="dias"
                   type="number"
                   min="0"
                   placeholder="Ej: 30"
-                  value={diasCuracion}
-                  onChange={(e) => setDiasCuracion(e.target.value)}
+                  value={dias}
+                  onChange={(e) => setDias(e.target.value)}
                   className="bg-gray-50 border-gray-200 focus:border-blue-500 focus:ring-blue-500"
                 />
-                <p className="text-xs text-gray-500">
-                  Se valoran a ~50€/dia segun baremo vigente
-                </p>
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <Label htmlFor="perjuicio" className="text-sm font-medium text-gray-900 flex items-center gap-2">
+                  <Stethoscope className="h-4 w-4" />
+                  Tipo de perjuicio (baremo 2026) [web:3][page:0]
+                </Label>
+                <Select value={perjuicio} onValueChange={setPerjuicio}>
+                  <SelectTrigger id="perjuicio" className="bg-gray-50 border-gray-200 focus:ring-blue-500">
+                    <SelectValue placeholder="Selecciona tipo" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {Object.entries(perjuicioLabels).map(([value, label]) => (
+                      <SelectItem key={value} value={value}>
+                        {label} ({PRECIOS_2026[value as keyof typeof PRECIOS_2026].toFixed(2)}€/día)
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
 
               <div className="flex flex-col gap-2">
@@ -144,19 +184,23 @@ export function HeroCalculator() {
                 size="lg"
               >
                 <Calculator className="mr-2 h-4 w-4" />
-                Calcular indemnizacion
+                Calcular indemnización
               </Button>
 
-              {resultado !== null && (
-                <div className="rounded-xl border-2 border-blue-500/30 bg-gradient-to-r from-blue-50 to-indigo-50 p-6 text-center shadow-xl">
-                  <p className="mb-2 text-sm font-semibold text-gray-700">
-                    Indemnizacion estimada
-                  </p>
+              {resultado !== null && resultadoBreakdown && (
+                <div className="rounded-xl border-2 border-blue-500/30 bg-gradient-to-r from-blue-50 to-indigo-50 p-6 text-center shadow-xl space-y-3">
+                  <p className="mb-2 text-sm font-semibold text-gray-700">Indemnización estimada</p>
                   <p className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-700">
                     {resultado.toLocaleString("es-ES")}€
                   </p>
+                  
+                  <div className="text-left text-sm space-y-1">
+                    <div>- Temporal ({dias} días): {resultadoBreakdown.temporal.toLocaleString("es-ES")}€</div>
+                    <div>- Secuelas ({secuelasOptions.find(s => s.value === secuelas)?.puntos || 0} pts): {resultadoBreakdown.secuelas.toLocaleString("es-ES")}€</div>
+                  </div>
+                  
                   <p className="mt-3 text-xs text-gray-500">
-                    *Estimacion orientativa. Contacta para una valoracion personalizada.
+                    *Estimación orientativa baremo 2026. Contacta para valoración personalizada. [web:3][web:4]
                   </p>
                 </div>
               )}
