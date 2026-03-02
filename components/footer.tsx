@@ -1,4 +1,5 @@
 import { Scale } from "lucide-react";
+import Link from 'next/link';
 
 export function Footer() {
   return (
@@ -72,30 +73,34 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Legal */}
+          {/* Legal - AHORA FUNCIONAL */}
           <div>
             <h4 className="mb-4 text-sm font-semibold text-primary-foreground">
               Legal
             </h4>
             <ul className="flex flex-col gap-2">
-              {[
-                "Aviso legal",
-                "Politica de privacidad",
-                "Politica de cookies",
-              ].map((item) => (
-                <li key={item}>
-                  <span className="cursor-pointer text-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">
-                    {item}
-                  </span>
-                </li>
-              ))}
+              <li>
+                <Link href="/aviso-legal" className="text-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">
+                  Aviso legal
+                </Link>
+              </li>
+              <li>
+                <Link href="/politica-privacidad" className="text-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">
+                  Política de privacidad
+                </Link>
+              </li>
+              <li>
+                <Link href="/cookies" className="text-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">
+                  Política de cookies
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
 
         <div className="mt-10 border-t border-primary-foreground/10 pt-6">
           <p className="text-center text-xs text-primary-foreground/40">
-            {"\u00A9"} {new Date().getFullYear()} Abogados Accidentes. Todos los derechos
+            © {new Date().getFullYear()} Abogados Accidentes. Todos los derechos
             reservados. Las cantidades mostradas en la web son orientativas.
           </p>
         </div>
