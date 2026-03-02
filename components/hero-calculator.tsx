@@ -35,7 +35,7 @@ export function HeroCalculator() {
   }
 
   const perjuicioLabels = {
-    basico: "Básico (tratamiento sin baja)",
+    basico: "Básico (tratamiento sin baja y con rehabilitación)",
     moderado: "Moderado (baja + rehabilitación)",
     grave: "Grave (hospitalización)",
     muygrave: "Muy grave (UCI/intervenciones)",
@@ -156,7 +156,7 @@ export function HeroCalculator() {
                   </p>
                   
                   <div className="text-left text-sm space-y-1">
-                    <div>- Temporal ({dias} días × {(PRECIOS_2026[perjuicio as keyof typeof PRECIOS_2026] || 0).toFixed(2)}€/día): {resultado.toLocaleString("es-ES")}€</div>
+                    <div>({dias} días × {(PRECIOS_2026[perjuicio as keyof typeof PRECIOS_2026] || 0).toFixed(2)}€/día): {resultado.toLocaleString("es-ES")}€</div>
                   </div>
                   
                   <p className="mt-3 text-xs text-gray-500">
