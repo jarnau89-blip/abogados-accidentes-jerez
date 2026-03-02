@@ -21,7 +21,7 @@ export function Header() {
         {/* Logo */}
         <a href="#inicio" className="flex items-center gap-3 p-2">
   <Image 
-    src="/generated-image-4.png"
+    src="/generated-image-5.png"
     alt="Accidente Legal Abogados"
     width={140}
     height={70}
