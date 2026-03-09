@@ -2,21 +2,21 @@ import Link from 'next/link';
 
 export default function PoliticaPrivacidad() {
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 py-12 px-4">
       <div className="mx-auto max-w-4xl">
-        <h1 className="text-4xl font-bold text-gray-900 mb-8 text-center">
+        <h1 className="text-4xl font-bold text-white mb-8 text-center drop-shadow-lg">
           Política de Privacidad
         </h1>
         
-        <div className="prose prose-lg max-w-none space-y-6 text-gray-700">
+        <div className="prose prose-lg max-w-none space-y-6 text-gray-100 bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-2xl">
           <section>
             <h2 className="text-2xl font-semibold text-gray-900">1. Responsable del tratamiento</h2>
             <p className="text-lg">
               <strong>Accidente Legal Abogados</strong><br />
-              NIF: <span className="font-mono">[Tu NIF]</span><br />
-              Domicilio: <span className="font-mono">[Tu dirección, Jerez de la Frontera]</span><br />
-              Email: <span className="font-mono">[tu@email.com]</span><br />
-              Teléfono: <span className="font-mono">[tu teléfono]</span>
+              NIF: <span className="font-mono bg-gray-100 px-2 py-1 rounded text-sm">[Tu NIF]</span><br />
+              Domicilio: <span className="font-mono bg-gray-100 px-2 py-1 rounded text-sm">[Tu dirección, Jerez de la Frontera]</span><br />
+              Email: <span className="font-mono bg-gray-100 px-2 py-1 rounded text-sm">[tu@email.com]</span><br />
+              Teléfono: <span className="font-mono bg-gray-100 px-2 py-1 rounded text-sm">[tu teléfono]</span>
             </p>
           </section>
 
@@ -50,7 +50,7 @@ export default function PoliticaPrivacidad() {
             <h2 className="text-2xl font-semibold text-gray-900">5. Derechos</h2>
             <p>
               Acceso, rectificación, supresión, oposición (Art. 15-22 RGPD). 
-              Escribe a <span className="font-mono">[tu@email.com]</span>.
+              Escribe a <span className="font-mono bg-gray-100 px-2 py-1 rounded text-sm">[tu@email.com]</span>.
             </p>
           </section>
 
@@ -59,7 +59,7 @@ export default function PoliticaPrivacidad() {
             <p>
               Usamos cookies necesarias. Terceros: Google Analytics (anonimizado). 
               Configura en{' '}
-              <Link href="/cookies" className="text-blue-600 hover:underline font-medium">
+              <Link href="/cookies" className="text-blue-600 hover:underline font-semibold bg-blue-100 px-2 py-1 rounded">
                 Aviso de Cookies
               </Link>
               .
@@ -73,8 +73,8 @@ export default function PoliticaPrivacidad() {
             </p>
           </section>
 
-          <div className="mt-12 pt-8 border-t border-gray-200 text-center">
-            <p className="text-sm text-gray-500">
+          <div className="mt-12 pt-8 border-t border-gray-200/50 text-center">
+            <p className="text-sm text-gray-400">
               Última actualización: 9 de marzo de 2026
             </p>
           </div>
