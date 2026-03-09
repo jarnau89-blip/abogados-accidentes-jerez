@@ -59,7 +59,7 @@ export function Footer() {
             <ul className="flex flex-col gap-2">
               {[
                 "Lesiones personales",
-                "Danos materiales",
+                "Daños materiales",
                 "Secuelas",
                 "Lucro cesante",
                 "Gestion de seguros",
@@ -73,24 +73,33 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Legal - AHORA FUNCIONAL */}
+          {/* Legal - ENLACES FUNCIONALES */}
           <div>
             <h4 className="mb-4 text-sm font-semibold text-primary-foreground">
               Legal
             </h4>
             <ul className="flex flex-col gap-2">
               <li>
-                <Link href="/aviso-legal" className="text-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">
+                <Link 
+                  href="/aviso-legal" 
+                  className="text-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground"
+                >
                   Aviso legal
                 </Link>
               </li>
               <li>
-                <Link href="/politica-privacidad" className="text-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">
+                <Link 
+                  href="/politica-de-privacidad" 
+                  className="text-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground"
+                >
                   Política de privacidad
                 </Link>
               </li>
               <li>
-                <Link href="/cookies" className="text-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">
+                <Link 
+                  href="/cookies" 
+                  className="text-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground"
+                >
                   Política de cookies
                 </Link>
               </li>
@@ -100,7 +109,7 @@ export function Footer() {
 
         <div className="mt-10 border-t border-primary-foreground/10 pt-6">
           <p className="text-center text-xs text-primary-foreground/40">
-            © {new Date().getFullYear()} Abogados Accidentes. Todos los derechos
+            © {new Date().getFullYear()} Accidente legal abogados. Todos los derechos
             reservados. Las cantidades mostradas en la web son orientativas.
           </p>
         </div>
