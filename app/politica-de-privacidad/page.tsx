@@ -8,7 +8,7 @@ export default function PoliticaPrivacidad() {
           Política de Privacidad
         </h1>
         
-        <div className="prose prose-lg max-w-none space-y-6 text-gray-100 bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-2xl">
+        <div className="prose prose-lg max-w-none space-y-6 text-black-100 bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-2xl">
           <section>
             <h2 className="text-2xl font-semibold text-black-900">1. Responsable del tratamiento</h2>
             <p className="text-lg">
@@ -74,7 +74,7 @@ export default function PoliticaPrivacidad() {
           </section>
 
           <div className="mt-12 pt-8 border-t border-black-200/50 text-center">
-            <p className="text-sm text-gray-400">
+            <p className="text-sm text-black-400">
               Última actualización: 9 de marzo de 2026
             </p>
           </div>
