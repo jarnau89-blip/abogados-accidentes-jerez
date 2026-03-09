@@ -4,7 +4,7 @@ export default function PoliticaPrivacidad() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 py-12 px-4">
       <div className="mx-auto max-w-4xl">
-        <h1 className="text-4xl font-bold text-white mb-8 text-center drop-shadow-lg">
+        <h1 className="text-4xl font-bold text-black mb-8 text-center drop-shadow-lg">
           Política de Privacidad
         </h1>
         
