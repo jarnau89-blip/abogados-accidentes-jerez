@@ -1,12 +1,11 @@
 import { Scale } from "lucide-react";
-import Link from 'next/link';
+import Link from "next/link";
 
 export function Footer() {
   return (
     <footer className="border-t border-border bg-primary py-12">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {/* Brand */}
           <div className="lg:col-span-1">
             <a href="#inicio" className="mb-4 flex items-center gap-2">
               <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary-foreground/20">
@@ -21,13 +20,13 @@ export function Footer() {
                 </span>
               </div>
             </a>
+
             <p className="mt-3 text-sm leading-relaxed text-primary-foreground/60">
               Despacho especializado en derecho de accidentes de trafico y
               reclamaciones a aseguradoras.
             </p>
           </div>
 
-          {/* Quick links */}
           <div>
             <h4 className="mb-4 text-sm font-semibold text-primary-foreground">
               Navegacion
@@ -51,7 +50,6 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Services */}
           <div>
             <h4 className="mb-4 text-sm font-semibold text-primary-foreground">
               Servicios
@@ -73,31 +71,30 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Legal - ENLACES FUNCIONALES */}
           <div>
             <h4 className="mb-4 text-sm font-semibold text-primary-foreground">
               Legal
             </h4>
             <ul className="flex flex-col gap-2">
               <li>
-                <Link 
-                  href="/aviso-legal" 
+                <Link
+                  href="/aviso-legal"
                   className="text-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground"
                 >
                   Aviso legal
                 </Link>
               </li>
               <li>
-                <Link 
-                  href="/politica-de-privacidad" 
+                <Link
+                  href="/politica-de-privacidad"
                   className="text-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground"
                 >
                   Política de privacidad
                 </Link>
               </li>
               <li>
-                <Link 
-                  href="/cookies" 
+                <Link
+                  href="/politica-de-cookies"
                   className="text-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground"
                 >
                   Política de cookies
