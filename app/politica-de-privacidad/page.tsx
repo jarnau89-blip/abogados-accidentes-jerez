@@ -157,7 +157,7 @@ export default function PoliticaPrivacidad() {
                 rel="noopener noreferrer"
                 className="text-blue-600 hover:underline font-medium"
               >
-                [www.aepd.es]
+                www.aepd.es
               </a>
             </p>
           </section>
