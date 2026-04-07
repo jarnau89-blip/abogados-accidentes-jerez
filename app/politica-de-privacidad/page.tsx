@@ -193,13 +193,9 @@ export default function PoliticaPrivacidad() {
             <h2 className="text-2xl font-semibold text-gray-900">Enlaces relacionados</h2>
             <p className="text-lg leading-8">
               Puede consultar también nuestro{' '}
-              <Link href="/cookies" className="text-blue-600 hover:underline font-medium">
+              <Link href="/politica-de-cookies" className="text-blue-600 hover:underline font-medium">
                 Aviso de Cookies
               </Link>{' '}
-              y nuestra{' '}
-              <Link href="/privacidad" className="text-blue-600 hover:underline font-medium">
-                Política de Privacidad
-              </Link>
               .
             </p>
           </section>
