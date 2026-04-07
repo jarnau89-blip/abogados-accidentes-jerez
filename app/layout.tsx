@@ -9,7 +9,7 @@ const _inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Accidentelegalabogados.com | Accidente Legal Abogados| Calcula tu Indemnización Gratis",
   description:
-    "Máxima indemnización sin adelantos y sin riesgos. Sólo cobramos si tu cobras.",
+    "Máxima indemnización sin adelantos y ni riesgos. Sólo cobramos si tu cobras.",
   keywords:
     "Abogados accidentes españa, indemnización accidente trafico, abogado trafico toda españa, reclamacion accidente",
 };
