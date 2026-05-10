@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Phone, Menu, X, Scale } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Phone, Menu, X } from "lucide-react";
 import Image from "next/image";
 
 const navLinks = [
@@ -18,28 +17,22 @@ export function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/95 backdrop-blur-sm">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-8">
-        {/* Logo */}
         <a href="#inicio" className="flex items-center gap-3 p-2">
-  <Image 
-    src="/generated-image-5.png"
-    alt="Accidente Legal Abogados"
-    width={140}
-    height={70}
-    className="h-16 w-auto object-contain drop-shadow-xl rounded-lg"
-  />
-  <div className="flex flex-col leading-tight hidden md:block">
-    <span className="text-xl font-black bg-gradient-to-r from-red-600 to-red-500 bg-clip-text text-transparent tracking-tight">
-      Accidente Legal Abogados
-    </span>
-    <span className="text-sm font-bold text-muted-foreground">
-      
-    </span>
-  </div>
-</a>
+          <Image
+            src="/generated-image-5.png"
+            alt="Accidente Legal Abogados"
+            width={140}
+            height={70}
+            className="h-16 w-auto rounded-lg object-contain drop-shadow-xl"
+          />
+          <div className="hidden flex-col leading-tight md:flex">
+            <span className="bg-gradient-to-r from-red-600 to-red-500 bg-clip-text text-xl font-black tracking-tight text-transparent">
+              Accidente Legal Abogados
+            </span>
+            <span className="text-sm font-bold text-muted-foreground"></span>
+          </div>
+        </a>
 
-
-
-        {/* Desktop nav */}
         <nav className="hidden items-center gap-8 lg:flex" aria-label="Principal">
           {navLinks.map((link) => (
             <a
@@ -52,26 +45,26 @@ export function Header() {
           ))}
         </nav>
 
-        {/* CTA + mobile toggle */}
-        <div className="flex items-center gap-3">
-          <Button
-            asChild
-            className="hidden bg-destructive text-destructive-foreground hover:bg-destructive/90 sm:inline-flex"
+        <div className="flex items-center gap-2">
+          <a
+            href="https://wa.me/34722160466?text=Hola%2C%20quiero%20consultar%20mi%20caso%20de%20accidente"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Abrir conversación por WhatsApp"
+            className="inline-flex items-center justify-center rounded-md bg-green-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-green-600"
           >
-            <a href="tel:+34722160466">
-              <Phone className="mr-2 h-4 w-4" />
-              Llamar ahora
-            </a>
-          </Button>
-          <Button
-            asChild
-            size="icon"
-            className="bg-destructive text-destructive-foreground hover:bg-destructive/90 sm:hidden"
+            WhatsApp
+          </a>
+
+          <a
+            href="tel:+34722160466"
+            className="hidden items-center justify-center rounded-md bg-red-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-red-700 sm:inline-flex"
+            aria-label="Llamar ahora"
           >
-            <a href="tel:+34722160466" aria-label="Llamar en horario de atencion al publico (8:00 a 15:00) de lunes a viernes">
-              <Phone className="h-4 w-4" />
-            </a>
-          </Button>
+            <Phone className="mr-2 h-4 w-4" />
+            Llamar ahora
+          </a>
+
           <button
             type="button"
             className="inline-flex h-10 w-10 items-center justify-center rounded-md text-foreground lg:hidden"
@@ -83,7 +76,6 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile nav */}
       {mobileOpen && (
         <nav
           className="border-t border-border bg-background px-4 pb-4 lg:hidden"
@@ -99,6 +91,25 @@ export function Header() {
               {link.label}
             </a>
           ))}
+
+          <div className="mt-4 flex flex-col gap-3">
+            <a
+              href="https://wa.me/34722160466?text=Hola%2C%20quiero%20consultar%20mi%20caso%20de%20accidente"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-md bg-green-500 px-4 py-3 text-sm font-semibold text-white transition hover:bg-green-600"
+            >
+              WhatsApp
+            </a>
+
+            <a
+              href="tel:+34722160466"
+              className="inline-flex items-center justify-center rounded-md bg-red-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-red-700"
+            >
+              <Phone className="mr-2 h-4 w-4" />
+              Llamar ahora
+            </a>
+          </div>
         </nav>
       )}
     </header>
