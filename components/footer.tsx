@@ -5,81 +5,88 @@ export function Footer() {
   return (
     <footer className="border-t border-border bg-primary py-12">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          <div className="lg:col-span-1">
-            <a href="#inicio" className="mb-4 flex items-center gap-2">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary-foreground/20">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+          <div>
+            <div className="mb-4 flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary-foreground/10">
                 <Scale className="h-5 w-5 text-primary-foreground" />
               </div>
-              <div className="flex flex-col leading-tight">
-                <span className="text-sm font-bold text-primary-foreground">
-                  Abogados Accidentes
-                </span>
-                <span className="text-xs text-primary-foreground/60">
-                  España
-                </span>
+              <div>
+                <p className="font-bold text-primary-foreground">Abogados Accidentes</p>
+                <p className="text-sm text-primary-foreground/70">España</p>
               </div>
-            </a>
+            </div>
 
-            <p className="mt-3 text-sm leading-relaxed text-primary-foreground/60">
-              Despacho especializado en derecho de accidentes de trafico y
-              reclamaciones a aseguradoras.
+            <p className="max-w-sm text-sm leading-7 text-primary-foreground/70">
+              Despacho especializado en derecho de accidentes de tráfico y reclamaciones a
+              aseguradoras.
             </p>
           </div>
 
           <div>
-            <h4 className="mb-4 text-sm font-semibold text-primary-foreground">
-              Navegacion
-            </h4>
-            <ul className="flex flex-col gap-2">
-              {[
-                { label: "Inicio", href: "#inicio" },
-                { label: "Calculadora", href: "#calculadora" },
-                { label: "Servicios", href: "#servicios" },
-                { label: "Contacto", href: "#contacto" },
-              ].map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    className="text-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
+            <h3 className="mb-4 font-semibold text-primary-foreground">Navegación</h3>
+            <ul className="space-y-3">
+              <li>
+                <a
+                  href="#inicio"
+                  className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
+                >
+                  Inicio
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#calculadora"
+                  className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
+                >
+                  Calculadora
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#servicios"
+                  className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
+                >
+                  Servicios
+                </a>
+              </li>
+              <li>
+                <Link
+                  href="/provincias"
+                  className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
+                >
+                  Provincias
+                </Link>
+              </li>
+              <li>
+                <a
+                  href="#contacto"
+                  className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
+                >
+                  Contacto
+                </a>
+              </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="mb-4 text-sm font-semibold text-primary-foreground">
-              Servicios
-            </h4>
-            <ul className="flex flex-col gap-2">
-              {[
-                "Lesiones personales",
-                "Daños materiales",
-                "Secuelas",
-                "Lucro cesante",
-                "Gestion de seguros",
-              ].map((item) => (
-                <li key={item}>
-                  <span className="text-sm text-primary-foreground/60">
-                    {item}
-                  </span>
-                </li>
-              ))}
+            <h3 className="mb-4 font-semibold text-primary-foreground">Servicios</h3>
+            <ul className="space-y-3">
+              <li className="text-sm text-primary-foreground/70">Lesiones personales</li>
+              <li className="text-sm text-primary-foreground/70">Daños materiales</li>
+              <li className="text-sm text-primary-foreground/70">Secuelas</li>
+              <li className="text-sm text-primary-foreground/70">Lucro cesante</li>
+              <li className="text-sm text-primary-foreground/70">Gestión de seguros</li>
             </ul>
           </div>
 
           <div>
-            <h4 className="mb-4 text-sm font-semibold text-primary-foreground">
-              Legal
-            </h4>
-            <ul className="flex flex-col gap-2">
+            <h3 className="mb-4 font-semibold text-primary-foreground">Legal</h3>
+            <ul className="space-y-3">
               <li>
                 <Link
                   href="/aviso-legal"
-                  className="text-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground"
+                  className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
                 >
                   Aviso legal
                 </Link>
@@ -87,7 +94,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/politica-de-privacidad"
-                  className="text-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground"
+                  className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
                 >
                   Política de privacidad
                 </Link>
@@ -95,7 +102,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/politica-de-cookies"
-                  className="text-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground"
+                  className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
                 >
                   Política de cookies
                 </Link>
@@ -105,9 +112,9 @@ export function Footer() {
         </div>
 
         <div className="mt-10 border-t border-primary-foreground/10 pt-6">
-          <p className="text-center text-xs text-primary-foreground/40">
-            © {new Date().getFullYear()} Accidente legal abogados. Todos los derechos
-            reservados. Las cantidades mostradas en la web son orientativas.
+          <p className="text-sm text-primary-foreground/50">
+            © {new Date().getFullYear()} Accidente Legal Abogados. Todos los derechos reservados.
+            Las cantidades mostradas en la web son orientativas.
           </p>
         </div>
       </div>
