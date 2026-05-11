@@ -12,7 +12,8 @@ export function Footer() {
                 <Scale className="h-5 w-5 text-primary-foreground" />
               </div>
               <div>
-                <p className="font-bold text-primary-foreground">Accidente Legal Abogados</p>
+                <p className="font-bold text-primary-foreground">
+                  Accidente Legal Abogados
                 </p>
                 <p className="text-sm text-primary-foreground/70">España</p>
               </div>
