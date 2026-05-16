@@ -66,7 +66,7 @@ export default function SpainInteractiveMap() {
         </p>
       </div>
 
-      <div className="overflow-hidden rounded-xl bg-muted/30 p-3 md:p-6">
+      <div className="overflow-hidden rounded-xl border border-border bg-slate-50 p-3 md:p-6 dark:bg-slate-950">
         <svg
           viewBox="0 0 700 640"
           className="h-auto w-full"
@@ -75,6 +75,8 @@ export default function SpainInteractiveMap() {
         >
           <title>Mapa interactivo de provincias de España</title>
 
+          <rect x="0" y="0" width="700" height="640" fill="transparent" />
+
           {provincePaths.map((provincia) => (
             <path
               key={provincia.slug}
@@ -82,7 +84,13 @@ export default function SpainInteractiveMap() {
               role="button"
               tabIndex={0}
               aria-label={provincia.nombre}
-              className="cursor-pointer fill-primary/15 stroke-primary/40 stroke-[1.5] transition-all duration-200 hover:fill-primary hover:stroke-primary focus:fill-primary focus:outline-none"
+              fill="#dbeafe"
+              stroke="#1e3a8a"
+              strokeWidth="2.2"
+              strokeLinejoin="round"
+              strokeLinecap="round"
+              vectorEffect="non-scaling-stroke"
+              className="cursor-pointer transition-all duration-200 hover:fill-[#2563eb] hover:stroke-[#1e40af] focus:outline-none"
               onClick={() => router.push(`/provincias/${provincia.slug}`)}
               onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") {
