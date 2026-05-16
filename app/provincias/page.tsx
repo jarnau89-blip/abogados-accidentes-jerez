@@ -1,71 +1,92 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import SpainInteractiveMap from "@/components/spain-interactive-map";
 
 export const metadata: Metadata = {
   title: "Abogados de accidentes por provincia | Accidente Legal Abogados",
   description:
-    "Cobertura de abogados de accidentes en distintas provincias de Andalucía. Consulta información específica por provincia y contacta con nuestro despacho.",
+    "Consulta nuestras páginas de cobertura por provincia para encontrar información general sobre accidentes de tráfico, reclamaciones e indemnizaciones.",
 };
 
 const provincias = [
-  {
-    nombre: "Cádiz",
-    slug: "cadiz",
-    descripcion:
-      "Atención a lesionados y víctimas de accidentes de tráfico en Cádiz, Jerez, El Puerto, San Fernando, Chiclana y otras zonas de la provincia.",
-  },
-  {
-    nombre: "Sevilla",
-    slug: "sevilla",
-    descripcion:
-      "Asistencia en reclamaciones por accidentes de tráfico en Sevilla capital y provincia, con orientación legal para indemnizaciones y secuelas.",
-  },
-  {
-    nombre: "Málaga",
-    slug: "malaga",
-    descripcion:
-      "Información legal sobre accidentes de tráfico en Málaga y provincia, con apoyo en reclamaciones frente a aseguradoras.",
-  },
+  { nombre: "Álava", slug: "alava" },
+  { nombre: "Albacete", slug: "albacete" },
+  { nombre: "Alicante", slug: "alicante" },
+  { nombre: "Almería", slug: "almeria" },
+  { nombre: "Asturias", slug: "asturias" },
+  { nombre: "Ávila", slug: "avila" },
+  { nombre: "Badajoz", slug: "badajoz" },
+  { nombre: "Barcelona", slug: "barcelona" },
+  { nombre: "Burgos", slug: "burgos" },
+  { nombre: "Cáceres", slug: "caceres" },
+  { nombre: "Cádiz", slug: "cadiz" },
+  { nombre: "Cantabria", slug: "cantabria" },
+  { nombre: "Castellón", slug: "castellon" },
+  { nombre: "Ciudad Real", slug: "ciudad-real" },
+  { nombre: "Córdoba", slug: "cordoba" },
+  { nombre: "A Coruña", slug: "a-coruna" },
+  { nombre: "Cuenca", slug: "cuenca" },
+  { nombre: "Girona", slug: "girona" },
+  { nombre: "Granada", slug: "granada" },
+  { nombre: "Guadalajara", slug: "guadalajara" },
+  { nombre: "Guipúzcoa", slug: "guipuzcoa" },
+  { nombre: "Huelva", slug: "huelva" },
+  { nombre: "Huesca", slug: "huesca" },
+  { nombre: "Illes Balears", slug: "illes-balears" },
+  { nombre: "Jaén", slug: "jaen" },
+  { nombre: "La Rioja", slug: "la-rioja" },
+  { nombre: "Las Palmas", slug: "las-palmas" },
+  { nombre: "León", slug: "leon" },
+  { nombre: "Lleida", slug: "lleida" },
+  { nombre: "Lugo", slug: "lugo" },
+  { nombre: "Madrid", slug: "madrid" },
+  { nombre: "Málaga", slug: "malaga" },
+  { nombre: "Murcia", slug: "murcia" },
+  { nombre: "Navarra", slug: "navarra" },
+  { nombre: "Ourense", slug: "ourense" },
+  { nombre: "Palencia", slug: "palencia" },
+  { nombre: "Pontevedra", slug: "pontevedra" },
+  { nombre: "Salamanca", slug: "salamanca" },
+  { nombre: "Santa Cruz de Tenerife", slug: "santa-cruz-de-tenerife" },
+  { nombre: "Segovia", slug: "segovia" },
+  { nombre: "Sevilla", slug: "sevilla" },
+  { nombre: "Soria", slug: "soria" },
+  { nombre: "Tarragona", slug: "tarragona" },
+  { nombre: "Teruel", slug: "teruel" },
+  { nombre: "Toledo", slug: "toledo" },
+  { nombre: "Valencia", slug: "valencia" },
+  { nombre: "Valladolid", slug: "valladolid" },
+  { nombre: "Vizcaya", slug: "vizcaya" },
+  { nombre: "Zamora", slug: "zamora" },
+  { nombre: "Zaragoza", slug: "zaragoza" },
 ];
 
 export default function ProvinciasPage() {
   return (
-    <main className="min-h-screen bg-background pt-32 pb-20">
-      <section className="mx-auto max-w-6xl px-4 lg:px-8">
-        <div className="mb-12 max-w-3xl">
-          <span className="mb-4 inline-block rounded-full bg-primary/10 px-4 py-2 text-sm font-semibold text-primary">
-            Cobertura por provincias
-          </span>
-          <h1 className="text-4xl font-black tracking-tight text-foreground lg:text-5xl">
-            Abogados de accidentes por provincia
-          </h1>
-          <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-            Hemos creado páginas específicas por provincia para ofrecer información más útil sobre
-            nuestra cobertura, el tipo de reclamaciones que gestionamos y la forma de contacto más
-            rápida en cada zona.
-          </p>
+    <main className="min-h-screen bg-background px-4 pb-20 pt-32">
+      <section className="mx-auto max-w-6xl">
+        <h1 className="text-4xl font-black tracking-tight text-foreground lg:text-5xl">
+          Abogados de accidentes por provincia
+        </h1>
+
+        <p className="mt-5 max-w-3xl text-lg leading-relaxed text-muted-foreground">
+          Consulta nuestras páginas de cobertura por provincia para encontrar información general
+          sobre accidentes de tráfico, reclamaciones e indemnizaciones.
+        </p>
+
+        <div className="mt-10">
+          <SpainInteractiveMap />
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {provincias.map((provincia) => (
-            <article
+            <Link
               key={provincia.slug}
-              className="rounded-2xl border border-border bg-card p-6 shadow-sm transition hover:shadow-md"
+              href={`/provincias/${provincia.slug}`}
+              className="rounded-xl border border-border bg-card px-5 py-4 text-sm font-semibold text-card-foreground shadow-sm transition hover:bg-muted"
             >
-              <h2 className="text-2xl font-bold text-card-foreground">{provincia.nombre}</h2>
-              <p className="mt-4 text-sm leading-6 text-muted-foreground">
-                {provincia.descripcion}
-              </p>
-
-              <div className="mt-6">
-                <Link
-                  href={`/provincias/${provincia.slug}`}
-                  className="inline-flex items-center justify-center rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
-                >
-                  Ver página de {provincia.nombre}
-                </Link>
-              </div>
-            </article>
+              {provincia.nombre}
+            </Link>
           ))}
         </div>
       </section>
