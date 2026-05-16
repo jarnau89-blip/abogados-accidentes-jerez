@@ -56,7 +56,7 @@ const provincias = [
 
 export default function ProvinciasPage() {
   return (
-    <main className="min-h-screen bg-background px-4 pt-32 pb-20">
+    <main className="min-h-screen bg-background px-4 pb-20 pt-32">
       <section className="mx-auto max-w-6xl">
         <h1 className="text-4xl font-black tracking-tight text-foreground lg:text-5xl">
           Abogados de accidentes por provincia
@@ -71,7 +71,7 @@ export default function ProvinciasPage() {
           <SpainInteractiveMap />
         </div>
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {provincias.map((provincia) => (
             <Link
               key={provincia.slug}
