@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SpainInteractiveMap from "@/components/spain-interactive-map";
 
 const provincias = [
   { nombre: "Álava", slug: "alava" },
@@ -65,6 +66,10 @@ export default function ProvinciasPage() {
           Consulta nuestras páginas de cobertura por provincia para encontrar información general
           sobre accidentes de tráfico, reclamaciones e indemnizaciones.
         </p>
+
+        <div className="mt-10">
+          <SpainInteractiveMap />
+        </div>
 
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {provincias.map((provincia) => (
