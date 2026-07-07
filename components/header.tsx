@@ -3,12 +3,14 @@
 import { useState } from "react";
 import { Phone, Menu, X } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const navLinks = [
-  { label: "Inicio", href: "#inicio" },
-  { label: "Indemnizaciones", href: "#calculadora" },
-  { label: "Servicios", href: "#servicios" },
-  { label: "Contacto", href: "#contacto" },
+  { label: "Inicio", href: "#inicio", external: false },
+  { label: "Indemnizaciones", href: "#calculadora", external: false },
+  { label: "Servicios", href: "#servicios", external: false },
+  { label: "Provincias", href: "/provincias", external: true },
+  { label: "Contacto", href: "#contacto", external: false },
 ];
 
 export function Header() {
@@ -34,15 +36,25 @@ export function Header() {
         </a>
 
         <nav className="hidden items-center gap-8 lg:flex" aria-label="Principal">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            link.external ? (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {link.label}
+              </Link>
+            ) : (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {link.label}
+              </a>
+            )
+          )}
         </nav>
 
         <div className="flex items-center gap-2">
@@ -81,16 +93,27 @@ export function Header() {
           className="border-t border-border bg-background px-4 pb-4 lg:hidden"
           aria-label="Menu movil"
         >
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={() => setMobileOpen(false)}
-              className="block py-3 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            link.external ? (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setMobileOpen(false)}
+                className="block py-3 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {link.label}
+              </Link>
+            ) : (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setMobileOpen(false)}
+                className="block py-3 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {link.label}
+              </a>
+            )
+          )}
 
           <div className="mt-4 flex flex-col gap-3">
             <a
