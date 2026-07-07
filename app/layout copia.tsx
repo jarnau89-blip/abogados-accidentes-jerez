@@ -4,7 +4,7 @@ import { Inter } from "next/font/google";
 
 import "./globals.css";
 
-const _inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Accidentelegalabogados.com | Accidente Legal Abogados| Calcula tu Indemnización Gratis",
@@ -27,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className="font-sans antialiased">{children}</body>
+      <body className={`${inter.className} font-sans antialiased`}>{children}</body>
     </html>
   );
 }

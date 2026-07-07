@@ -78,7 +78,7 @@ export function SpainMap() {
 
       <p className="mt-4 text-xs text-muted-foreground">
         Consejo: pega aquí el SVG completo de España por provincias y sustituye cada
-        <span className="font-medium"> d="..." </span>
+        <span className="font-medium"> d=&quot;...&quot; </span>
         por el trazado real de cada provincia.
       </p>
     </section>
