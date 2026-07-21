@@ -1,172 +1,519 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
-export const metadata: Metadata = {
-  title: "Abogados de accidentes por provincia | Accidente Legal Abogados",
-  description:
-    "Consulta nuestras páginas de cobertura por provincia para encontrar información general sobre accidentes de tráfico, reclamaciones e indemnizaciones.",
-};
+const provinciasData = {
+  alava: {
+    nombre: "Álava",
+    comunidad: "País Vasco",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Álava, dentro del País Vasco. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "Analizamos casos de accidentes de coche, moto, bicicleta, atropellos y otros supuestos de responsabilidad en la circulación para orientar la reclamación de la indemnización que corresponda en Álava.",
+  },
+  albacete: {
+    nombre: "Albacete",
+    comunidad: "Castilla-La Mancha",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Albacete, dentro de Castilla-La Mancha. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "Revisamos accidentes de coche, moto, bicicleta y atropellos para ayudarte a reclamar una indemnización adecuada en Albacete.",
+  },
+  alicante: {
+    nombre: "Alicante",
+    comunidad: "Comunidad Valenciana",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Alicante, dentro de la Comunidad Valenciana. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "Analizamos la documentación del siniestro y la evolución médica para orientar una reclamación completa en Alicante.",
+  },
+  almeria: {
+    nombre: "Almería",
+    comunidad: "Andalucía",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Almería, dentro de Andalucía. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "Te ayudamos a estudiar la responsabilidad del accidente y a reclamar daños personales y materiales en Almería.",
+  },
+  asturias: {
+    nombre: "Asturias",
+    comunidad: "Principado de Asturias",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Asturias. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "Prestamos apoyo en reclamaciones por accidentes de circulación en Asturias con atención a secuelas, perjuicios y baja laboral.",
+  },
+  avila: {
+    nombre: "Ávila",
+    comunidad: "Castilla y León",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Ávila, dentro de Castilla y León. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "Revisamos informes médicos, atestados y ofertas del seguro para reclamar en Ávila la indemnización que corresponda.",
+  },
+  badajoz: {
+    nombre: "Badajoz",
+    comunidad: "Extremadura",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Badajoz, dentro de Extremadura. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "Orientamos reclamaciones por daños personales y materiales derivados de accidentes de circulación en Badajoz.",
+  },
+  barcelona: {
+    nombre: "Barcelona",
+    comunidad: "Cataluña",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Barcelona, dentro de Cataluña. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "Ayudamos a lesionados por accidentes en Barcelona a revisar su caso y reclamar una compensación ajustada al perjuicio sufrido.",
+  },
+  burgos: {
+    nombre: "Burgos",
+    comunidad: "Castilla y León",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Burgos, dentro de Castilla y León. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "En Burgos estudiamos accidentes con lesiones, secuelas y perjuicios económicos para orientar la mejor reclamación posible.",
+  },
+  caceres: {
+    nombre: "Cáceres",
+    comunidad: "Extremadura",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Cáceres, dentro de Extremadura. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "Revisamos informes médicos y documentación del siniestro para reclamar daños personales y materiales en Cáceres.",
+  },
+  cadiz: {
+    nombre: "Cádiz",
+    comunidad: "Andalucía",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Cádiz, dentro de Andalucía. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "Analizamos accidentes de coche, moto, bicicleta, atropellos y otros supuestos de responsabilidad en la circulación para orientar la reclamación de la indemnización que corresponda en Cádiz.",
+  },
+  cantabria: {
+    nombre: "Cantabria",
+    comunidad: "Cantabria",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Cantabria. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "Prestamos apoyo en Cantabria para valorar lesiones, secuelas y perjuicios derivados de accidentes de circulación.",
+  },
+  castellon: {
+    nombre: "Castellón",
+    comunidad: "Comunidad Valenciana",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Castellón, dentro de la Comunidad Valenciana. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "Analizamos la documentación y la evolución médica para orientar reclamaciones por accidentes en Castellón.",
+  },
+  "ciudad-real": {
+    nombre: "Ciudad Real",
+    comunidad: "Castilla-La Mancha",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Ciudad Real, dentro de Castilla-La Mancha. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "Ayudamos a reclamar indemnizaciones por lesiones, daños materiales y perjuicios económicos en Ciudad Real.",
+  },
+  cordoba: {
+    nombre: "Córdoba",
+    comunidad: "Andalucía",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Córdoba, dentro de Andalucía. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "En Córdoba revisamos cada caso para defender una reclamación sólida frente a la aseguradora.",
+  },
+  cuenca: {
+    nombre: "Cuenca",
+    comunidad: "Castilla-La Mancha",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Cuenca, dentro de Castilla-La Mancha. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "Prestamos apoyo en Cuenca para valorar daños personales y calcular la posible indemnización.",
+  },
+  girona: {
+    nombre: "Girona",
+    comunidad: "Cataluña",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Girona, dentro de Cataluña. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "Ayudamos a lesionados en Girona a revisar informes, atestados y ofertas del seguro.",
+  },
+  granada: {
+    nombre: "Granada",
+    comunidad: "Andalucía",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Granada, dentro de Andalucía. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "En Granada orientamos reclamaciones por accidentes con lesiones temporales, secuelas y perjuicios patrimoniales.",
+  },
+  guadalajara: {
+    nombre: "Guadalajara",
+    comunidad: "Castilla-La Mancha",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Guadalajara, dentro de Castilla-La Mancha. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "Revisamos en Guadalajara cada expediente médico y de tráfico para defender la indemnización adecuada.",
+  },
+  guipuzcoa: {
+    nombre: "Guipúzcoa",
+    comunidad: "País Vasco",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Guipúzcoa, dentro del País Vasco. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "Prestamos apoyo legal en Guipúzcoa para accidentes con lesiones, rehabilitación y secuelas.",
+  },
+  huelva: {
+    nombre: "Huelva",
+    comunidad: "Andalucía",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Huelva, dentro de Andalucía. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "Orientamos la reclamación por lesiones, daños materiales y demás perjuicios derivados del accidente en Huelva.",
+  },
+  huesca: {
+    nombre: "Huesca",
+    comunidad: "Aragón",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Huesca, dentro de Aragón. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "En Huesca analizamos accidentes de circulación para reclamar de forma fundamentada frente al seguro.",
+  },
+  "illes-balears": {
+    nombre: "Illes Balears",
+    comunidad: "Illes Balears",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Illes Balears. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "Ayudamos a lesionados en Illes Balears a revisar su caso y plantear una reclamación completa.",
+  },
+  jaen: {
+    nombre: "Jaén",
+    comunidad: "Andalucía",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Jaén, dentro de Andalucía. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "En Jaén valoramos lesiones, secuelas y perjuicios derivados del accidente para orientar la mejor reclamación.",
+  },
+  "la-coruna": {
+    nombre: "La Coruña",
+    comunidad: "Galicia",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en La Coruña, dentro de Galicia. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "Revisamos casos de accidentes en La Coruña para reclamar indemnizaciones por daños personales y materiales.",
+  },
+  "la-rioja": {
+    nombre: "La Rioja",
+    comunidad: "La Rioja",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en La Rioja. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "Prestamos apoyo en La Rioja para valorar responsabilidad, daños personales y perjuicios económicos.",
+  },
+  "las-palmas": {
+    nombre: "Las Palmas",
+    comunidad: "Canarias",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Las Palmas, dentro de Canarias. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "Ayudamos a reclamar indemnizaciones por accidentes en Las Palmas con atención a daños personales y materiales.",
+  },
+  leon: {
+    nombre: "León",
+    comunidad: "Castilla y León",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en León, dentro de Castilla y León. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "En León revisamos ofertas del seguro, secuelas y baja laboral para orientar la reclamación indemnizatoria.",
+  },
+  lleida: {
+    nombre: "Lleida",
+    comunidad: "Cataluña",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Lleida, dentro de Cataluña. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "Prestamos apoyo en Lleida para accidentes con lesiones, daños materiales y reclamaciones frente al seguro.",
+  },
+  lugo: {
+    nombre: "Lugo",
+    comunidad: "Galicia",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Lugo, dentro de Galicia. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "En Lugo analizamos documentación médica y de tráfico para orientar la indemnización que pueda corresponder.",
+  },
+  madrid: {
+    nombre: "Madrid",
+    comunidad: "Comunidad de Madrid",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Madrid, dentro de la Comunidad de Madrid. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "Ayudamos a lesionados por accidentes en Madrid a revisar su caso y reclamar frente a ofertas insuficientes de la aseguradora.",
+  },
+  malaga: {
+    nombre: "Málaga",
+    comunidad: "Andalucía",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Málaga, dentro de Andalucía. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "En Málaga analizamos lesiones, baja laboral, secuelas y demás perjuicios para preparar una reclamación completa.",
+  },
+  murcia: {
+    nombre: "Murcia",
+    comunidad: "Región de Murcia",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Murcia, dentro de la Región de Murcia. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "Prestamos apoyo legal en Murcia para revisar la documentación del siniestro y orientar la reclamación correspondiente.",
+  },
+  navarra: {
+    nombre: "Navarra",
+    comunidad: "Comunidad Foral de Navarra",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Navarra, dentro de la Comunidad Foral de Navarra. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "En Navarra revisamos responsabilidad, informes médicos y secuelas para reclamar daños personales y materiales.",
+  },
+  ourense: {
+    nombre: "Ourense",
+    comunidad: "Galicia",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Ourense, dentro de Galicia. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "Orientamos en Ourense reclamaciones por accidentes con lesiones, secuelas y perjuicios patrimoniales.",
+  },
+  palencia: {
+    nombre: "Palencia",
+    comunidad: "Castilla y León",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Palencia, dentro de Castilla y León. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "Ayudamos a lesionados en Palencia a revisar su expediente y reclamar una indemnización proporcionada.",
+  },
+  pontevedra: {
+    nombre: "Pontevedra",
+    comunidad: "Galicia",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Pontevedra, dentro de Galicia. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "En Pontevedra analizamos accidentes de tráfico con atención a daños físicos, secuelas y perjuicios económicos.",
+  },
+  salamanca: {
+    nombre: "Salamanca",
+    comunidad: "Castilla y León",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Salamanca, dentro de Castilla y León. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "Prestamos apoyo en Salamanca para estudiar el caso y orientar la reclamación de la indemnización procedente.",
+  },
+  "santa-cruz-de-tenerife": {
+    nombre: "Santa Cruz de Tenerife",
+    comunidad: "Canarias",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Santa Cruz de Tenerife, dentro de Canarias. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "Ayudamos en Santa Cruz de Tenerife a revisar documentación médica y del siniestro para reclamar de forma adecuada.",
+  },
+  segovia: {
+    nombre: "Segovia",
+    comunidad: "Castilla y León",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Segovia, dentro de Castilla y León. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "Analizamos casos de accidentes de coche, moto, bicicleta, atropellos y otros supuestos de responsabilidad en la circulación para orientar la reclamación de la indemnización que corresponda.",
+  },
+  sevilla: {
+    nombre: "Sevilla",
+    comunidad: "Andalucía",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Sevilla, dentro de Andalucía. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "En Sevilla revisamos cada caso para reclamar por lesiones, secuelas, baja laboral y otros perjuicios indemnizables.",
+  },
+  soria: {
+    nombre: "Soria",
+    comunidad: "Castilla y León",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Soria, dentro de Castilla y León. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "Prestamos apoyo en Soria para revisar la responsabilidad del siniestro y la posible indemnización.",
+  },
+  tarragona: {
+    nombre: "Tarragona",
+    comunidad: "Cataluña",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Tarragona, dentro de Cataluña. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "En Tarragona ayudamos a lesionados por accidentes a valorar el caso y defender su reclamación.",
+  },
+  teruel: {
+    nombre: "Teruel",
+    comunidad: "Aragón",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Teruel, dentro de Aragón. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "Orientamos reclamaciones por accidentes en Teruel con atención a daños físicos, daños materiales y perjuicios económicos.",
+  },
+  toledo: {
+    nombre: "Toledo",
+    comunidad: "Castilla-La Mancha",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Toledo, dentro de Castilla-La Mancha. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "En Toledo analizamos documentación del accidente y evolución médica para orientar la reclamación.",
+  },
+  valencia: {
+    nombre: "Valencia",
+    comunidad: "Comunidad Valenciana",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Valencia, dentro de la Comunidad Valenciana. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "Prestamos apoyo en Valencia para reclamar indemnizaciones por lesiones, secuelas y daños materiales.",
+  },
+  valladolid: {
+    nombre: "Valladolid",
+    comunidad: "Castilla y León",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Valladolid, dentro de Castilla y León. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "En Valladolid revisamos atestados, informes médicos y ofertas del seguro para defender la mejor reclamación posible.",
+  },
+  vizcaya: {
+    nombre: "Vizcaya",
+    comunidad: "País Vasco",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Vizcaya, dentro del País Vasco. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "Ayudamos en Vizcaya a reclamar por lesiones, secuelas y perjuicios derivados de accidentes de circulación.",
+  },
+  zamora: {
+    nombre: "Zamora",
+    comunidad: "Castilla y León",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Zamora, dentro de Castilla y León. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "Prestamos apoyo en Zamora para revisar el caso y plantear una reclamación bien fundamentada.",
+  },
+  zaragoza: {
+    nombre: "Zaragoza",
+    comunidad: "Aragón",
+    descripcion:
+      "Atendemos consultas relacionadas con accidentes de tráfico en Zaragoza, dentro de Aragón. Estudiamos cada caso para valorar lesiones, secuelas, documentación médica y posibles reclamaciones frente a la aseguradora.",
+    ayuda:
+      "En Zaragoza orientamos reclamaciones por accidentes con lesiones, daños materiales y posibles secuelas.",
+  },
+} as const;
 
-const provincias = [
-  { nombre: "Álava", slug: "alava", descripcion: "Información sobre reclamaciones por accidentes de tráfico en Álava, valoración de lesiones y defensa frente a aseguradoras." },
-  { nombre: "Albacete", slug: "albacete", descripcion: "Asesoramiento legal para accidentes en Albacete, con orientación sobre indemnizaciones, secuelas y daños materiales." },
-  { nombre: "Alicante", slug: "alicante", descripcion: "Revisión de accidentes de tráfico en Alicante para reclamar indemnizaciones por lesiones, baja laboral y perjuicios económicos." },
-  { nombre: "Almería", slug: "almeria", descripcion: "Atención legal en Almería para víctimas de accidentes, con estudio del atestado, informes médicos y reclamación al seguro." },
-  { nombre: "Asturias", slug: "asturias", descripcion: "Defensa de perjudicados por accidentes en Asturias, incluyendo ocupantes, peatones, ciclistas y motoristas." },
-  { nombre: "Ávila", slug: "avila", descripcion: "Servicio de reclamación por accidentes en Ávila, orientado a obtener la máxima indemnización posible." },
-  { nombre: "Badajoz", slug: "badajoz", descripcion: "Asistencia jurídica para accidentes de tráfico en Badajoz, con estudio de responsabilidad y daños sufridos." },
-  { nombre: "Barcelona", slug: "barcelona", descripcion: "Reclamación de indemnizaciones por accidentes en Barcelona, con análisis de lesiones temporales, secuelas y gastos médicos." },
-  { nombre: "Burgos", slug: "burgos", descripcion: "Información legal sobre accidentes en Burgos para ayudar a lesionados a reclamar frente a la aseguradora." },
-  { nombre: "Cáceres", slug: "caceres", descripcion: "Orientación en Cáceres para accidentes de circulación, daños personales y compensaciones económicas." },
-  { nombre: "Cádiz", slug: "cadiz", descripcion: "Reclamaciones por accidentes en Cádiz, con apoyo legal para lesionados, ocupantes y conductores no responsables." },
-  { nombre: "Cantabria", slug: "cantabria", descripcion: "Asesoramiento sobre indemnizaciones por accidentes en Cantabria, incluyendo secuelas y perjuicio personal." },
-  { nombre: "Castellón", slug: "castellon", descripcion: "Estudio de accidentes de tráfico en Castellón con reclamación de daños físicos, psicológicos y materiales." },
-  { nombre: "Ciudad Real", slug: "ciudad-real", descripcion: "Defensa legal en Ciudad Real para casos de accidentes con lesiones, rehabilitación y pérdida de ingresos." },
-  { nombre: "Córdoba", slug: "cordoba", descripcion: "Ayuda jurídica en Córdoba para reclamar indemnizaciones derivadas de accidentes de tráfico." },
-  { nombre: "Cuenca", slug: "cuenca", descripcion: "Información sobre accidentes en Cuenca, con revisión de informes y cálculo orientativo de indemnización." },
-  { nombre: "Girona", slug: "girona", descripcion: "Asistencia legal en Girona para siniestros de tráfico, valoración del daño corporal y negociación con aseguradoras." },
-  { nombre: "Granada", slug: "granada", descripcion: "Reclamación por accidentes en Granada con análisis individual de lesiones, secuelas y daños emergentes." },
-  { nombre: "Guadalajara", slug: "guadalajara", descripcion: "Apoyo legal en Guadalajara para accidentes de circulación, responsabilidad civil y compensación por lesiones." },
-  { nombre: "Guipúzcoa", slug: "guipuzcoa", descripcion: "Defensa de lesionados por accidentes en Guipúzcoa, con acompañamiento en todo el proceso de reclamación." },
-  { nombre: "Huelva", slug: "huelva", descripcion: "Asesoramiento legal en Huelva para accidentes de tráfico y reclamación frente a compañías aseguradoras." },
-  { nombre: "Huesca", slug: "huesca", descripcion: "Estudio jurídico de accidentes en Huesca con valoración de daño corporal y perjuicios derivados." },
-  { nombre: "Illes Balears", slug: "illes-balears", descripcion: "Atención a perjudicados por accidentes en Illes Balears, con orientación sobre lesiones, secuelas y gastos médicos." },
-  { nombre: "Jaén", slug: "jaen", descripcion: "Defensa legal en Jaén para afectados por accidentes, incluyendo ocupantes, motoristas y peatones." },
-  { nombre: "La Coruña", slug: "la-coruna", descripcion: "Reclamación de indemnizaciones por accidentes en La Coruña, con revisión completa de la documentación del siniestro." },
-  { nombre: "La Rioja", slug: "la-rioja", descripcion: "Información jurídica en La Rioja sobre accidentes de tráfico, responsabilidad y derecho a indemnización." },
-  { nombre: "Las Palmas", slug: "las-palmas", descripcion: "Asesoramiento sobre accidentes en Las Palmas con estudio del caso y reclamación de daños personales y materiales." },
-  { nombre: "León", slug: "leon", descripcion: "Orientación legal en León para accidentes de circulación y defensa frente a ofertas insuficientes del seguro." },
-  { nombre: "Lleida", slug: "lleida", descripcion: "Ayuda jurídica para reclamaciones por accidentes en Lleida, con cálculo de indemnización y secuelas." },
-  { nombre: "Lugo", slug: "lugo", descripcion: "Atención legal en Lugo para siniestros de tráfico con lesiones temporales, permanentes y daños complementarios." },
-  { nombre: "Madrid", slug: "madrid", descripcion: "Reclamación de indemnizaciones por accidentes en Madrid, con asistencia a conductores, pasajeros y peatones lesionados." },
-  { nombre: "Málaga", slug: "malaga", descripcion: "Información sobre accidentes de tráfico en Málaga, con estudio del caso, informes médicos y negociación con la aseguradora." },
-  { nombre: "Murcia", slug: "murcia", descripcion: "Asesoramiento en Murcia para accidentes con lesiones, secuelas, rehabilitación y perjuicios económicos." },
-  { nombre: "Navarra", slug: "navarra", descripcion: "Defensa jurídica en Navarra para reclamaciones por accidentes y daños derivados de la circulación." },
-  { nombre: "Ourense", slug: "ourense", descripcion: "Servicio legal para víctimas de accidentes en Ourense, con análisis del siniestro y opciones de reclamación." },
-  { nombre: "Palencia", slug: "palencia", descripcion: "Información sobre indemnizaciones por accidentes en Palencia y valoración orientativa de daños personales." },
-  { nombre: "Pontevedra", slug: "pontevedra", descripcion: "Asistencia legal en Pontevedra para accidentes de tráfico, bajas médicas y reclamaciones al seguro." },
-  { nombre: "Salamanca", slug: "salamanca", descripcion: "Orientación jurídica en Salamanca para lesionados por accidentes, con defensa de sus derechos indemnizatorios." },
-  { nombre: "Santa Cruz de Tenerife", slug: "santa-cruz-de-tenerife", descripcion: "Reclamación por accidentes en Santa Cruz de Tenerife con revisión médica, documental y legal del caso." },
-  { nombre: "Segovia", slug: "segovia", descripcion: "Asesoramiento sobre accidentes en Segovia, con ayuda para reclamar secuelas, días impeditivos y daños materiales." },
-  { nombre: "Sevilla", slug: "sevilla", descripcion: "Defensa legal en Sevilla para víctimas de accidentes, con estudio del perjuicio personal y patrimonial." },
-  { nombre: "Soria", slug: "soria", descripcion: "Información jurídica sobre accidentes en Soria, responsabilidad del siniestro y reclamación de indemnización." },
-  { nombre: "Tarragona", slug: "tarragona", descripcion: "Ayuda legal en Tarragona para afectados por accidentes de circulación y ofertas de seguro insuficientes." },
-  { nombre: "Teruel", slug: "teruel", descripcion: "Asistencia jurídica en Teruel para accidentes con lesiones, daños al vehículo y perjuicios personales." },
-  { nombre: "Toledo", slug: "toledo", descripcion: "Servicio de reclamación por accidentes en Toledo con valoración de daños y estrategia frente a la aseguradora." },
-  { nombre: "Valencia", slug: "valencia", descripcion: "Reclamación de indemnizaciones por accidentes en Valencia, con estudio de lesiones, secuelas y gastos futuros." },
-  { nombre: "Valladolid", slug: "valladolid", descripcion: "Información legal sobre accidentes en Valladolid, incluyendo cálculo de indemnización y defensa del lesionado." },
-  { nombre: "Vizcaya", slug: "vizcaya", descripcion: "Atención jurídica en Vizcaya para accidentes de tráfico y perjuicios personales derivados del siniestro." },
-  { nombre: "Zamora", slug: "zamora", descripcion: "Asesoramiento sobre accidentes en Zamora, con revisión del expediente médico y reclamación al seguro." },
-  { nombre: "Zaragoza", slug: "zaragoza", descripcion: "Defensa legal en Zaragoza para accidentes de circulación, secuelas, baja laboral y daños materiales." },
-];
+type ProvinciaKey = keyof typeof provinciasData;
 
-export default function ProvinciasPage() {
+export async function generateStaticParams() {
+  return Object.keys(provinciasData).map((provincia) => ({
+    provincia,
+  }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ provincia: string }>;
+}): Promise<Metadata> {
+  const { provincia } = await params;
+  const data = provinciasData[provincia as ProvinciaKey];
+
+  if (!data) {
+    return {
+      title: "Provincia no encontrada | Accidente Legal Abogados",
+      description: "La provincia solicitada no existe.",
+    };
+  }
+
+  return {
+    title: `Abogados de accidentes en ${data.nombre} | Accidente Legal Abogados`,
+    description: data.descripcion,
+  };
+}
+
+export default async function ProvinciaPage({
+  params,
+}: {
+  params: Promise<{ provincia: string }>;
+}) {
+  const { provincia } = await params;
+  const data = provinciasData[provincia as ProvinciaKey];
+
+  if (!data) {
+    notFound();
+  }
+
   return (
     <main className="min-h-screen bg-background px-4 pb-20 pt-32">
-      <section className="mx-auto max-w-6xl">
-        <h1 className="text-4xl font-black tracking-tight text-foreground lg:text-5xl">
-          Abogados de accidentes por provincia
+      <section className="mx-auto max-w-5xl">
+        <span className="inline-flex rounded-full bg-primary/10 px-4 py-2 text-sm font-semibold text-primary">
+          Cobertura en {data.nombre}
+        </span>
+
+        <h1 className="mt-6 text-4xl font-black tracking-tight text-foreground lg:text-6xl">
+          Abogados de accidentes en {data.nombre}
         </h1>
 
-        <p className="mt-5 max-w-3xl text-lg leading-relaxed text-muted-foreground">
-          Consulta nuestras páginas de cobertura por provincia para encontrar información general
-          sobre accidentes de tráfico, reclamaciones e indemnizaciones.
+        <p className="mt-6 max-w-4xl text-lg leading-relaxed text-muted-foreground">
+          {data.descripcion}
         </p>
 
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {provincias.map((provincia) => (
-            <Link
-              key={provincia.slug}
-              href={`/provincias/${provincia.slug}`}
-              className="rounded-xl border border-border bg-card p-5 shadow-sm transition hover:bg-muted"
-            >
-              <div className="text-base font-semibold text-card-foreground">
-                {provincia.nombre}
-              </div>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                {provincia.descripcion}
-              </p>
-            </Link>
-          ))}
-        </div>
-      </section>
+        <div className="mt-12 grid gap-6 lg:grid-cols-[1.6fr_1fr]">
+          <div className="rounded-3xl border border-border bg-card p-8 shadow-sm">
+            <h2 className="text-2xl font-black tracking-tight text-card-foreground">
+              Cómo podemos ayudarte en {data.nombre}
+            </h2>
 
-      <section className="mx-auto mt-20 max-w-6xl">
-        <div className="rounded-3xl border border-border bg-card p-8 shadow-sm lg:p-10">
-          <h2 className="text-2xl font-black tracking-tight text-card-foreground lg:text-3xl">
-            Cómo podemos ayudarte
-          </h2>
+            <p className="mt-5 text-base leading-relaxed text-muted-foreground">
+              {data.ayuda}
+            </p>
 
-          <p className="mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground">
-            Estudiamos cada accidente de forma individual para valorar lesiones, secuelas,
-            perjuicios económicos, daños materiales y la posible responsabilidad del siniestro.
-          </p>
-
-          <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-            <div className="rounded-2xl border border-border bg-background p-5">
-              <h3 className="text-base font-bold text-foreground">
-                Valoración del caso
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                Revisamos la documentación del accidente, informes médicos y circunstancias del siniestro.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-border bg-background p-5">
-              <h3 className="text-base font-bold text-foreground">
-                Reclamación de indemnización
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                Defendemos tu derecho a reclamar por lesiones, secuelas, baja laboral y otros perjuicios.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-border bg-background p-5">
-              <h3 className="text-base font-bold text-foreground">
-                Negociación con aseguradoras
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                Estudiamos ofertas del seguro y evitamos acuerdos insuficientes o indemnizaciones a la baja.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-border bg-background p-5">
-              <h3 className="text-base font-bold text-foreground">
-                Acompañamiento legal
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                Te orientamos durante todo el proceso para que entiendas cada paso de la reclamación.
-              </p>
-            </div>
+            <ul className="mt-6 space-y-3 text-sm leading-relaxed text-muted-foreground">
+              <li>Revisión inicial del accidente y de la documentación disponible.</li>
+              <li>Valoración orientativa de lesiones, secuelas y perjuicios.</li>
+              <li>Negociación con aseguradoras y estudio de ofertas indemnizatorias.</li>
+              <li>Atención personalizada durante la tramitación del caso.</li>
+            </ul>
           </div>
-        </div>
-      </section>
 
-      <section className="mx-auto mt-10 max-w-6xl">
-        <div className="rounded-3xl bg-foreground px-8 py-10 text-background lg:px-10">
-          <h2 className="text-2xl font-black tracking-tight lg:text-3xl">
-            Contacto rápido
-          </h2>
+          <div className="rounded-3xl border border-border bg-card p-8 shadow-sm">
+            <h2 className="text-2xl font-black tracking-tight text-card-foreground">
+              Contacto rápido
+            </h2>
 
-          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-background/80">
-            Si has sufrido un accidente de tráfico y quieres orientación sobre tu caso,
-            puedes ponerte en contacto con nosotros para estudiar tu situación.
-          </p>
+            <div className="mt-6 space-y-3">
+              <Link
+                href="tel:+34600000000"
+                className="flex w-full items-center justify-center rounded-xl bg-red-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-red-700"
+              >
+                Llamar ahora
+              </Link>
 
-          <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-            <Link
-              href="/contacto"
-              className="inline-flex items-center justify-center rounded-xl bg-background px-5 py-3 text-sm font-semibold text-foreground transition hover:opacity-90"
-            >
-              Ir al formulario de contacto
-            </Link>
+              <Link
+                href="https://wa.me/34600000000"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex w-full items-center justify-center rounded-xl bg-green-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-green-600"
+              >
+                Escribir por WhatsApp
+              </Link>
+            </div>
 
-            <Link
-              href="tel:+34600000000"
-              className="inline-flex items-center justify-center rounded-xl border border-background/20 px-5 py-3 text-sm font-semibold text-background transition hover:bg-background/10"
-            >
-              Llamar ahora
-            </Link>
+            <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
+              También puedes consultar otras provincias desde la página general de cobertura.
+            </p>
+
+            <div className="mt-5">
+              <Link
+                href="/provincias"
+                className="inline-flex items-center justify-center rounded-xl border border-border px-5 py-3 text-sm font-semibold text-foreground transition hover:bg-muted"
+              >
+                Ver todas las provincias
+              </Link>
+            </div>
           </div>
         </div>
       </section>
