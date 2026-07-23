@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Link from "next/link";
+import { ContactForm } from "@/components/contact-form";
 
 const provinciasData = {
   alava: {
@@ -406,11 +408,39 @@ export default async function ProvinciaPage({ params }: Props) {
           {data.descripcion}
         </p>
 
+        <div className="mt-8 grid gap-6 md:grid-cols-[1fr_320px]">
+          <div />
+          <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+            <h3 className="text-lg font-semibold text-card-foreground">Contacto rápido</h3>
+            <p className="mt-2 text-sm text-muted-foreground">Llámanos o envíanos un WhatsApp y te atenderemos.</p>
+
+            <div className="mt-4 flex flex-col gap-3">
+              <Link
+                href="tel:+34600000000"
+                className="inline-flex w-full items-center justify-center rounded-xl bg-red-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-red-700"
+              >
+                Llamar ahora
+              </Link>
+
+              <Link
+                href="https://wa.me/34600000000"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex w-full items-center justify-center rounded-xl bg-green-500 px-4 py-3 text-sm font-semibold text-white transition hover:bg-green-600"
+              >
+                Escribir por WhatsApp
+              </Link>
+            </div>
+          </div>
+        </div>
+
         <div className="mt-10 rounded-2xl border border-border bg-card p-6 shadow-sm">
           <p className="leading-relaxed text-card-foreground">
             {data.contenido}
           </p>
         </div>
+      
+      <ContactForm />
       </section>
     </main>
   );
