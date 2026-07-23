@@ -398,49 +398,114 @@ export default async function ProvinciaPage({ params }: Props) {
   const data = provinciasData[provincia as ProvinciaKey];
 
   return (
-    <main className="min-h-screen bg-background px-4 pb-20 pt-32">
-      <section className="mx-auto max-w-4xl">
-        <h1 className="text-4xl font-black tracking-tight text-foreground lg:text-5xl">
-          Abogados de accidentes en {data.nombre}
-        </h1>
+    <main className="min-h-screen bg-background px-4 pb-20 pt-24 sm:px-6">
+      <section className="mx-auto max-w-6xl">
+        <div className="mt-8 grid gap-10 lg:grid-cols-[1fr_420px] lg:items-start">
+          <div>
+            <div className="rounded-3xl border border-border bg-card p-8 shadow-sm">
+              <h1 className="text-4xl font-black tracking-tight text-foreground lg:text-5xl">
+                Abogados de accidentes en {data.nombre}
+              </h1>
+              <p className="mt-5 text-lg leading-8 text-muted-foreground">
+                {data.descripcion}
+              </p>
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                <div className="rounded-3xl bg-primary/5 p-5">
+                  <p className="text-sm font-semibold uppercase tracking-[.2em] text-primary">Atención local</p>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                    Experiencia en accidentes de tráfico en {data.nombre}, con gestión de reclamaciones y seguros.
+                  </p>
+                </div>
+                <div className="rounded-3xl bg-secondary/5 p-5">
+                  <p className="text-sm font-semibold uppercase tracking-[.2em] text-secondary">Asesoría rápida</p>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                    Contacta ahora para valorar tu caso y empezar a preparar la reclamación con el mejor apoyo legal.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
 
-        <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-          {data.descripcion}
-        </p>
+          <aside className="space-y-6">
+            <div className="rounded-3xl border border-border bg-card p-6 shadow-sm">
+              <h2 className="text-xl font-semibold text-foreground">Contacto rápido</h2>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Llámanos o envíanos un WhatsApp y te daremos soporte inmediato.
+              </p>
 
-        <div className="mt-8 grid gap-6 md:grid-cols-[1fr_320px]">
-          <div />
-          <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
-            <h3 className="text-lg font-semibold text-card-foreground">Contacto rápido</h3>
-            <p className="mt-2 text-sm text-muted-foreground">Llámanos o envíanos un WhatsApp y te atenderemos.</p>
+              <div className="mt-5 grid gap-3">
+                <Link
+                  href="tel:+34600000000"
+                  className="inline-flex w-full items-center justify-center rounded-2xl bg-red-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-red-700"
+                >
+                  Llamar ahora
+                </Link>
 
-            <div className="mt-4 flex flex-col gap-3">
+                <Link
+                  href="https://wa.me/34600000000"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex w-full items-center justify-center rounded-2xl bg-green-500 px-4 py-3 text-sm font-semibold text-white transition hover:bg-green-600"
+                >
+                  Escribir por WhatsApp
+                </Link>
+              </div>
+            </div>
+
+            <div className="rounded-3xl border border-border bg-card p-6 shadow-sm">
+              <h3 className="text-sm font-semibold uppercase tracking-[.2em] text-muted-foreground">
+                Siempre a tu lado
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                Respondemos rápido en todo el territorio y gestionamos tu reclamación desde el primer momento.
+              </p>
+            </div>
+          </aside>
+        </div>
+
+        <div className="mt-10 grid gap-6 lg:grid-cols-[2fr_1fr]">
+          <div className="rounded-3xl border border-border bg-card p-8 shadow-sm">
+            <h2 className="text-2xl font-semibold text-foreground">Qué podemos hacer por ti</h2>
+            <p className="mt-4 leading-relaxed text-muted-foreground">
+              {data.contenido}
+            </p>
+            <ul className="mt-6 space-y-4 text-sm leading-7 text-muted-foreground">
+              <li>• Estudio completo de la documentación del accidente.</li>
+              <li>• Valoración de lesiones y secuelas médicas.</li>
+              <li>• Reclamación frente a aseguradoras y defensa de tus daños.</li>
+              <li>• Seguimiento personalizado hasta el cierre del expediente.</li>
+            </ul>
+          </div>
+
+          <div className="space-y-6">
+            <div className="rounded-3xl border border-border bg-card p-6 shadow-sm">
+              <h3 className="text-lg font-semibold text-foreground">Necesitas ayuda urgente?</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                Tenemos experiencia en casos urgentes y daños con lesiones graves. Estamos disponibles para asesorarte ya.
+              </p>
+            </div>
+
+            <div className="rounded-3xl border border-border bg-card p-6 shadow-sm">
+              <h3 className="text-lg font-semibold text-foreground">Volver a provincias</h3>
               <Link
-                href="tel:+34600000000"
-                className="inline-flex w-full items-center justify-center rounded-xl bg-red-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-red-700"
+                href="/provincias"
+                className="mt-4 inline-flex w-full items-center justify-center rounded-2xl border border-border bg-background px-4 py-3 text-sm font-semibold text-foreground transition hover:bg-muted"
               >
-                Llamar ahora
-              </Link>
-
-              <Link
-                href="https://wa.me/34600000000"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex w-full items-center justify-center rounded-xl bg-green-500 px-4 py-3 text-sm font-semibold text-white transition hover:bg-green-600"
-              >
-                Escribir por WhatsApp
+                Ver todas las provincias
               </Link>
             </div>
           </div>
         </div>
 
-        <div className="mt-10 rounded-2xl border border-border bg-card p-6 shadow-sm">
-          <p className="leading-relaxed text-card-foreground">
-            {data.contenido}
+        <div className="mt-10 rounded-3xl border border-border bg-card p-8 shadow-sm">
+          <h2 className="text-2xl font-semibold text-foreground">Contacta con nuestro equipo</h2>
+          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+            Completa el formulario y uno de nuestros abogados especializados en accidentes se pondrá en contacto contigo enseguida.
           </p>
+          <div className="mt-6">
+            <ContactForm />
+          </div>
         </div>
-      
-      <ContactForm />
       </section>
     </main>
   );

@@ -413,8 +413,8 @@ export const metadata: Metadata = {
 
 export default function ProvinciasPage() {
   return (
-    <main className="min-h-screen bg-background px-4 pb-20 pt-32">
-      <section className="mx-auto max-w-6xl px-4 sm:px-0">
+    <main className="min-h-screen bg-background px-4 pb-20 pt-24 sm:px-6">
+      <section className="mx-auto max-w-7xl">
         <div className="mb-10 space-y-4 text-center">
           <p className="inline-flex rounded-full bg-primary/10 px-4 py-2 text-sm font-semibold text-primary">
             Cobertura nacional
@@ -431,8 +431,17 @@ export default function ProvinciasPage() {
           </p>
         </div>
 
-        <div className="mb-10">
-          <SpainMap />
+        <div className="mb-14">
+          <div className="mx-auto max-w-[1040px]">
+            <SpainMap />
+          </div>
+        </div>
+
+        <div className="mb-6 rounded-3xl border border-border bg-card p-6 shadow-sm">
+          <h2 className="text-2xl font-semibold text-foreground">Encuentra tu provincia</h2>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Selecciona la provincia donde necesitas asesoría y ve directamente a la información específica de la zona.
+          </p>
         </div>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

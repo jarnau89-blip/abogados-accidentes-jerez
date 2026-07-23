@@ -156,8 +156,8 @@ export function SpainMap() {
         </p>
       </div>
 
-      <div ref={containerRef} className="overflow-hidden rounded-xl bg-muted/30 p-3 md:p-6">
-        <SpainMapSvg className="h-auto w-full" />
+      <div ref={containerRef} className="overflow-hidden rounded-3xl bg-muted/30 p-4 md:p-8">
+        <SpainMapSvg className="w-full min-h-[640px]" />
       </div>
 
       <p className="mt-4 text-xs text-muted-foreground">
