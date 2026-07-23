@@ -431,8 +431,8 @@ export default function ProvinciasPage() {
           </p>
         </div>
 
-        <div className="mb-14 w-full px-2 sm:px-4">
-          <div className="mx-auto w-full max-w-none">
+        <div className="mb-14 px-2 sm:px-4">
+          <div className="mx-auto w-full max-w-[940px]">
             <SpainMap />
           </div>
         </div>
