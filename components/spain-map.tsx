@@ -19,8 +19,8 @@ export function SpainMap() {
     const handlers: Array<() => void> = [];
 
     Object.keys(provinceMap).forEach((id) => {
-      // Try to find element by id inside SVG
-      const el = svg.querySelector(`#${id}`) as Element | null;
+      // Try to find element by id inside SVG using getElementById (more reliable than querySelector with special chars)
+      const el = svg.getElementById(id) as Element | null;
       if (!el) return;
 
       const province = provinceMap[id];
