@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { SpainMap } from "@/components/spain-map";
 
 const provinciasData = {
   alava: {
@@ -405,116 +405,55 @@ const provinciasData = {
   },
 } as const;
 
-type ProvinciaKey = keyof typeof provinciasData;
+export const metadata: Metadata = {
+  title: "Provincias | Accidente Legal Abogados",
+  description:
+    "Consulta la cobertura de nuestros abogados de accidentes en todas las provincias de España.",
+};
 
-export async function generateStaticParams() {
-  return Object.keys(provinciasData).map((provincia) => ({
-    provincia,
-  }));
-}
-
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ provincia: string }>;
-}): Promise<Metadata> {
-  const { provincia } = await params;
-  const data = provinciasData[provincia as ProvinciaKey];
-
-  if (!data) {
-    return {
-      title: "Provincia no encontrada | Accidente Legal Abogados",
-      description: "La provincia solicitada no existe.",
-    };
-  }
-
-  return {
-    title: `Abogados de accidentes en ${data.nombre} | Accidente Legal Abogados`,
-    description: data.descripcion,
-  };
-}
-
-export default async function ProvinciaPage({
-  params,
-}: {
-  params: Promise<{ provincia: string }>;
-}) {
-  const { provincia } = await params;
-  const data = provinciasData[provincia as ProvinciaKey];
-
-  if (!data) {
-    notFound();
-  }
-
+export default function ProvinciasPage() {
   return (
     <main className="min-h-screen bg-background px-4 pb-20 pt-32">
-      <section className="mx-auto max-w-5xl">
-        <span className="inline-flex rounded-full bg-primary/10 px-4 py-2 text-sm font-semibold text-primary">
-          Cobertura en {data.nombre}
-        </span>
+      <section className="mx-auto max-w-6xl px-4 sm:px-0">
+        <div className="mb-10 space-y-4 text-center">
+          <p className="inline-flex rounded-full bg-primary/10 px-4 py-2 text-sm font-semibold text-primary">
+            Cobertura nacional
+          </p>
+          <h1 className="text-4xl font-black tracking-tight text-foreground sm:text-5xl">
+            Abogados de accidentes en todas las provincias
+          </h1>
+          <p className="mx-auto max-w-3xl text-base leading-7 text-muted-foreground sm:text-lg">
+            Descubre cómo podemos ayudarte en tu provincia con reclamaciones por accidentes de tráfico,
+            lesiones, secuelas y daños materiales.
+          </p>
+          <p className="mx-auto max-w-3xl text-base leading-7 text-muted-foreground sm:text-lg">
+            Haz clic en el mapa para ir directamente a la página de tu provincia o elige una provincia del listado.
+          </p>
+        </div>
 
-        <h1 className="mt-6 text-4xl font-black tracking-tight text-foreground lg:text-6xl">
-          Abogados de accidentes en {data.nombre}
-        </h1>
+        <div className="mb-10">
+          <SpainMap />
+        </div>
 
-        <p className="mt-6 max-w-4xl text-lg leading-relaxed text-muted-foreground">
-          {data.descripcion}
-        </p>
-
-        <div className="mt-12 grid gap-6 lg:grid-cols-[1.6fr_1fr]">
-          <div className="rounded-3xl border border-border bg-card p-8 shadow-sm">
-            <h2 className="text-2xl font-black tracking-tight text-card-foreground">
-              Cómo podemos ayudarte en {data.nombre}
-            </h2>
-
-            <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-              {data.ayuda}
-            </p>
-
-            <ul className="mt-6 space-y-3 text-sm leading-relaxed text-muted-foreground">
-              <li>Revisión inicial del accidente y de la documentación disponible.</li>
-              <li>Valoración orientativa de lesiones, secuelas y perjuicios.</li>
-              <li>Negociación con aseguradoras y estudio de ofertas indemnizatorias.</li>
-              <li>Atención personalizada durante la tramitación del caso.</li>
-            </ul>
-          </div>
-
-          <div className="rounded-3xl border border-border bg-card p-8 shadow-sm">
-            <h2 className="text-2xl font-black tracking-tight text-card-foreground">
-              Contacto rápido
-            </h2>
-
-            <div className="mt-6 space-y-3">
-              <Link
-                href="tel:+34600000000"
-                className="flex w-full items-center justify-center rounded-xl bg-red-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-red-700"
-              >
-                Llamar ahora
-              </Link>
-
-              <Link
-                href="https://wa.me/34600000000"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex w-full items-center justify-center rounded-xl bg-green-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-green-600"
-              >
-                Escribir por WhatsApp
-              </Link>
-            </div>
-
-            <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
-              También puedes consultar otras provincias desde la página general de cobertura.
-            </p>
-
-            <div className="mt-5">
-              <Link
-                href="/provincias"
-                className="inline-flex items-center justify-center rounded-xl border border-border px-5 py-3 text-sm font-semibold text-foreground transition hover:bg-muted"
-              >
-                Ver todas las provincias
-              </Link>
-            </div>
-          </div>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {Object.entries(provinciasData).map(([slug, data]) => (
+            <Link
+              key={slug}
+              href={`/provincias/${slug}`}
+              className="group rounded-3xl border border-border bg-card p-6 transition hover:shadow-lg"
+            >
+              <div>
+                <h2 className="text-xl font-semibold text-foreground">{data.nombre}</h2>
+                <p className="mt-2 text-sm font-medium uppercase tracking-[.16em] text-primary/80">
+                  {data.comunidad}
+                </p>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{data.ayuda}</p>
+              </div>
+              <span className="mt-6 inline-flex items-center text-sm font-semibold text-primary transition group-hover:translate-x-1">
+                Ver más →
+              </span>
+            </Link>
+          ))}
         </div>
       </section>
     </main>
