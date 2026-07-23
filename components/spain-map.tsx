@@ -40,14 +40,107 @@ export function SpainMap() {
         }
       };
 
+      const onEnter = () => {
+        try {
+          (el as HTMLElement).style.transition = "all 150ms";
+          (el as HTMLElement).style.opacity = "0.9";
+          (el as HTMLElement).style.fill = "#fb923c";
+        } catch {}
+      };
+
+      const onLeave = () => {
+        try {
+          (el as HTMLElement).style.opacity = "";
+          (el as HTMLElement).style.fill = "";
+        } catch {}
+      };
+
       el.addEventListener("click", onClick as EventListener);
       el.addEventListener("keydown", onKey as EventListener);
+      el.addEventListener("mouseenter", onEnter as EventListener);
+      el.addEventListener("focus", onEnter as EventListener);
+      el.addEventListener("mouseleave", onLeave as EventListener);
+      el.addEventListener("blur", onLeave as EventListener);
 
       handlers.push(() => {
         el.removeEventListener("click", onClick as EventListener);
         el.removeEventListener("keydown", onKey as EventListener);
+        el.removeEventListener("mouseenter", onEnter as EventListener);
+        el.removeEventListener("focus", onEnter as EventListener);
+        el.removeEventListener("mouseleave", onLeave as EventListener);
+        el.removeEventListener("blur", onLeave as EventListener);
       });
     });
+    
+      // 2) Fallback: bind to text labels (tspan/text) matching province names
+      const normalize = (s: string) =>
+        s
+          .normalize("NFD")
+          .replace(/\p{Diacritic}/gu, "")
+          .toLowerCase()
+          .replace(/\s+/g, " ")
+          .trim();
+    
+      const nameToSlug: Record<string, string> = {};
+      Object.values(provinceMap).forEach((p) => {
+        nameToSlug[normalize(p.name)] = p.slug;
+      });
+    
+      const textEls = svg.querySelectorAll("tspan, text");
+      textEls.forEach((el) => {
+        const txt = (el.textContent || "").trim();
+        if (!txt) return;
+        const slug = nameToSlug[normalize(txt)];
+        if (!slug) return;
+    
+        // attach to the parent text element if tspan
+        const target = el.tagName.toLowerCase() === "tspan" ? (el.parentElement as Element) : el;
+        if (!target) return;
+    
+        target.setAttribute("role", "button");
+        target.setAttribute("tabindex", "0");
+        target.setAttribute("aria-label", txt);
+        target.classList.add("cursor-pointer");
+    
+        const onClick = () => router.push(`/provincias/${slug}`);
+        const onKey = (e: KeyboardEvent) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            router.push(`/provincias/${slug}`);
+          }
+        };
+
+        const onEnter = () => {
+          try {
+            (target as HTMLElement).style.transition = "all 150ms";
+            (target as HTMLElement).style.fill = "#fb923c";
+            (target as HTMLElement).style.fontWeight = "700";
+          } catch {}
+        };
+
+        const onLeave = () => {
+          try {
+            (target as HTMLElement).style.fill = "";
+            (target as HTMLElement).style.fontWeight = "";
+          } catch {}
+        };
+
+        target.addEventListener("click", onClick as EventListener);
+        target.addEventListener("keydown", onKey as EventListener);
+        target.addEventListener("mouseenter", onEnter as EventListener);
+        target.addEventListener("focus", onEnter as EventListener);
+        target.addEventListener("mouseleave", onLeave as EventListener);
+        target.addEventListener("blur", onLeave as EventListener);
+
+        handlers.push(() => {
+          target.removeEventListener("click", onClick as EventListener);
+          target.removeEventListener("keydown", onKey as EventListener);
+          target.removeEventListener("mouseenter", onEnter as EventListener);
+          target.removeEventListener("focus", onEnter as EventListener);
+          target.removeEventListener("mouseleave", onLeave as EventListener);
+          target.removeEventListener("blur", onLeave as EventListener);
+        });
+      });
 
     return () => handlers.forEach((h) => h());
   }, [router]);
