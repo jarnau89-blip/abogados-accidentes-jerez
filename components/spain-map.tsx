@@ -146,7 +146,7 @@ export function SpainMap() {
   }, [router]);
 
   return (
-    <section className="rounded-2xl border border-border bg-card p-4 shadow-sm md:p-6">
+    <section className="mx-auto w-full rounded-[32px] border border-primary/20 bg-card p-4 shadow-[0_20px_60px_-30px_rgba(15,23,42,0.55)] md:p-6">
       <div className="mb-6">
         <h2 className="text-2xl font-bold tracking-tight text-foreground">
           Selecciona tu provincia
@@ -156,15 +156,9 @@ export function SpainMap() {
         </p>
       </div>
 
-      <div ref={containerRef} className="overflow-hidden rounded-3xl bg-muted/30 p-4 md:p-8">
-        <SpainMapSvg className="w-full min-h-[680px] max-w-full" />
+      <div ref={containerRef} className="overflow-hidden rounded-[28px] bg-muted/30 p-4 md:p-8">
+        <SpainMapSvg className="w-full min-h-[640px] max-w-full" />
       </div>
-
-      <p className="mt-4 text-xs text-muted-foreground">
-        Mapa político por provincias. Si algún id no funciona, verifica los id's
-        dentro de assets/mapa-espana-provincias.svg y que coincidan con
-        los códigos en `lib/province-map.tsx`.
-      </p>
     </section>
   );
 }
