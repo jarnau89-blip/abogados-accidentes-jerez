@@ -19,8 +19,25 @@ export function SpainMap() {
     const handlers: Array<() => void> = [];
 
     Object.keys(provinceMap).forEach((id) => {
-      // Try to find element by id inside SVG using getElementById (more reliable than querySelector with special chars)
-      const el = svg.getElementById(id) as Element | null;
+      // Try multiple methods to find the element
+      let el: Element | null = null;
+      
+      // Method 1: getElementById on SVG (works for most elements)
+      el = svg.getElementById(id) as Element | null;
+      
+      // Method 2: if not found, try querySelector in document (in case of namespace issues)
+      if (!el) {
+        el = document.querySelector(`[id="${id}"]`) as Element | null;
+      }
+      
+      // Method 3: if still not found, try querySelectorAll on SVG
+      if (!el) {
+        const elements = svg.querySelectorAll(`*[id="${id}"]`);
+        if (elements.length > 0) {
+          el = elements[0];
+        }
+      }
+      
       if (!el) return;
 
       const province = provinceMap[id];
@@ -31,6 +48,9 @@ export function SpainMap() {
       el.setAttribute("tabindex", "0");
       el.setAttribute("aria-label", province.name);
       el.classList.add("cursor-pointer");
+      
+      // Ensure pointer-events is enabled and not blocked
+      (el as SVGElement).style.pointerEvents = "auto";
 
       const onClick = () => router.push(`/provincias/${province.slug}`);
       const onKey = (e: KeyboardEvent) => {
