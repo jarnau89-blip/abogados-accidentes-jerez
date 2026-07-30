@@ -61,7 +61,7 @@ export function BaremoSection() {
             </ul>
             <p className="text-sm leading-relaxed text-muted-foreground">
               Nuestros abogados aplican el baremo vigente para conseguir la
-              maxima indemnizacion posible en cada caso particular.
+              maxima indemnización posible en cada caso particular.
             </p>
           </div>
 
