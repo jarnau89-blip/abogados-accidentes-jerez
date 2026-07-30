@@ -50,7 +50,7 @@ export default function AvisoLegal() {
                 <strong>Datos fiscales:</strong> CRISTINA GONZÁLEZ BONILLA | DNI 53702165-V
               </li>
               <li>
-                <strong>Teléfono:</strong> 654719874
+                <strong>Teléfono:</strong> +34613781218
               </li>
               <li>
                 <strong>Email:</strong>{' '}
