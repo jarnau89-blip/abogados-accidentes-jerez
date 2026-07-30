@@ -435,14 +435,14 @@ export default async function ProvinciaPage({ params }: Props) {
 
               <div className="mt-5 grid gap-3">
                 <Link
-                  href="tel:+34600000000"
+                  href="tel:+34613781218"
                   className="inline-flex w-full items-center justify-center rounded-2xl bg-red-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-red-700"
                 >
                   Llamar ahora
                 </Link>
 
                 <Link
-                  href="https://wa.me/34600000000"
+                  href="https://wa.me/34613781218"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex w-full items-center justify-center rounded-2xl bg-green-500 px-4 py-3 text-sm font-semibold text-white transition hover:bg-green-600"
