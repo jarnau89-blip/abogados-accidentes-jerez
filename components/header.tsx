@@ -69,7 +69,7 @@ export function Header() {
           </a>
 
           <a
-            href="tel:+34722160466"
+            href="tel:+34613781218"
             className="hidden items-center justify-center rounded-md bg-red-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-red-700 sm:inline-flex"
             aria-label="Llamar ahora"
           >
