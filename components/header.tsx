@@ -59,7 +59,7 @@ export function Header() {
 
         <div className="flex items-center gap-2">
           <a
-            href="https://wa.me/34722160466?text=Hola%2C%20quiero%20consultar%20mi%20caso%20de%20accidente"
+            href="https://wa.me/34613781218?text=Hola%2C%20quiero%20consultar%20mi%20caso%20de%20accidente"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Abrir conversación por WhatsApp"
