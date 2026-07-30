@@ -117,7 +117,7 @@ export function Header() {
 
           <div className="mt-4 flex flex-col gap-3">
             <a
-              href="https://wa.me/34722160466?text=Hola%2C%20quiero%20consultar%20mi%20caso%20de%20accidente"
+              href="https://wa.me/34613781218?text=Hola%2C%20quiero%20consultar%20mi%20caso%20de%20accidente"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center rounded-md bg-green-500 px-4 py-3 text-sm font-semibold text-white transition hover:bg-green-600"
@@ -126,7 +126,7 @@ export function Header() {
             </a>
 
             <a
-              href="tel:+34722160466"
+              href="tel:+34613781218"
               className="inline-flex items-center justify-center rounded-md bg-red-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-red-700"
             >
               <Phone className="mr-2 h-4 w-4" />
