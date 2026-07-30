@@ -9,7 +9,7 @@ export function CtaBand() {
           {"No pierdas tu derecho a reclamar"}
         </h2>
         <p className="mx-auto mb-6 max-w-xl text-pretty text-destructive-foreground/80">
-          Tienes un plazo de 1 ano desde el accidente para reclamar tu
+          Tienes un plazo de 1 año desde el accidente para reclamar tu
           indemnizacion. Actua ahora y no dejes pasar el tiempo.
         </p>
         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -18,7 +18,7 @@ export function CtaBand() {
             size="lg"
             className="bg-destructive-foreground text-destructive hover:bg-destructive-foreground/90"
           >
-            <a href="tel:+34900000000">
+            <a href="tel:+34613781218">
               <Phone className="mr-2 h-4 w-4" />
               Llamar ahora gratis
             </a>

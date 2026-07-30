@@ -50,10 +50,10 @@ export function ContactForm() {
                       Teléfono en horario de atencion al publico (8:00 a 15:00) de lunes a viernes
                     </p>
                     <a
-                      href="tel:+34900000000"
+                      href="tel:+34613781218"
                       className="text-sm text-primary hover:underline"
                     >
-                      722160466
+                      613 781 218
                     </a>
                   </div>
                 </div>
