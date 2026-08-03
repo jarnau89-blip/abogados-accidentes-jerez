@@ -6,11 +6,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 const navLinks = [
-  { label: "Inicio", href: "#inicio", external: false },
-  { label: "Indemnizaciones", href: "#calculadora", external: false },
-  { label: "Servicios", href: "#servicios", external: false },
-  { label: "Nuestra firma", href: "/nuestra-firma", external: false },
-  { label: "Contacto", href: "#contacto", external: false },
+  { label: "Inicio", href: "#inicio", type: "anchor" },
+  { label: "Indemnizaciones", href: "#calculadora", type: "anchor" },
+  { label: "Servicios", href: "#servicios", type: "anchor" },
+  { label: "Nuestra firma", href: "/nuestra-firma", type: "route" },
+  { label: "Contacto", href: "#contacto", type: "anchor" },
 ];
 
 export function Header() {
@@ -37,7 +37,7 @@ export function Header() {
 
         <nav className="hidden items-center gap-8 lg:flex" aria-label="Principal">
           {navLinks.map((link) =>
-            link.external ? (
+            link.type === "route" ? (
               <Link
                 key={link.href}
                 href={link.href}
@@ -94,7 +94,7 @@ export function Header() {
           aria-label="Menu movil"
         >
           {navLinks.map((link) =>
-            link.external ? (
+            link.type === "route" ? (
               <Link
                 key={link.href}
                 href={link.href}
