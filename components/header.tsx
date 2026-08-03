@@ -9,7 +9,7 @@ const navLinks = [
   { label: "Inicio", href: "#inicio", external: false },
   { label: "Indemnizaciones", href: "#calculadora", external: false },
   { label: "Servicios", href: "#servicios", external: false },
-  { label: "Provincias", href: "/provincias", external: true },
+  { label: "Nuestra firma", href: "/nuestra-firma", external: false },
   { label: "Contacto", href: "#contacto", external: false },
 ];
 
