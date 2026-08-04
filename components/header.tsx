@@ -18,12 +18,8 @@ export function Header() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const isNuestraFirmaPage = pathname === "/nuestra-firma";
-  const navLinks = isNuestraFirmaPage
-    ? [
-        { label: "Inicio", href: "/", type: "route" },
-        { label: "Contacto", href: "#contacto", type: "anchor" },
-      ]
-    : defaultNavLinks;
+  const navLinks = isNuestraFirmaPage ? [] : defaultNavLinks;
+  const hasNavLinks = navLinks.length > 0;
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/95 backdrop-blur-sm">
@@ -44,41 +40,45 @@ export function Header() {
           </div>
         </Link>
 
-        <nav className="hidden items-center gap-8 lg:flex" aria-label="Principal">
-          {navLinks.map((link) =>
-            link.type === "route" ? (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-              >
-                {link.label}
-              </Link>
-            ) : (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-              >
-                {link.label}
-              </a>
-            )
-          )}
-        </nav>
+        {hasNavLinks && (
+          <nav className="hidden items-center gap-8 lg:flex" aria-label="Principal">
+            {navLinks.map((link) =>
+              link.type === "route" ? (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  {link.label}
+                </a>
+              )
+            )}
+          </nav>
+        )}
 
         <div className="flex items-center gap-2">
-          <button
-            type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-md text-foreground lg:hidden"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label={mobileOpen ? "Cerrar menu" : "Abrir menu"}
-          >
-            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+          {hasNavLinks && (
+            <button
+              type="button"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-md text-foreground lg:hidden"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label={mobileOpen ? "Cerrar menu" : "Abrir menu"}
+            >
+              {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          )}
         </div>
       </div>
 
-      {mobileOpen && (
+      {mobileOpen && hasNavLinks && (
         <nav
           className="border-t border-border bg-background px-4 pb-4 lg:hidden"
           aria-label="Menu movil"
