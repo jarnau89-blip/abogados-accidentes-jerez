@@ -29,28 +29,28 @@ export function Footer() {
             <h3 className="mb-4 font-semibold text-primary-foreground">Navegación</h3>
             <ul className="space-y-3">
               <li>
-                <a
-                  href="#inicio"
+                <Link
+                  href="/#inicio"
                   className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
                 >
                   Inicio
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#calculadora"
+                <Link
+                  href="/#calculadora"
                   className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
                 >
                   Calculadora
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#servicios"
+                <Link
+                  href="/#servicios"
                   className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
                 >
                   Servicios
-                </a>
+                </Link>
               </li>
               <li>
                 <Link
@@ -61,12 +61,12 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <a
-                  href="#contacto"
+                <Link
+                  href="/#contacto"
                   className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
                 >
                   Contacto
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
