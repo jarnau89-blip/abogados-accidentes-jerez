@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { Phone, Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-const navLinks = [
+const defaultNavLinks = [
   { label: "Inicio", href: "#inicio", type: "anchor" },
   { label: "Indemnizaciones", href: "#calculadora", type: "anchor" },
   { label: "Servicios", href: "#servicios", type: "anchor" },
@@ -14,12 +15,20 @@ const navLinks = [
 ];
 
 export function Header() {
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const isNuestraFirmaPage = pathname === "/nuestra-firma";
+  const navLinks = isNuestraFirmaPage
+    ? [
+        { label: "Inicio", href: "/", type: "route" },
+        { label: "Contacto", href: "#contacto", type: "anchor" },
+      ]
+    : defaultNavLinks;
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/95 backdrop-blur-sm">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-8">
-        <a href="#inicio" className="flex items-center gap-3 p-2">
+        <Link href={isNuestraFirmaPage ? "/" : "#inicio"} className="flex items-center gap-3 p-2">
           <Image
             src="/generated-image-5.png"
             alt="Accidente Legal Abogados"
@@ -33,7 +42,7 @@ export function Header() {
             </span>
             <span className="text-sm font-bold text-muted-foreground"></span>
           </div>
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-8 lg:flex" aria-label="Principal">
           {navLinks.map((link) =>
