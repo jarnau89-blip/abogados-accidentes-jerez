@@ -17,7 +17,7 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
     const raw = await fs.readFile(postsPath, "utf-8");
     const posts = JSON.parse(raw) as BlogPost[];
     return Array.isArray(posts) ? posts : [];
-  } catch (error) {
+  } catch {
     return [];
   }
 }

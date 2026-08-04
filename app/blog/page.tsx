@@ -19,14 +19,6 @@ export default async function BlogPage() {
             <p className="mx-auto max-w-2xl text-base leading-8 text-muted-foreground">
               Encuentra contenidos prácticos, novedades legales y recursos para reclamar tu indemnización con más seguridad.
             </p>
-            <div className="mt-8">
-              <Link
-                href="/blog/admin"
-                className="inline-flex rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white transition hover:bg-primary/90"
-              >
-                Administrar publicaciones
-              </Link>
-            </div>
           </div>
         </section>
 

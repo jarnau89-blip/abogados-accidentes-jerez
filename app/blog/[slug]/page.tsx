@@ -3,9 +3,15 @@ import Link from "next/link";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { getBlogPosts } from "@/lib/blog";
+import { BlogComments } from "../../../components/blog-comments";
 
 interface BlogPageProps {
   params: { slug: string };
+}
+
+export async function generateStaticParams() {
+  const posts = await getBlogPosts();
+  return posts.map((post) => ({ slug: post.slug }));
 }
 
 export default async function BlogPostPage({ params }: BlogPageProps) {
@@ -40,6 +46,12 @@ export default async function BlogPostPage({ params }: BlogPageProps) {
             <div className="prose max-w-none prose-slate text-muted-foreground">
               <p>{post.content}</p>
             </div>
+          </div>
+        </section>
+
+        <section className="border-t border-border bg-background py-16 lg:py-24">
+          <div className="mx-auto max-w-4xl px-4 lg:px-8">
+            <BlogComments slug={post.slug} />
           </div>
         </section>
       </main>
