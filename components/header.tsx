@@ -7,27 +7,23 @@ import Image from "next/image";
 import Link from "next/link";
 
 const defaultNavLinks = [
-  { label: "Inicio", href: "#inicio", type: "anchor" },
-  { label: "Indemnizaciones", href: "#calculadora", type: "anchor" },
-  { label: "Servicios", href: "#servicios", type: "anchor" },
-  { label: "Nuestra firma", href: "/nuestra-firma", type: "route" },
-  { label: "Blog", href: "/blog", type: "route" },
-  { label: "Contacto", href: "#contacto", type: "anchor" },
+  { label: "Inicio", href: "/#inicio" },
+  { label: "Indemnizaciones", href: "/#calculadora" },
+  { label: "Servicios", href: "/#servicios" },
+  { label: "Nuestra firma", href: "/nuestra-firma" },
+  { label: "Blog", href: "/blog" },
+  { label: "Contacto", href: "/#contacto" },
 ];
 
 export function Header() {
-  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const isNuestraFirmaPage = pathname === "/nuestra-firma";
-  const isBlogPage = pathname === "/blog";
-  const hideNav = isNuestraFirmaPage || isBlogPage;
-  const navLinks = hideNav ? [] : defaultNavLinks;
+  const navLinks = defaultNavLinks;
   const hasNavLinks = navLinks.length > 0;
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/95 backdrop-blur-sm">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-8">
-        <Link href={hideNav ? "/" : "#inicio"} className="flex items-center gap-3 p-2">
+        <Link href="/#inicio" className="flex items-center gap-3 p-2">
           <Image
             src="/generated-image-5.png"
             alt="Accidente Legal Abogados"
@@ -45,25 +41,15 @@ export function Header() {
 
         {hasNavLinks && (
           <nav className="hidden items-center gap-8 lg:flex" aria-label="Principal">
-            {navLinks.map((link) =>
-              link.type === "route" ? (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  {link.label}
-                </Link>
-              ) : (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  {link.label}
-                </a>
-              )
-            )}
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {link.label}
+              </Link>
+            ))}
           </nav>
         )}
 
@@ -86,27 +72,16 @@ export function Header() {
           className="border-t border-border bg-background px-4 pb-4 lg:hidden"
           aria-label="Menu movil"
         >
-          {navLinks.map((link) =>
-            link.type === "route" ? (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setMobileOpen(false)}
-                className="block py-3 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-              >
-                {link.label}
-              </Link>
-            ) : (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setMobileOpen(false)}
-                className="block py-3 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-              >
-                {link.label}
-              </a>
-            )
-          )}
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setMobileOpen(false)}
+              className="block py-3 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+            >
+              {link.label}
+            </Link>
+          ))}
 
           <div className="mt-4 flex flex-col gap-3">
             <button
