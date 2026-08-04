@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
 import { SpainMap } from "@/components/spain-map";
 
 const provinciasData = {
@@ -413,58 +415,66 @@ export const metadata: Metadata = {
 
 export default function ProvinciasPage() {
   return (
-    <main className="min-h-screen bg-background px-4 pb-20 pt-24 sm:px-6">
-      <section className="mx-auto max-w-7xl">
-        <div className="mb-10 space-y-4 text-center">
-          <p className="inline-flex rounded-full bg-primary/10 px-4 py-2 text-sm font-semibold text-primary">
-            Cobertura nacional
-          </p>
-          <h1 className="text-4xl font-black tracking-tight text-foreground sm:text-5xl">
-            Abogados de accidentes en todas las provincias
-          </h1>
-          <p className="mx-auto max-w-3xl text-base leading-7 text-muted-foreground sm:text-lg">
-            Descubre cómo podemos ayudarte en tu provincia con reclamaciones por accidentes de tráfico,
-            lesiones, secuelas y daños materiales.
-          </p>
-          <p className="mx-auto max-w-3xl text-base leading-7 text-muted-foreground sm:text-lg">
-            Haz clic en el mapa para ir directamente a la página de tu provincia o elige una provincia del listado.
-          </p>
-        </div>
-
-        <div className="mb-14 px-2 sm:px-4">
-          <div className="mx-auto w-full max-w-[940px]">
-            <SpainMap />
+    <>
+      <Header />
+      <main className="pt-20 bg-background px-4 pb-20 sm:px-6">
+        <section className="border-b border-border bg-gradient-to-br from-slate-50 to-slate-100 py-16 lg:py-24">
+          <div className="mx-auto max-w-4xl px-4 lg:px-8">
+            <div className="mb-10 space-y-4 text-center">
+              <p className="inline-flex rounded-full bg-primary/10 px-4 py-2 text-sm font-semibold text-primary">
+                Cobertura nacional
+              </p>
+              <h1 className="text-4xl font-black tracking-tight text-foreground sm:text-5xl">
+                Abogados de accidentes en todas las provincias
+              </h1>
+              <p className="mx-auto max-w-3xl text-base leading-7 text-muted-foreground sm:text-lg">
+                Descubre cómo podemos ayudarte en tu provincia con reclamaciones por accidentes de tráfico,
+                lesiones, secuelas y daños materiales.
+              </p>
+              <p className="mx-auto max-w-3xl text-base leading-7 text-muted-foreground sm:text-lg">
+                Haz clic en el mapa para ir directamente a la página de tu provincia o elige una provincia del listado.
+              </p>
+            </div>
           </div>
-        </div>
+        </section>
 
-        <div className="mb-6 rounded-3xl border border-border bg-card p-6 shadow-sm">
-          <h2 className="text-2xl font-semibold text-foreground">Encuentra tu provincia</h2>
-          <p className="mt-2 text-sm text-muted-foreground">
-            Selecciona la provincia donde necesitas asesoría y ve directamente a la información específica de la zona.
-          </p>
-        </div>
+        <section className="mx-auto max-w-7xl px-0 sm:px-6">
+          <div className="mb-14 px-2 sm:px-4">
+            <div className="mx-auto w-full max-w-[940px]">
+              <SpainMap />
+            </div>
+          </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {Object.entries(provinciasData).map(([slug, data]) => (
-            <Link
-              key={slug}
-              href={`/provincias/${slug}`}
-              className="group rounded-3xl border border-border bg-card p-6 transition hover:shadow-lg"
-            >
-              <div>
-                <h2 className="text-xl font-semibold text-foreground">{data.nombre}</h2>
-                <p className="mt-2 text-sm font-medium uppercase tracking-[.16em] text-primary/80">
-                  {data.comunidad}
-                </p>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{data.ayuda}</p>
-              </div>
-              <span className="mt-6 inline-flex items-center text-sm font-semibold text-primary transition group-hover:translate-x-1">
-                Ver más →
-              </span>
-            </Link>
-          ))}
-        </div>
-      </section>
-    </main>
+          <div className="mb-6 rounded-3xl border border-border bg-card p-6 shadow-sm">
+            <h2 className="text-2xl font-semibold text-foreground">Encuentra tu provincia</h2>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Selecciona la provincia donde necesitas asesoría y ve directamente a la información específica de la zona.
+            </p>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {Object.entries(provinciasData).map(([slug, data]) => (
+              <Link
+                key={slug}
+                href={`/provincias/${slug}`}
+                className="group rounded-3xl border border-border bg-card p-6 transition hover:shadow-lg"
+              >
+                <div>
+                  <h2 className="text-xl font-semibold text-foreground">{data.nombre}</h2>
+                  <p className="mt-2 text-sm font-medium uppercase tracking-[.16em] text-primary/80">
+                    {data.comunidad}
+                  </p>
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{data.ayuda}</p>
+                </div>
+                <span className="mt-6 inline-flex items-center text-sm font-semibold text-primary transition group-hover:translate-x-1">
+                  Ver más →
+                </span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
   );
 }
