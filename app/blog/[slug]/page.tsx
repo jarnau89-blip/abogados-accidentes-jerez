@@ -14,6 +14,9 @@ export async function generateStaticParams() {
   return posts.map((post) => ({ slug: post.slug }));
 }
 
+export const dynamic = "force-dynamic";
+ 
+
 export default async function BlogPostPage({ params }: BlogPageProps) {
   const posts = await getBlogPosts();
   const post = posts.find((item) => item.slug === params.slug);
