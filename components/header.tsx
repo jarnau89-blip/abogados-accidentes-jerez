@@ -19,13 +19,15 @@ export function Header() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const isNuestraFirmaPage = pathname === "/nuestra-firma";
-  const navLinks = isNuestraFirmaPage ? [] : defaultNavLinks;
+  const isBlogPage = pathname === "/blog";
+  const hideNav = isNuestraFirmaPage || isBlogPage;
+  const navLinks = hideNav ? [] : defaultNavLinks;
   const hasNavLinks = navLinks.length > 0;
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/95 backdrop-blur-sm">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-8">
-        <Link href={isNuestraFirmaPage ? "/" : "#inicio"} className="flex items-center gap-3 p-2">
+        <Link href={hideNav ? "/" : "#inicio"} className="flex items-center gap-3 p-2">
           <Image
             src="/generated-image-5.png"
             alt="Accidente Legal Abogados"

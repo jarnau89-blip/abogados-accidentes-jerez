@@ -10,10 +10,13 @@ export default async function BlogPage() {
     <>
       <Header />
       <main className="pt-20">
-        <section className="border-b border-border bg-slate-50 py-16 lg:py-24">
+        <section className="border-b border-border bg-slate-50 py-12 lg:py-20">
           <div className="mx-auto max-w-5xl px-4 lg:px-8 text-center">
+            <Link href="/" className="mb-2 inline-block text-sm font-bold text-foreground hover:underline">
+              Accidente Legal
+            </Link>
             <p className="mb-3 text-sm uppercase tracking-[0.3em] text-primary">Blog</p>
-            <h1 className="mb-4 text-4xl font-bold tracking-tight lg:text-5xl">
+            <h1 className="mb-4 text-3xl font-bold tracking-tight lg:text-4xl">
               Noticias y artículos sobre accidentes de tráfico
             </h1>
             <p className="mx-auto max-w-2xl text-base leading-8 text-muted-foreground">
@@ -29,7 +32,7 @@ export default async function BlogPage() {
                 posts.map((post) => (
                   <article
                     key={post.slug}
-                    className="rounded-3xl border border-border bg-background p-8 shadow-sm transition hover:shadow-lg"
+                    className="flex h-full flex-col rounded-3xl border border-border bg-background p-8 shadow-sm transition hover:shadow-lg"
                   >
                     <div className="mb-4 flex items-center justify-between gap-3 text-sm text-muted-foreground">
                       <span>{post.publishedAt}</span>
