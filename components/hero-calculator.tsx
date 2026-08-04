@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Calculator, Shield, Clock, CheckCircle2, Stethoscope } from "lucide-react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -82,6 +83,11 @@ export function HeroCalculator() {
                 <CheckCircle2 className="h-4 w-4 text-white" />
                 +500 casos ganados
               </div>
+            </div>
+            <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:items-center">
+              <Button asChild size="lg">
+                <Link href="/blog">Ir al Blog</Link>
+              </Button>
             </div>
           </div>
 

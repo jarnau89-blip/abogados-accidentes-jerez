@@ -11,6 +11,7 @@ const defaultNavLinks = [
   { label: "Indemnizaciones", href: "#calculadora", type: "anchor" },
   { label: "Servicios", href: "#servicios", type: "anchor" },
   { label: "Nuestra firma", href: "/nuestra-firma", type: "route" },
+  { label: "Blog", href: "/blog", type: "route" },
   { label: "Contacto", href: "#contacto", type: "anchor" },
 ];
 
