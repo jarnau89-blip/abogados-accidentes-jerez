@@ -67,25 +67,6 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <a
-            href="https://wa.me/34613781218?text=Hola%2C%20quiero%20consultar%20mi%20caso%20de%20accidente"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Abrir conversación por WhatsApp"
-            className="inline-flex items-center justify-center rounded-md bg-green-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-green-600"
-          >
-            WhatsApp
-          </a>
-
-          <a
-            href="tel:+34613781218"
-            className="hidden items-center justify-center rounded-md bg-red-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-red-700 sm:inline-flex"
-            aria-label="Llamar ahora"
-          >
-            <Phone className="mr-2 h-4 w-4" />
-            Llamar ahora
-          </a>
-
           <button
             type="button"
             className="inline-flex h-10 w-10 items-center justify-center rounded-md text-foreground lg:hidden"
@@ -125,22 +106,13 @@ export function Header() {
           )}
 
           <div className="mt-4 flex flex-col gap-3">
-            <a
-              href="https://wa.me/34613781218?text=Hola%2C%20quiero%20consultar%20mi%20caso%20de%20accidente"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-md bg-green-500 px-4 py-3 text-sm font-semibold text-white transition hover:bg-green-600"
+            <button
+              type="button"
+              onClick={() => setMobileOpen(false)}
+              className="inline-flex items-center justify-center rounded-md bg-slate-100 px-4 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-200"
             >
-              WhatsApp
-            </a>
-
-            <a
-              href="tel:+34613781218"
-              className="inline-flex items-center justify-center rounded-md bg-red-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-red-700"
-            >
-              <Phone className="mr-2 h-4 w-4" />
-              Llamar ahora
-            </a>
+              Cerrar menú
+            </button>
           </div>
         </nav>
       )}
