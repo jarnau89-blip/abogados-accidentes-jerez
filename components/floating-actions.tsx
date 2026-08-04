@@ -1,12 +1,26 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { MessageSquare, Phone, Send, X } from "lucide-react";
+import { Phone, Send, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 const whatsappNumber = "+34613781218";
 const whatsappBase = `https://wa.me/${whatsappNumber.replace(/\D/g, "")}`;
 const whatsappDefaultText = "Hola, quiero consultar mi caso de accidente.";
+
+function WhatsAppIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.272-.099-.47-.149-.67.149-.198.297-.767.966-.94 1.163-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.607.134-.133.298-.347.447-.52.149-.173.198-.298.298-.497.099-.198.05-.372-.025-.52-.074-.149-.67-1.612-.917-2.206-.242-.579-.487-.5-.67-.51-.173-.009-.372-.009-.57-.009-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.064 2.88 1.212 3.078.149.198 2.095 3.2 5.075 4.487.709.306 1.262.489 1.694.625.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+      <path d="M12.004 2.001C6.486 2.001 2 6.484 2 12c0 2.118.61 4.083 1.662 5.75L2 22l4.39-1.156C8.023 21.438 9.975 22 12 22c5.515 0 10-4.484 10-10 0-5.516-4.485-9.999-9.996-9.999z" />
+    </svg>
+  );
+}
 
 export function FloatingActions() {
   const pathname = usePathname();
@@ -102,7 +116,7 @@ export function FloatingActions() {
           className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-green-500 text-white shadow-lg transition hover:bg-green-600"
           aria-label="Abrir WhatsApp"
         >
-          <MessageSquare className="h-6 w-6" />
+          <WhatsAppIcon className="h-6 w-6" />
         </a>
 
         <a
