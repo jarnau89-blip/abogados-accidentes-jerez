@@ -1,10 +1,15 @@
+import { Footer } from "@/components/footer";
+import { Header } from "@/components/header";
+
 export default function PoliticaCookies() {
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4">
-      <div className="mx-auto max-w-4xl">
-        <h1 className="text-4xl font-bold text-gray-900 mb-8 text-center">
-          Política de Cookies
-        </h1>
+    <>
+      <Header />
+      <main className="min-h-screen bg-gray-50 pt-24 pb-12 px-4">
+        <div className="mx-auto max-w-4xl">
+          <h1 className="text-4xl font-bold text-gray-900 mb-8 text-center">
+            Política de Cookies
+          </h1>
 
         <div className="prose prose-lg max-w-none space-y-8 text-gray-700">
           <p className="text-lg leading-8">
@@ -185,6 +190,8 @@ export default function PoliticaCookies() {
           </div>
         </div>
       </div>
-    </div>
+      </main>
+      <Footer />
+    </>
   );
 }
