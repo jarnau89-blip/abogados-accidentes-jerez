@@ -5,7 +5,7 @@ export default function PoliticaCookies() {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-gray-50 pt-24 pb-12 px-4">
+      <main className="min-h-screen bg-gray-50 pt-32 pb-12 px-4">
         <div className="mx-auto max-w-4xl">
           <h1 className="text-4xl font-bold text-gray-900 mb-8 text-center">
             Política de Cookies
