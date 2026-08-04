@@ -118,7 +118,7 @@ export function FloatingActions() {
           href={`${whatsappBase}?text=${encodeURIComponent(whatsappDefaultText)}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-green-500 text-white shadow-lg transition hover:bg-green-600"
+          className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition hover:bg-[#1ebe58]"
           aria-label="Abrir WhatsApp"
         >
           <WhatsAppIcon className="h-6 w-6" />
