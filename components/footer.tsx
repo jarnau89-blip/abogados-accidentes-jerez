@@ -5,7 +5,7 @@ export function Footer() {
   return (
     <footer className="border-t border-border bg-primary py-12">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
           <div>
             <div className="mb-4 flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary-foreground/10">
@@ -26,38 +26,114 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="mb-4 font-semibold text-primary-foreground">Navegación</h3>
+            <h3 className="mb-4 font-semibold text-primary-foreground">Accidentes</h3>
             <ul className="space-y-3">
               <li>
                 <Link
-                  href="/#inicio"
+                  href="/accidentes/accidente-coche"
                   className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
                 >
-                  Inicio
+                  Accidente de coche
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/#calculadora"
+                  href="/accidentes/accidente-moto"
                   className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
                 >
-                  Calculadora
+                  Accidente de moto
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/#servicios"
+                  href="/accidentes/atropello"
                   className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
                 >
-                  Servicios
+                  Atropello
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/provincias"
+                  href="/accidentes/accidente-bicicleta"
                   className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
                 >
-                  Provincias
+                  Bicicleta
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/accidentes/accidente-patinete"
+                  className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
+                >
+                  Patinete
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="mb-4 font-semibold text-primary-foreground">Indemnizaciones</h3>
+            <ul className="space-y-3">
+              <li>
+                <Link
+                  href="/servicios/lesiones-accidente-trafico"
+                  className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
+                >
+                  Lesiones
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/servicios/secuelas-accidente-trafico"
+                  className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
+                >
+                  Secuelas
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/servicios/lucro-cesante"
+                  className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
+                >
+                  Lucro cesante
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/servicios/danos-materiales"
+                  className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
+                >
+                  Daños materiales
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/servicios/reclamacion-aseguradora"
+                  className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
+                >
+                  Reclamación a aseguradoras
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="mb-4 font-semibold text-primary-foreground">Empresa</h3>
+            <ul className="space-y-3">
+              <li>
+                <Link
+                  href="/nuestra-firma"
+                  className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
+                >
+                  Nuestra Firma
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/blog"
+                  className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
+                >
+                  Blog
                 </Link>
               </li>
               <li>
@@ -68,17 +144,6 @@ export function Footer() {
                   Contacto
                 </Link>
               </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="mb-4 font-semibold text-primary-foreground">Servicios</h3>
-            <ul className="space-y-3">
-              <li className="text-sm text-primary-foreground/70">Lesiones personales</li>
-              <li className="text-sm text-primary-foreground/70">Daños materiales</li>
-              <li className="text-sm text-primary-foreground/70">Secuelas</li>
-              <li className="text-sm text-primary-foreground/70">Lucro cesante</li>
-              <li className="text-sm text-primary-foreground/70">Gestión de seguros</li>
             </ul>
           </div>
 

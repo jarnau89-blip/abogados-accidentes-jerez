@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://abogados-accidentes-jerez.vercel.app/sitemap.xml

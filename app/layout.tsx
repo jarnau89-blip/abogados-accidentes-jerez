@@ -7,12 +7,33 @@ import { FloatingActions } from "@/components/floating-actions";
 
 const inter = Inter({ subsets: ["latin"] });
 
+export const metadataBase = new URL("https://abogados-accidentes-jerez.vercel.app");
 export const metadata: Metadata = {
-  title: "Accidentelegalabogados.com | Accidente Legal Abogados| Calcula tu Indemnización Gratis",
+  title: {
+    default: "Accidente Legal Abogados",
+    template: "%s | Accidente Legal Abogados",
+  },
   description:
-    "Máxima indemnización sin adelantos y ni riesgos. Sólo cobramos si tu cobras.",
-  keywords:
-    "Abogados accidentes españa, indemnización accidente trafico, abogado trafico toda españa, reclamacion accidente",
+    "Abogados especialistas en accidentes de tráfico. Reclamaciones de indemnización por lesiones, secuelas y daños frente a aseguradoras.",
+  openGraph: {
+    title: "Accidente Legal Abogados",
+    description:
+      "Abogados especialistas en accidentes de tráfico. Reclamaciones de indemnización por lesiones, secuelas y daños frente a aseguradoras.",
+    type: "website",
+    url: "https://abogados-accidentes-jerez.vercel.app",
+    siteName: "Accidente Legal Abogados",
+    locale: "es_ES",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Accidente Legal Abogados",
+    description:
+      "Abogados especialistas en accidentes de tráfico. Reclamaciones de indemnización por lesiones, secuelas y daños frente a aseguradoras.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export const viewport: Viewport = {

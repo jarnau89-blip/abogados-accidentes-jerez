@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 
 const whatsappNumber = "+34613781218";
 const whatsappBase = `https://wa.me/${whatsappNumber.replace(/\D/g, "")}`;
-const whatsappDefaultText = "Hola, quiero consultar mi caso de accidente.";
+const whatsappDefaultText = "Hola, quiero solicitar una valoración gratuita de mi caso por un accidente de tráfico. Me gustaría que un abogado especialista revisara mi situación y me indicara si puedo reclamar una indemnización. Si es posible, también me gustaría agendar una llamada en el horario que mejor me venga. Gracias.";
 
 function WhatsAppIcon({ className }: { className?: string }) {
   return (
@@ -113,7 +113,7 @@ export function FloatingActions() {
         </div>
       )}
 
-      <div className="flex flex-col items-end gap-3">
+      <div className="hidden md:flex flex-col items-end gap-3">
         <a
           href={`${whatsappBase}?text=${encodeURIComponent(whatsappDefaultText)}`}
           target="_blank"
@@ -130,6 +130,32 @@ export function FloatingActions() {
           aria-label="Llamar ahora"
         >
           <Phone className="h-6 w-6" />
+        </a>
+      </div>
+
+      <div className="fixed inset-x-0 bottom-0 z-50 flex items-center justify-between gap-2 border-t border-border bg-background/95 px-4 py-3 shadow-lg backdrop-blur-md md:hidden">
+        <a
+          href={`tel:${whatsappNumber}`}
+          className="inline-flex items-center justify-center rounded-full bg-slate-900 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800"
+          aria-label="Llamar ahora"
+        >
+          <Phone className="mr-2 h-4 w-4" /> Llamar
+        </a>
+        <a
+          href={`${whatsappBase}?text=${encodeURIComponent(whatsappDefaultText)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center justify-center rounded-full bg-[#25D366] px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#1ebe58]"
+          aria-label="Abrir WhatsApp"
+        >
+          <WhatsAppIcon className="mr-2 h-4 w-4" /> WhatsApp
+        </a>
+        <a
+          href="#contacto"
+          className="inline-flex items-center justify-center rounded-full bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground shadow-sm transition hover:bg-primary/90"
+          aria-label="Agendar una llamada"
+        >
+          Agendar llamada
         </a>
       </div>
     </div>

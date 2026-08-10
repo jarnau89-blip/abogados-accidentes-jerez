@@ -25,11 +25,10 @@ export function ContactForm() {
             Contacto
           </p>
           <h2 className="mb-4 text-balance text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-            Consulta gratuita y sin compromiso
+            ¿Has sufrido un accidente de tráfico?
           </h2>
           <p className="text-pretty text-lg leading-relaxed text-muted-foreground">
-            Cuentanos tu caso y un abogado especialista se pondra en contacto
-            contigo en menos de 24 horas.
+            Cuéntanos qué ha ocurrido. Nuestro equipo estudiará tu caso y te contactará en menos de 24 horas.
           </p>
         </div>
 
@@ -67,7 +66,7 @@ export function ContactForm() {
                       Email
                     </p>
                     <a
-                      href="mailto:info@abogadosjerez.es"
+                      href="mailto:info.accidentes@accidentelegalabogados.com"
                       className="text-sm text-primary hover:underline"
                     >
                       info.accidentes@accidentelegalabogados.com
@@ -157,7 +156,7 @@ export function ContactForm() {
                         Teléfono *
                       </Label>
                       <Input
-                        id="teléfono"
+                        id="telefono"
                         type="tel"
                         required
                         placeholder="600 000 000"

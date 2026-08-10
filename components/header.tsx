@@ -8,6 +8,7 @@ import Link from "next/link";
 
 const defaultNavLinks = [
   { label: "Inicio", href: "/#inicio" },
+  { label: "Accidentes", href: "/#accidentes" },
   { label: "Indemnizaciones", href: "/#calculadora" },
   { label: "Servicios", href: "/#servicios" },
   { label: "Nuestra firma", href: "/nuestra-firma" },
