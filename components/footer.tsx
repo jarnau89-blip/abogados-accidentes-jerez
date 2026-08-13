@@ -122,6 +122,14 @@ export function Footer() {
             <ul className="space-y-3">
               <li>
                 <Link
+                  href="/provincias"
+                  className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
+                >
+                  Provincias
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/nuestra-firma"
                   className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
                 >

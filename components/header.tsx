@@ -11,6 +11,7 @@ const defaultNavLinks = [
   { label: "Accidentes", href: "/#accidentes" },
   { label: "Indemnizaciones", href: "/#calculadora" },
   { label: "Servicios", href: "/#servicios" },
+  { label: "Provincias", href: "/provincias" },
   { label: "Nuestra firma", href: "/nuestra-firma" },
   { label: "Blog", href: "/blog" },
   { label: "Contacto", href: "/#contacto" },
