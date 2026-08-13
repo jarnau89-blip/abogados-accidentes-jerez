@@ -5,7 +5,7 @@ import { provinciasSEO } from "@/data/provincias-seo";
 import { WhyUsProvincia } from "@/components/why-us-provincia";
 import { ContactForm } from "@/components/contact-form";
 
-const SITE_URL = "https://abogados-accidentes-jerez.vercel.app";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://abogados-accidentes-jerez.vercel.app";
 
 const provinciasDisponibles = [
   "alava",
@@ -61,7 +61,6 @@ const provinciasDisponibles = [
   "zamora",
   "zaragoza",
 ];
-
 
 const servicios = [
   {
@@ -146,16 +145,19 @@ type ProvinciaData = {
   description: string;
   h1: string;
   introduccion: string;
+  introduccionProvincial: string[];
   localidades: string[];
   tiposAccidente: {
     nombre: string;
+    descripcion: string;
     slug: string;
   }[];
   indemnizaciones: {
     nombre: string;
-    slug: string;
+    descripcion: string;
+    slug?: string;
   }[];
-  lesiones: string[];
+  lesiones: (string | { nombre: string; descripcion: string })[];
   faqs: {
     pregunta: string;
     respuesta: string;
@@ -175,59 +177,87 @@ function crearDatosGenericos(provincia: string): ProvinciaData {
     title: `Abogados de Accidentes de Tráfico en ${nombre} | Accidente Legal Abogados`,
     description: `Abogados especialistas en accidentes de tráfico en ${nombre}. Estudiamos lesiones, secuelas y daños y orientamos la reclamación frente a las aseguradoras.`,
     h1: `Abogados especialistas en accidentes de tráfico en ${nombre}`,
-    introduccion: `Si has sufrido un accidente de tráfico en ${nombre}, nuestro equipo puede estudiar las circunstancias del accidente, la documentación disponible y los daños y perjuicios que puedan haberse producido para orientarte sobre las posibles vías de reclamación.`,
+    introduccion: `Si has sufrido un accidente de tráfico en ${nombre}, nuestro equipo estudia tu caso para reclamar la indemnización que pueda corresponder por las lesiones, secuelas, daños materiales y perjuicios económicos sufridos. Gestionamos la reclamación frente a la aseguradora.`,
+    introduccionProvincial: [
+      `Después de un accidente de tráfico pueden aparecer lesiones, gastos, daños materiales y otras consecuencias que deben ser valoradas individualmente. En Accidente Legal Abogados estudiamos la documentación disponible y las circunstancias del accidente para orientar la reclamación que pueda corresponder frente a la compañía aseguradora.`,
+      `Atendemos casos de accidentes ocurridos en ${nombre} y prestamos nuestros servicios a distancia en toda España. La gestión de cada expediente se adapta a las circunstancias del accidente, las lesiones sufridas y los perjuicios que puedan acreditarse.`,
+    ],
     localidades: [],
     tiposAccidente: [
       {
         nombre: "Accidente de coche",
+        descripcion: "Reclamamos indemnizaciones por lesiones, secuelas y daños derivados de accidentes entre vehículos.",
         slug: "/accidentes/accidente-coche",
       },
       {
         nombre: "Accidente de moto",
+        descripcion: "Estudiamos las lesiones y consecuencias de accidentes de motocicleta y gestionamos la reclamación.",
         slug: "/accidentes/accidente-moto",
       },
       {
         nombre: "Atropello",
+        descripcion: "Analizamos las lesiones y perjuicios sufridos por peatones atropellados y las posibles indemnizaciones.",
         slug: "/accidentes/atropello",
       },
       {
         nombre: "Accidente de bicicleta",
+        descripcion: "Reclamamos los daños y lesiones sufridos por ciclistas en accidentes de circulación.",
         slug: "/accidentes/accidente-bicicleta",
       },
       {
         nombre: "Accidente con patinete",
+        descripcion: "Estudiamos accidentes con patinetes eléctricos y las responsabilidades que puedan existir.",
         slug: "/accidentes/accidente-patinete",
       },
       {
         nombre: "Accidente como pasajero",
+        descripcion: "Los pasajeros lesionados también pueden tener derecho a reclamar una indemnización por las lesiones sufridas.",
         slug: "/accidentes/accidente-pasajero",
       },
     ],
     indemnizaciones: [
       {
         nombre: "Indemnización por lesiones",
+        descripcion:
+          "Compensación por los días de recuperación, desde el perjuicio personal básico hasta el moderado o grave.",
         slug: "/indemnizaciones/lesiones",
       },
       {
-        nombre: "Indemnización por secuelas",
+        nombre: "Secuelas",
+        descripcion:
+          "Valoración de las limitaciones o dolores permanentes que quedan tras el alta médica, según el baremo oficial.",
         slug: "/indemnizaciones/secuelas",
       },
       {
+        nombre: "Gastos médicos y de rehabilitación",
+        descripcion:
+          "Reclamación de los costes de tratamientos, farmacia, fisioterapia y otras terapias necesarias para la recuperación.",
+      },
+      {
+        nombre: "Perjuicio estético",
+        descripcion:
+          "Indemnización adicional cuando el accidente provoca cicatrices, cojeras u otras alteraciones físicas visibles.",
+      },
+      {
         nombre: "Lucro cesante",
+        descripcion:
+          "Compensación por la pérdida de ingresos que sufre la víctima durante el periodo de baja laboral o incapacidad.",
         slug: "/indemnizaciones/lucro-cesante",
       },
       {
         nombre: "Daños materiales",
+        descripcion:
+          "Reclamación del coste de reparación del vehículo, su valor venal o el valor de otros objetos dañados en el siniestro.",
         slug: "/indemnizaciones/danos-materiales",
       },
     ],
     lesiones: [
-      "Latigazo cervical",
-      "Fracturas",
-      "Traumatismos",
-      "Lesiones musculares",
-      "Secuelas",
-      "Perjuicio estético",
+      "Latigazo cervical: Una de las lesiones frecuentes tras determinadas colisiones, cuya valoración depende de su evolución, tratamiento y posibles secuelas.",
+      "Fracturas: Roturas óseas que requieren un análisis detallado del tiempo de curación y las limitaciones que puedan generar.",
+      "Traumatismos: Golpes y contusiones que, aunque no generen fracturas, pueden requerir tratamiento y causar dolor persistente.",
+      "Lesiones musculares: Desgarros o contracturas que pueden afectar la movilidad y requieren un periodo de recuperación.",
+      "Secuelas: Dolores crónicos, limitaciones de movilidad o cicatrices que persisten tras el alta y son indemnizables.",
+      "Perjuicio estético: Alteraciones físicas visibles como cicatrices o deformidades que pueden ser objeto de indemnización.",
     ],
     faqs: [
       {
@@ -283,7 +313,7 @@ export async function generateMetadata({
 
   return {
     title: data.title,
-    description: data.description,
+    description: data.description, // Aseguramos que la descripción sea la de data.description
     alternates: {
       canonical: `${SITE_URL}/provincias/${provincia}`,
     },
@@ -424,25 +454,22 @@ export default async function ProvinciaPage({
                 <div className="mt-8 grid gap-4 sm:grid-cols-2">
 
                   <div className="rounded-3xl bg-primary/5 p-5">
-                    <p className="text-sm font-semibold uppercase tracking-[.2em] text-primary">
-                      Atención en toda España
+                    <p className="text-sm font-semibold uppercase tracking-[.2em] text-primary/80">
+                      RECLAMACIÓN A LA ASEGURADORA
                     </p>
 
                     <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                      Gestionamos reclamaciones relacionadas con accidentes
-                      ocurridos en {data.nombre}, con atención online y
-                      seguimiento personalizado de cada expediente.
+                      Analizamos las circunstancias del accidente, las lesiones y los daños acreditados para reclamar la indemnización que pueda corresponder.
                     </p>
                   </div>
 
                   <div className="rounded-3xl bg-primary/5 p-5">
-                    <p className="text-sm font-semibold uppercase tracking-[.2em] text-primary">
-                      Valoración inicial
+                    <p className="text-sm font-semibold uppercase tracking-[.2em] text-primary/80">
+                      VALORACIÓN INICIAL
                     </p>
 
                     <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                      Cuéntanos qué ocurrió y estudiaremos las circunstancias
-                      del accidente y la documentación disponible.
+                      Cuéntanos qué ocurrió y estudiaremos la documentación disponible para orientarte sobre las posibilidades de reclamación.
                     </p>
                   </div>
 
@@ -495,22 +522,11 @@ export default async function ProvinciaPage({
               Abogados de accidentes de tráfico en {data.nombre}
             </h2>
 
-            <p className="mt-4 leading-8 text-muted-foreground">
-              Después de un accidente de tráfico pueden aparecer lesiones,
-              gastos, daños materiales y otras consecuencias que deben ser
-              valoradas individualmente. En Accidente Legal Abogados estudiamos
-              la documentación disponible y las circunstancias del accidente
-              para orientar la reclamación que pueda corresponder frente a la
-              compañía aseguradora.
-            </p>
-
-            <p className="mt-4 leading-8 text-muted-foreground">
-              Atendemos casos de accidentes ocurridos en {data.nombre} y
-              prestamos nuestros servicios a distancia en toda España. La
-              gestión de cada expediente se adapta a las circunstancias del
-              accidente, las lesiones sufridas y los perjuicios que puedan
-              acreditarse.
-            </p>
+            {data.introduccionProvincial.map((parrafo, index) => (
+              <p key={index} className="mt-4 leading-8 text-muted-foreground">
+                {parrafo}
+              </p>
+            ))}
 
           </section>
 
@@ -541,8 +557,7 @@ export default async function ProvinciaPage({
                   </h3>
 
                   <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                    Información y orientación sobre reclamaciones relacionadas
-                    con este tipo de accidente.
+                    {accidente.descripcion}
                   </p>
                 </Link>
               ))}
@@ -569,15 +584,21 @@ export default async function ProvinciaPage({
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
 
               {data.indemnizaciones.map((item) => (
-                <Link
-                  key={item.slug}
-                  href={item.slug}
-                  className="rounded-3xl border border-border bg-card p-6 shadow-sm transition hover:shadow-md"
-                >
-                  <h3 className="font-semibold text-foreground">
-                    {item.nombre}
-                  </h3>
-                </Link>
+                item.slug ? (
+                  <Link
+                    key={item.nombre}
+                    href={item.slug}
+                    className="rounded-3xl border border-border bg-card p-6 shadow-sm transition hover:shadow-md"
+                  >
+                    <h3 className="font-semibold text-foreground">{item.nombre}</h3>
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.descripcion}</p>
+                  </Link>
+                ) : (
+                  <div key={item.nombre} className="rounded-3xl border border-border bg-card p-6 shadow-sm">
+                    <h3 className="font-semibold text-foreground">{item.nombre}</h3>
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.descripcion}</p>
+                  </div>
+                )
               ))}
 
             </div>
@@ -600,13 +621,19 @@ export default async function ProvinciaPage({
 
             <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
 
-              {data.lesiones.map((lesion) => (
-                <div
-                  key={lesion}
-                  className="rounded-2xl bg-muted/40 px-5 py-4 text-sm font-medium text-foreground"
-                >
-                  {lesion}
-                </div>
+              {data.lesiones.map((lesion, index) => (
+                typeof lesion === 'string' ? (
+                  <div key={index} className="rounded-2xl bg-muted/40 px-5 py-4 text-sm font-medium text-foreground">
+                    {lesion}
+                  </div>
+                ) : (
+                  <div key={index} className="rounded-2xl bg-muted/40 px-5 py-4">
+                    <h4 className="font-semibold text-foreground">{lesion.nombre}</h4>
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                      {lesion.descripcion}
+                    </p>
+                  </div>
+                )
               ))}
 
             </div>
@@ -647,7 +674,7 @@ export default async function ProvinciaPage({
           <section className="mt-12 rounded-3xl border border-border bg-card p-8 shadow-sm">
 
             <h2 className="text-3xl font-bold text-foreground">
-              ¿Cómo trabajamos?
+              ¿Cómo reclamamos una indemnización por accidente de tráfico?
             </h2>
 
             <div className="mt-8 grid gap-6 md:grid-cols-4">
@@ -655,32 +682,32 @@ export default async function ProvinciaPage({
               {[
                 {
                   numero: "01",
-                  titulo: "Cuéntanos qué ocurrió",
+                  titulo: "Analizamos el accidente",
                   texto:
-                    "Recopilamos la información básica del accidente y de las lesiones.",
+                    "Recopilamos la información sobre cómo ocurrió el accidente y las circunstancias del siniestro.",
                 },
                 {
                   numero: "02",
-                  titulo: "Estudiamos tu caso",
+                  titulo: "Valoramos las lesiones y daños",
                   texto:
-                    "Analizamos la documentación disponible y las circunstancias del siniestro.",
+                    "Estudiamos informes médicos, tratamiento, rehabilitación, secuelas y demás daños acreditados.",
                 },
                 {
                   numero: "03",
-                  titulo: "Gestionamos la reclamación",
+                  titulo: "Calculamos la reclamación",
                   texto:
-                    "Te acompañamos durante la comunicación y reclamación frente a la aseguradora.",
+                    "Analizamos los conceptos indemnizables y la documentación necesaria para fundamentar la reclamación.",
                 },
                 {
                   numero: "04",
-                  titulo: "Seguimos tu expediente",
+                  titulo: "Reclamamos a la aseguradora",
                   texto:
-                    "Mantenemos el seguimiento del procedimiento hasta su finalización.",
+                    "Gestionamos la reclamación y las comunicaciones con la compañía aseguradora hasta la resolución del expediente.",
                 },
               ].map((paso) => (
                 <div key={paso.numero}>
 
-                  <span className="text-sm font-bold text-primary">
+                  <span className="text-sm font-bold text-primary/80">
                     {paso.numero}
                   </span>
 
@@ -769,16 +796,16 @@ export default async function ProvinciaPage({
             </h2>
 
             <p className="mt-4 max-w-3xl leading-7 opacity-90">
-              Cuéntanos qué ha ocurrido. Nuestro equipo estudiará la información que nos facilites y contactará contigo en menos de 24 horas.
+              Cuéntanos qué ocurrió y qué lesiones o daños has sufrido. Estudiaremos la información disponible y te orientaremos sobre las posibilidades de reclamar una indemnización.
             </p>
 
             <div className="mt-6 flex flex-wrap gap-3">
 
               <Link
-                href="tel:+34613781218"
+                href="#contact-form"
                 className="rounded-2xl bg-white px-6 py-3 font-semibold text-primary transition hover:opacity-90"
               >
-                Llamar ahora
+                Solicitar valoración
               </Link>
 
               <Link
@@ -795,7 +822,7 @@ export default async function ProvinciaPage({
           </section>
 
           {/* FORMULARIO */}
-          <section className="mt-12 rounded-3xl border border-border bg-card p-8 shadow-sm">
+          <section id="contact-form" className="mt-12 rounded-3xl border border-border bg-card p-8 shadow-sm">
             <div className="mt-6">
               <ContactForm />
             </div>

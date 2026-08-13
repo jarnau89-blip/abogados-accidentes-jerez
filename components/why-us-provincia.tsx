@@ -2,24 +2,20 @@ import { CheckCircle } from 'lucide-react'
 
 const features = [
   {
-    name: 'Especialistas en accidentes de tráfico',
-    description:
-      'Nos centramos en reclamaciones relacionadas con accidentes de circulación y sus consecuencias.'
+    name: "Especialistas en accidentes de tráfico",
+    description: "Nos centramos en la reclamación de indemnizaciones derivadas de accidentes de circulación y en la defensa de los derechos de las personas lesionadas.",
   },
   {
-    name: 'Atención en toda España',
-    description:
-      'Gestionamos casos de accidentes ocurridos en cualquier punto de España mediante atención online y seguimiento personalizado.'
+    name: "Estudio individual del accidente",
+    description: "Analizamos las circunstancias del siniestro, la documentación médica y los daños y perjuicios que puedan acreditarse.",
   },
   {
-    name: 'Equipo de abogados y tramitadores',
-    description:
-      'Nuestro equipo trabaja conjuntamente para estudiar y realizar el seguimiento de cada expediente.'
+    name: "Reclamación frente a la aseguradora",
+    description: "Gestionamos la reclamación y las comunicaciones necesarias con la compañía responsable para defender tus intereses.",
   },
   {
-    name: 'Estudiamos tu caso',
-    description:
-      'Analizamos las circunstancias del accidente, las lesiones, la documentación disponible y los posibles perjuicios reclamables.'
+    name: "Atención online en toda España",
+    description: "Puedes iniciar tu reclamación a distancia y realizar el seguimiento del expediente sin necesidad de desplazarte al despacho.",
   }
 ]
 

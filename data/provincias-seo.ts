@@ -1,35 +1,51 @@
+interface FAQ {
+  pregunta: string;
+  respuesta: string;
+}
+
+interface Lesion {
+  nombre: string;
+  descripcion: string;
+}
+
+interface Indemnizacion {
+  nombre: string;
+  descripcion: string;
+  slug?: string;
+}
+
+interface TipoAccidente {
+  nombre: string;
+  descripcion: string;
+  slug: string;
+}
+
 export interface ProvinciaSEO {
   nombre: string;
   title: string;
   description: string;
   h1: string;
   introduccion: string;
+  introduccionProvincial: string[];
   localidades: string[];
-  tiposAccidente: {
-    nombre: string;
-    slug: string;
-  }[];
-  indemnizaciones: {
-    nombre: string;
-    slug: string;
-  }[];
-  lesiones: string[];
-  faqs: {
-    pregunta: string;
-    respuesta: string;
-  }[];
+  tiposAccidente: TipoAccidente[];
+  indemnizaciones: Indemnizacion[];
+  lesiones: (Lesion | string)[]; // Acepta el formato antiguo para retrocompatibilidad
+  faqs: FAQ[];
 }
 
 export const provinciasSEO: Record<string, ProvinciaSEO> = {
   cadiz: {
     nombre: "Cádiz",
     title:
-      "Abogados de Accidentes de Tráfico en Cádiz | Accidente Legal Abogados",
-    description:
-      "Abogados especialistas en accidentes de tráfico en Cádiz. Reclamamos indemnizaciones por lesiones, secuelas y daños frente a las aseguradoras.",
+      "Abogados de Accidentes de Tráfico en Cádiz | Indemnizaciones",
+    description: "Abogados especialistas en accidentes de tráfico en la provincia de Cádiz. Analizamos tu caso para reclamar la indemnización que pueda corresponder por lesiones, secuelas y daños. Ofrecemos atención en Jerez, Algeciras y toda la provincia.", // Mantengo la descripción actualizada
     h1: "Abogados especialistas en accidentes de tráfico en Cádiz",
-    introduccion:
-      "Si has sufrido un accidente de tráfico en Cádiz, nuestro equipo de abogados y tramitadores especializados puede estudiar tu caso y orientarte sobre la posible reclamación de una indemnización. Gestionamos expedientes relacionados con lesiones, secuelas, daños materiales y otros perjuicios derivados de accidentes de circulación, con atención durante todo el proceso.",
+    introduccion: "Si has sufrido un accidente de tráfico en Cádiz, nuestro equipo de abogados especialistas analiza tu caso. Estudiamos las lesiones, secuelas, daños materiales y perjuicios económicos para valorar la reclamación frente a la aseguradora y defender tus intereses. Ofrecemos atención online en toda la provincia.",
+    introduccionProvincial: [
+      "Un accidente de tráfico en la provincia de Cádiz puede tener consecuencias significativas, desde lesiones que requieren rehabilitación hasta daños en el vehículo y perjuicios económicos. En Accidente Legal Abogados, analizamos cada expediente de forma individual para que todos los daños puedan ser valorados. Es fundamental conservar toda la documentación, como el parte de accidente, informes médicos y facturas, para fundamentar la reclamación.",
+      "Nos encargamos de la gestión con las compañías aseguradoras, defendiendo tus intereses para reclamar la indemnización que pueda corresponder. Prestamos servicio en toda la provincia, ya sea en Cádiz capital, Jerez de la Frontera, Algeciras o cualquier otra localidad, con la posibilidad de gestionar tu caso a distancia.",
+    ],
     localidades: [
       "Cádiz",
       "Jerez de la Frontera",
@@ -44,74 +60,147 @@ export const provinciasSEO: Record<string, ProvinciaSEO> = {
     tiposAccidente: [
       {
         nombre: "Accidente de coche",
+        descripcion:
+          "Reclamamos indemnizaciones por lesiones, secuelas y daños derivados de accidentes entre vehículos.",
         slug: "/accidentes/accidente-coche",
       },
       {
         nombre: "Accidente de moto",
+        descripcion:
+          "Estudiamos las lesiones y consecuencias de accidentes de motocicleta y gestionamos la reclamación frente a la aseguradora.",
         slug: "/accidentes/accidente-moto",
       },
       {
         nombre: "Atropello",
+        descripcion:
+          "Analizamos las lesiones y perjuicios sufridos por peatones atropellados y las posibles indemnizaciones.",
         slug: "/accidentes/atropello",
       },
       {
         nombre: "Accidente de bicicleta",
+        descripcion:
+          "Reclamamos los daños y lesiones sufridos por ciclistas en accidentes de circulación.",
         slug: "/accidentes/accidente-bicicleta",
       },
       {
         nombre: "Accidente con patinete",
+        descripcion:
+          "Estudiamos accidentes con patinetes eléctricos y las responsabilidades que puedan existir.",
         slug: "/accidentes/accidente-patinete",
       },
       {
         nombre: "Accidente como pasajero",
+        descripcion:
+          "Los pasajeros lesionados también pueden tener derecho a reclamar una indemnización por las lesiones sufridas.",
         slug: "/accidentes/accidente-pasajero",
       },
     ],
     indemnizaciones: [
       {
         nombre: "Indemnización por lesiones",
+        descripcion:
+          "Compensación por los días de recuperación, desde el perjuicio personal básico hasta el moderado o grave.",
         slug: "/indemnizaciones/lesiones",
       },
       {
-        nombre: "Indemnización por secuelas",
+        nombre: "Secuelas",
+        descripcion:
+          "Valoración de las limitaciones o dolores permanentes que quedan tras el alta médica, según el baremo oficial.",
         slug: "/indemnizaciones/secuelas",
       },
       {
+        nombre: "Gastos médicos y de rehabilitación",
+        descripcion:
+          "Reclamación de los costes de tratamientos, farmacia, fisioterapia y otras terapias necesarias para la recuperación.",
+      },
+      {
+        nombre: "Perjuicio estético",
+        descripcion:
+          "Indemnización adicional cuando el accidente provoca cicatrices, cojeras u otras alteraciones físicas visibles.",
+      },
+      {
         nombre: "Lucro cesante",
+        descripcion:
+          "Compensación por la pérdida de ingresos que sufre la víctima durante el periodo de baja laboral o incapacidad.",
         slug: "/indemnizaciones/lucro-cesante",
       },
       {
         nombre: "Daños materiales",
+        descripcion:
+          "Reclamación del coste de reparación del vehículo, su valor venal o el valor de otros objetos dañados en el siniestro.",
         slug: "/indemnizaciones/danos-materiales",
       },
     ],
     lesiones: [
-      "Latigazo cervical",
-      "Fracturas",
-      "Lesiones de hombro",
-      "Lesiones de rodilla",
-      "Traumatismos",
-      "Secuelas",
-      "Perjuicio estético",
+      {
+        nombre: "Latigazo cervical",
+        descripcion:
+          "Lesión frecuente en colisiones, cuya valoración depende de su evolución, tratamiento y posibles secuelas.",
+      },
+      {
+        nombre: "Fracturas",
+        descripcion:
+          "Roturas óseas que requieren un análisis detallado del tiempo de curación y las limitaciones que puedan generar.",
+      },
+      {
+        nombre: "Lesiones de hombro",
+        descripcion:
+          "Afectaciones como tendinitis o roturas de manguito rotador que pueden limitar la movilidad de forma permanente.",
+      },
+      {
+        nombre: "Lesiones de rodilla",
+        descripcion:
+          "Desde esguinces hasta roturas de ligamentos o menisco, con un impacto significativo en la calidad de vida.",
+      },
+      {
+        nombre: "Traumatismos",
+        descripcion:
+          "Golpes y contusiones que, aunque no generen fracturas, pueden requerir tratamiento y causar dolor persistente.",
+      },
+      {
+        nombre: "Secuelas",
+        descripcion:
+          "Dolores crónicos, limitaciones de movilidad o cicatrices que persisten tras el alta y son indemnizables.",
+      },
     ],
     faqs: [
       {
         pregunta:
           "¿Puedo reclamar una indemnización por un accidente de tráfico ocurrido en Cádiz?",
         respuesta:
-          "Las circunstancias del accidente, las lesiones sufridas y la documentación disponible determinan si existe derecho a reclamar y qué conceptos pueden ser objeto de indemnización. Es recomendable estudiar cada caso de forma individual.",
+          "Sí, siempre que no seas el responsable exclusivo del accidente. La viabilidad de la reclamación depende de las circunstancias del siniestro, las lesiones sufridas y la documentación que se pueda aportar. Es fundamental analizar cada caso para determinar los conceptos indemnizables.",
       },
       {
         pregunta:
           "¿Qué documentación necesito para reclamar un accidente de tráfico?",
         respuesta:
-          "Puede ser útil disponer de documentación como el parte del accidente, informes médicos, partes de asistencia sanitaria, comunicaciones de la aseguradora y justificantes de gastos relacionados con el accidente.",
+          "Es muy importante conservar toda la documentación: el parte amistoso o atestado policial, informes de urgencias, partes de baja y alta médica, informes de rehabilitación, facturas de gastos (farmacia, fisioterapia, desplazamientos) y cualquier comunicación con las aseguradoras.",
       },
       {
         pregunta:
           "¿Puedo reclamar si la aseguradora ya me ha ofrecido una indemnización?",
         respuesta:
-          "Una oferta de la aseguradora no significa necesariamente que esa cantidad sea la que corresponda al conjunto de perjuicios sufridos. Antes de aceptarla puede ser conveniente que un profesional revise la documentación y el contenido de la oferta.",
+          "Sí, y es muy recomendable hacerlo. Las ofertas iniciales de las aseguradoras suelen ser a la baja y pueden no contemplar todos los perjuicios sufridos. Antes de aceptar, es conveniente que un abogado especialista revise la oferta y la documentación para asegurarse de que es justa.",
+      },
+      {
+        pregunta: "¿Cuánto tiempo tengo para reclamar una indemnización?",
+        respuesta:
+          "El plazo general para reclamar judicialmente por la vía civil es de un año desde el alta médica definitiva. Sin embargo, existen otros plazos y acciones posibles. Por ello, es aconsejable iniciar los trámites lo antes posible para no perder ningún derecho.",
+      },
+      {
+        pregunta: "¿Puedo reclamar si viajaba como pasajero en Cádiz?",
+        respuesta:
+          "Sí. Los pasajeros que sufren lesiones en un accidente de tráfico casi siempre tienen derecho a una indemnización, independientemente de quién fuera el conductor culpable. La reclamación se dirige contra la aseguradora del vehículo responsable.",
+      },
+      {
+        pregunta: "¿Qué ocurre si el vehículo responsable se da a la fuga o no tiene seguro?",
+        respuesta:
+          "En esos casos, la reclamación se puede dirigir contra el Consorcio de Compensación de Seguros, un organismo público que cubre las indemnizaciones por lesiones cuando el responsable es desconocido o no está asegurado. Es un procedimiento con particularidades, por lo que el asesoramiento es clave.",
+      },
+      {
+        pregunta: "¿Necesito acudir presencialmente al despacho?",
+        respuesta:
+          "No es necesario. Gestionamos reclamaciones en toda la provincia de Cádiz y el resto de España de forma telemática. Puedes enviarnos la documentación por email o WhatsApp y mantenemos un contacto constante por teléfono para tu comodidad.",
       },
     ],
   },
@@ -119,12 +208,14 @@ export const provinciasSEO: Record<string, ProvinciaSEO> = {
   sevilla: {
     nombre: "Sevilla",
     title:
-      "Abogados de Accidentes de Tráfico en Sevilla | Accidente Legal Abogados",
-    description:
-      "Abogados especialistas en accidentes de tráfico en Sevilla. Reclamamos indemnizaciones por lesiones, secuelas y daños frente a las compañías aseguradoras.",
+      "Abogados de Accidentes de Tráfico en Sevilla | Indemnizaciones",
+    description: "¿Has sufrido un accidente de tráfico en Sevilla? Somos abogados especialistas en la reclamación de indemnizaciones frente a aseguradoras. Estudiamos las lesiones y los daños para defender tus intereses. Consulta tu caso.", // Mantengo la descripción actualizada
     h1: "Abogados especialistas en accidentes de tráfico en Sevilla",
-    introduccion:
-      "Si has sufrido un accidente de tráfico en Sevilla, puedes contar con un equipo especializado para estudiar las circunstancias del siniestro y valorar los daños y perjuicios que puedan ser reclamables. Gestionamos reclamaciones relacionadas con lesiones, secuelas, daños materiales y otros perjuicios derivados de accidentes de circulación.",
+    introduccion: "Si has sufrido un accidente de tráfico en Sevilla, nuestro equipo de abogados especialistas valora las consecuencias del siniestro. Analizamos las lesiones, secuelas y daños materiales para orientar la reclamación frente a la aseguradora y defender tus intereses. Ofrecemos atención online en toda la provincia.",
+    introduccionProvincial: [
+      "Las consecuencias de un accidente en la provincia de Sevilla pueden ir desde lesiones que requieren rehabilitación hasta daños materiales y perjuicios económicos. En Accidente Legal Abogados, estudiamos cada caso de forma personalizada para que todos los daños sean valorados. Entendemos el impacto que un siniestro puede tener en tu vida y nos enfocamos en analizar las posibilidades de reclamación.",
+      "Gestionamos la comunicación con las compañías de seguros para defender tus derechos, ya sea por un accidente en Sevilla capital, Dos Hermanas o cualquier municipio. Puedes iniciar los trámites y realizar el seguimiento a distancia, sin necesidad de desplazamientos.",
+    ],
     localidades: [
       "Sevilla",
       "Dos Hermanas",
@@ -140,74 +231,147 @@ export const provinciasSEO: Record<string, ProvinciaSEO> = {
     tiposAccidente: [
       {
         nombre: "Accidente de coche",
+        descripcion:
+          "Reclamamos indemnizaciones por lesiones, secuelas y daños derivados de accidentes entre vehículos.",
         slug: "/accidentes/accidente-coche",
       },
       {
         nombre: "Accidente de moto",
+        descripcion:
+          "Estudiamos las lesiones y consecuencias de accidentes de motocicleta y gestionamos la reclamación frente a la aseguradora.",
         slug: "/accidentes/accidente-moto",
       },
       {
         nombre: "Atropello",
+        descripcion:
+          "Analizamos las lesiones y perjuicios sufridos por peatones atropellados y las posibles indemnizaciones.",
         slug: "/accidentes/atropello",
       },
       {
         nombre: "Accidente de bicicleta",
+        descripcion:
+          "Reclamamos los daños y lesiones sufridos por ciclistas en accidentes de circulación.",
         slug: "/accidentes/accidente-bicicleta",
       },
       {
         nombre: "Accidente con patinete",
+        descripcion:
+          "Estudiamos accidentes con patinetes eléctricos y las responsabilidades que puedan existir.",
         slug: "/accidentes/accidente-patinete",
       },
       {
         nombre: "Accidente como pasajero",
+        descripcion:
+          "Los pasajeros lesionados también pueden tener derecho a reclamar una indemnización por las lesiones sufridas.",
         slug: "/accidentes/accidente-pasajero",
       },
     ],
     indemnizaciones: [
       {
         nombre: "Indemnización por lesiones",
+        descripcion:
+          "Compensación por los días de recuperación, desde el perjuicio personal básico hasta el moderado o grave.",
         slug: "/indemnizaciones/lesiones",
       },
       {
-        nombre: "Indemnización por secuelas",
+        nombre: "Secuelas",
+        descripcion:
+          "Valoración de las limitaciones o dolores permanentes que quedan tras el alta médica, según el baremo oficial.",
         slug: "/indemnizaciones/secuelas",
       },
       {
+        nombre: "Gastos médicos y de rehabilitación",
+        descripcion:
+          "Reclamación de los costes de tratamientos, farmacia, fisioterapia y otras terapias necesarias para la recuperación.",
+      },
+      {
+        nombre: "Perjuicio estético",
+        descripcion:
+          "Indemnización adicional cuando el accidente provoca cicatrices, cojeras u otras alteraciones físicas visibles.",
+      },
+      {
         nombre: "Lucro cesante",
+        descripcion:
+          "Compensación por la pérdida de ingresos que sufre la víctima durante el periodo de baja laboral o incapacidad.",
         slug: "/indemnizaciones/lucro-cesante",
       },
       {
         nombre: "Daños materiales",
+        descripcion:
+          "Reclamación del coste de reparación del vehículo, su valor venal o el valor de otros objetos dañados en el siniestro.",
         slug: "/indemnizaciones/danos-materiales",
       },
     ],
     lesiones: [
-      "Latigazo cervical",
-      "Fracturas",
-      "Lesiones de hombro",
-      "Lesiones de rodilla",
-      "Traumatismos",
-      "Secuelas",
-      "Perjuicio estético",
+      {
+        nombre: "Latigazo cervical",
+        descripcion:
+          "Lesión frecuente en colisiones, cuya valoración depende de su evolución, tratamiento y posibles secuelas.",
+      },
+      {
+        nombre: "Fracturas",
+        descripcion:
+          "Roturas óseas que requieren un análisis detallado del tiempo de curación y las limitaciones que puedan generar.",
+      },
+      {
+        nombre: "Lesiones de hombro",
+        descripcion:
+          "Afectaciones como tendinitis o roturas de manguito rotador que pueden limitar la movilidad de forma permanente.",
+      },
+      {
+        nombre: "Lesiones de rodilla",
+        descripcion:
+          "Desde esguinces hasta roturas de ligamentos o menisco, con un impacto significativo en la calidad de vida.",
+      },
+      {
+        nombre: "Traumatismos",
+        descripcion:
+          "Golpes y contusiones que, aunque no generen fracturas, pueden requerir tratamiento y causar dolor persistente.",
+      },
+      {
+        nombre: "Secuelas",
+        descripcion:
+          "Dolores crónicos, limitaciones de movilidad o cicatrices que persisten tras el alta y son indemnizables.",
+      },
     ],
     faqs: [
       {
         pregunta:
           "¿Puedo reclamar una indemnización por un accidente de tráfico ocurrido en Sevilla?",
         respuesta:
-          "La posibilidad de reclamar y la cuantía de una eventual indemnización dependen de las circunstancias concretas del accidente, las lesiones y los perjuicios acreditados.",
+          "Sí, si no eres el culpable único del accidente, tienes derecho a reclamar. La cuantía y viabilidad dependen de cómo ocurrió el siniestro, las lesiones que sufriste y la documentación que lo acredite. Estudiamos cada caso para darte una orientación clara.",
       },
       {
         pregunta:
           "¿Qué ocurre si la aseguradora me ofrece una cantidad por mis lesiones?",
         respuesta:
-          "Antes de aceptar una oferta conviene comprobar qué conceptos incluye y si refleja adecuadamente las lesiones, el periodo de recuperación, las posibles secuelas y los demás perjuicios que puedan existir.",
+          "Es crucial no aceptar la primera oferta sin asesoramiento. Las aseguradoras suelen ofrecer cantidades inferiores a las que corresponden. Un abogado especialista puede valorar si la oferta incluye todos los conceptos (lesiones, secuelas, gastos, lucro cesante) y negociar una cantidad justa.",
       },
       {
         pregunta:
           "¿Necesito acudir presencialmente al despacho?",
         respuesta:
-          "La gestión puede realizarse de forma online en muchos casos, aunque las necesidades concretas de cada expediente pueden variar.",
+          "No, no es imprescindible. Ofrecemos un servicio completo a distancia para toda la provincia de Sevilla. Puedes contactarnos y enviar la documentación por WhatsApp o correo electrónico, y te mantendremos informado por teléfono durante todo el proceso.",
+      },
+      {
+        pregunta: "¿Qué documentación es importante guardar tras un accidente en Sevilla?",
+        respuesta:
+          "Conserva todo: el parte amistoso o atestado, informes médicos de urgencias y seguimiento, partes de baja, facturas de farmacia o rehabilitación y cualquier comunicación que recibas de la aseguradora. Todo ello es fundamental para fundamentar la reclamación.",
+      },
+      {
+        pregunta: "¿Puedo reclamar por un atropello en Sevilla?",
+        respuesta:
+          "Sí. Los peatones son considerados usuarios vulnerables y, salvo en casos de culpa exclusiva de la víctima, tienen derecho a ser indemnizados por sus lesiones y perjuicios. Analizamos la dinámica del atropello para defender tus derechos.",
+      },
+      {
+        pregunta: "¿La reclamación tiene algún coste inicial?",
+        respuesta:
+          "No. La primera consulta y el estudio de viabilidad de tu caso son gratuitos. Trabajamos a porcentaje de la indemnización que finalmente obtengas, por lo que solo cobramos si tú ganas. No tienes que adelantar ninguna cantidad.",
+      },
+      {
+        pregunta: "¿Qué se considera una secuela indemnizable?",
+        respuesta:
+          "Una secuela es cualquier dolor, limitación de movilidad, cicatriz o perjuicio estético que permanece una vez has recibido el alta médica. Estas secuelas se valoran según un baremo legal y suponen una parte importante de la indemnización total.",
       },
     ],
   },
@@ -215,12 +379,14 @@ export const provinciasSEO: Record<string, ProvinciaSEO> = {
   malaga: {
     nombre: "Málaga",
     title:
-      "Abogados de Accidentes de Tráfico en Málaga | Accidente Legal Abogados",
-    description:
-      "Abogados especialistas en accidentes de tráfico en Málaga. Estudiamos tu caso y reclamamos lesiones, secuelas y daños frente a las aseguradoras.",
+      "Abogados de Accidentes de Tráfico en Málaga | Indemnizaciones",
+    description: "Abogados para accidentes de circulación en Málaga. Si has sufrido lesiones o daños en un accidente, valoramos los conceptos indemnizables y gestionamos la reclamación. Asesoramiento en Marbella, Fuengirola y toda la provincia.", // Mantengo la descripción actualizada
     h1: "Abogados especialistas en accidentes de tráfico en Málaga",
-    introduccion:
-      "Después de un accidente de tráfico en Málaga pueden surgir lesiones, gastos, daños materiales y otras consecuencias que deben ser valoradas. Nuestro equipo estudia las circunstancias del accidente y la documentación disponible para orientar la reclamación frente a la compañía aseguradora.",
+    introduccion: "Tras un accidente de tráfico en Málaga, nuestro equipo de abogados especialistas estudia tu caso. Analizamos las lesiones, secuelas y daños para dirigir la reclamación frente a la aseguradora y te orientamos sobre las posibilidades de la misma. Ofrecemos atención online en toda la provincia.",
+    introduccionProvincial: [
+      "Un accidente en la provincia de Málaga puede acarrear lesiones que necesiten rehabilitación, secuelas y daños materiales. En Accidente Legal Abogados, analizamos tu expediente de manera individual para que todos los perjuicios puedan ser valorados. Desde el primer momento, nos enfocamos en recopilar la información necesaria para construir una reclamación fundamentada.",
+      "Nos ocupamos de la reclamación frente a las aseguradoras, defendiendo tus intereses en toda la provincia, desde Málaga capital hasta Marbella o Vélez-Málaga. Puedes gestionar tu caso a distancia para tu comodidad.",
+    ],
     localidades: [
       "Málaga",
       "Marbella",
@@ -236,74 +402,147 @@ export const provinciasSEO: Record<string, ProvinciaSEO> = {
     tiposAccidente: [
       {
         nombre: "Accidente de coche",
+        descripcion:
+          "Reclamamos indemnizaciones por lesiones, secuelas y daños derivados de accidentes entre vehículos.",
         slug: "/accidentes/accidente-coche",
       },
       {
         nombre: "Accidente de moto",
+        descripcion:
+          "Estudiamos las lesiones y consecuencias de accidentes de motocicleta y gestionamos la reclamación frente a la aseguradora.",
         slug: "/accidentes/accidente-moto",
       },
       {
         nombre: "Atropello",
+        descripcion:
+          "Analizamos las lesiones y perjuicios sufridos por peatones atropellados y las posibles indemnizaciones.",
         slug: "/accidentes/atropello",
       },
       {
         nombre: "Accidente de bicicleta",
+        descripcion:
+          "Reclamamos los daños y lesiones sufridos por ciclistas en accidentes de circulación.",
         slug: "/accidentes/accidente-bicicleta",
       },
       {
         nombre: "Accidente con patinete",
+        descripcion:
+          "Estudiamos accidentes con patinetes eléctricos y las responsabilidades que puedan existir.",
         slug: "/accidentes/accidente-patinete",
       },
       {
         nombre: "Accidente como pasajero",
+        descripcion:
+          "Los pasajeros lesionados también pueden tener derecho a reclamar una indemnización por las lesiones sufridas.",
         slug: "/accidentes/accidente-pasajero",
       },
     ],
     indemnizaciones: [
       {
         nombre: "Indemnización por lesiones",
+        descripcion:
+          "Compensación por los días de recuperación, desde el perjuicio personal básico hasta el moderado o grave.",
         slug: "/indemnizaciones/lesiones",
       },
       {
-        nombre: "Indemnización por secuelas",
+        nombre: "Secuelas",
+        descripcion:
+          "Valoración de las limitaciones o dolores permanentes que quedan tras el alta médica, según el baremo oficial.",
         slug: "/indemnizaciones/secuelas",
       },
       {
+        nombre: "Gastos médicos y de rehabilitación",
+        descripcion:
+          "Reclamación de los costes de tratamientos, farmacia, fisioterapia y otras terapias necesarias para la recuperación.",
+      },
+      {
+        nombre: "Perjuicio estético",
+        descripcion:
+          "Indemnización adicional cuando el accidente provoca cicatrices, cojeras u otras alteraciones físicas visibles.",
+      },
+      {
         nombre: "Lucro cesante",
+        descripcion:
+          "Compensación por la pérdida de ingresos que sufre la víctima durante el periodo de baja laboral o incapacidad.",
         slug: "/indemnizaciones/lucro-cesante",
       },
       {
         nombre: "Daños materiales",
+        descripcion:
+          "Reclamación del coste de reparación del vehículo, su valor venal o el valor de otros objetos dañados en el siniestro.",
         slug: "/indemnizaciones/danos-materiales",
       },
     ],
     lesiones: [
-      "Latigazo cervical",
-      "Fracturas",
-      "Lesiones de hombro",
-      "Lesiones de rodilla",
-      "Traumatismos",
-      "Secuelas",
-      "Perjuicio estético",
+      {
+        nombre: "Latigazo cervical",
+        descripcion:
+          "Lesión frecuente en colisiones, cuya valoración depende de su evolución, tratamiento y posibles secuelas.",
+      },
+      {
+        nombre: "Fracturas",
+        descripcion:
+          "Roturas óseas que requieren un análisis detallado del tiempo de curación y las limitaciones que puedan generar.",
+      },
+      {
+        nombre: "Lesiones de hombro",
+        descripcion:
+          "Afectaciones como tendinitis o roturas de manguito rotador que pueden limitar la movilidad de forma permanente.",
+      },
+      {
+        nombre: "Lesiones de rodilla",
+        descripcion:
+          "Desde esguinces hasta roturas de ligamentos o menisco, con un impacto significativo en la calidad de vida.",
+      },
+      {
+        nombre: "Traumatismos",
+        descripcion:
+          "Golpes y contusiones que, aunque no generen fracturas, pueden requerir tratamiento y causar dolor persistente.",
+      },
+      {
+        nombre: "Secuelas",
+        descripcion:
+          "Dolores crónicos, limitaciones de movilidad o cicatrices que persisten tras el alta y son indemnizables.",
+      },
     ],
     faqs: [
       {
         pregunta:
           "¿Qué puedo reclamar después de un accidente de tráfico en Málaga?",
         respuesta:
-          "Dependiendo de las circunstancias pueden existir diferentes conceptos reclamables, entre ellos lesiones, secuelas, daños materiales, gastos y otros perjuicios que puedan acreditarse.",
+          "Puedes reclamar varios conceptos: la indemnización por los días de curación de tus lesiones, las secuelas permanentes, los gastos médicos y de rehabilitación, los daños de tu vehículo o pertenencias, y el lucro cesante si has perdido ingresos por estar de baja.",
       },
       {
         pregunta:
           "¿Puedo reclamar si todavía estoy en rehabilitación?",
         respuesta:
-          "La valoración de una reclamación debe tener en cuenta la evolución de las lesiones y las circunstancias concretas del expediente. Es importante conservar la documentación médica y de rehabilitación.",
+          "Sí, de hecho es lo más recomendable. No se debe cerrar una reclamación hasta que las lesiones se hayan curado o estabilizado y se conozca el alcance real de las secuelas. Es fundamental seguir el tratamiento y guardar todos los informes médicos.",
       },
       {
         pregunta:
           "¿Qué ocurre si no estoy de acuerdo con la oferta de la aseguradora?",
         respuesta:
-          "La oferta puede ser revisada para comprobar qué conceptos contempla y si resulta adecuada atendiendo a las circunstancias y perjuicios acreditados.",
+          "No tienes por qué aceptarla. Si la oferta es insuficiente, un abogado especialista puede negociar con la aseguradora para mejorarla, aportando la documentación médica y pericial necesaria. Si no se llega a un acuerdo, se puede valorar la vía judicial.",
+      },
+      {
+        pregunta: "¿Qué documentación necesito para reclamar?",
+        respuesta:
+          "Es clave guardar el parte de accidente o atestado, todos los informes médicos (urgencias, especialistas, rehabilitación), partes de baja laboral, y facturas de cualquier gasto derivado del accidente (medicamentos, taxis para ir al médico, etc.).",
+      },
+      {
+        pregunta: "¿Puedo reclamar si viajaba como pasajero en un coche o moto?",
+        respuesta:
+          "Sí. Los pasajeros tienen derecho a ser indemnizados por sus lesiones, y la reclamación se dirige a la aseguradora del vehículo responsable del accidente. Tu derecho a reclamar está casi siempre garantizado.",
+      },
+      {
+        pregunta: "¿Y si he tenido un accidente de moto en Málaga?",
+        respuesta:
+          "Los motoristas son especialmente vulnerables. Reclamamos tanto las lesiones, que suelen ser más graves, como los daños en la moto, el casco y el equipamiento. Analizamos la dinámica del accidente para defender tu caso frente a la aseguradora.",
+      },
+      {
+        pregunta: "¿Necesito acudir presencialmente al despacho?",
+        respuesta:
+          "No es necesario. Ofrecemos atención en toda la provincia de Málaga y a nivel nacional de forma telemática. Podemos gestionar todo tu expediente a través de teléfono, email y WhatsApp para tu máxima comodidad.",
       },
     ],
   },
@@ -317,56 +556,84 @@ export const provinciasSEO: Record<string, ProvinciaSEO> = {
     h1: "Abogados especialistas en accidentes de tráfico en Granada",
     introduccion:
       "Si has sufrido un accidente de tráfico en Granada, podemos estudiar las circunstancias del siniestro y la documentación médica y económica disponible para determinar qué perjuicios pueden ser objeto de reclamación.",
+    introduccionProvincial: [
+      "Un accidente de tráfico en Granada puede generar numerosas dudas sobre los pasos a seguir. Es importante valorar correctamente tanto las lesiones sufridas como los daños materiales para poder fundamentar una reclamación adecuada frente a la aseguradora.",
+      "Nuestro equipo analiza la documentación de cada siniestro para defender los intereses de la persona perjudicada. Ofrecemos atención a distancia en toda la provincia, desde la capital hasta la costa o el interior, para facilitar la gestión del expediente.",
+    ],
     localidades: [
       "Granada",
       "Armilla",
-      "Maracena",
-      "Albolote",
-      "Atarfe",
-      "Motril",
-      "Baza",
-      "Loja",
-      "Santa Fe",
+      "Maracena", // Added
+      "Albolote", // Added
+      "Atarfe", // Added
+      "Motril", // Added
+      "Baza", // Added
+      "Loja", // Added
+      "Santa Fe", // Added
     ],
     tiposAccidente: [
       {
         nombre: "Accidente de coche",
+        descripcion: "Reclamamos indemnizaciones por lesiones, secuelas y daños derivados de accidentes entre vehículos.",
         slug: "/accidentes/accidente-coche",
       },
       {
         nombre: "Accidente de moto",
+        descripcion: "Estudiamos las lesiones y consecuencias de accidentes de motocicleta y gestionamos la reclamación.",
         slug: "/accidentes/accidente-moto",
       },
       {
         nombre: "Atropello",
+        descripcion: "Analizamos las lesiones y perjuicios sufridos por peatones atropellados y las posibles indemnizaciones.",
         slug: "/accidentes/atropello",
       },
       {
         nombre: "Accidente de bicicleta",
+        descripcion: "Reclamamos los daños y lesiones sufridos por ciclistas en accidentes de circulación.",
         slug: "/accidentes/accidente-bicicleta",
       },
       {
         nombre: "Accidente con patinete",
+        descripcion: "Estudiamos accidentes con patinetes eléctricos y las responsabilidades que puedan existir.",
         slug: "/accidentes/accidente-patinete",
+      },
+      {
+        nombre: "Accidente como pasajero",
+        descripcion: "Los pasajeros lesionados también pueden tener derecho a reclamar una indemnización por las lesiones sufridas.",
+        slug: "/accidentes/accidente-pasajero",
       },
     ],
     indemnizaciones: [
       {
         nombre: "Indemnización por lesiones",
+        descripcion:
+          "Compensación por los días de recuperación, desde el perjuicio personal básico hasta el moderado o grave.",
         slug: "/indemnizaciones/lesiones",
       },
       {
         nombre: "Indemnización por secuelas",
+        descripcion: "Valoración de las limitaciones o dolores permanentes que quedan tras el alta médica, según el baremo oficial.",
         slug: "/indemnizaciones/secuelas",
       },
       {
         nombre: "Lucro cesante",
+        descripcion: "Compensación por la pérdida de ingresos que sufre la víctima durante el periodo de baja laboral o incapacidad.",
         slug: "/indemnizaciones/lucro-cesante",
       },
       {
         nombre: "Daños materiales",
+        descripcion: "Reclamación del coste de reparación del vehículo, su valor venal o el valor de otros objetos dañados en el siniestro.",
         slug: "/indemnizaciones/danos-materiales",
       },
+      {
+        nombre: "Gastos médicos y de rehabilitación",
+        descripcion: "Reclamación de los costes de tratamientos, farmacia, fisioterapia y otras terapias necesarias para la recuperación.",
+      },
+      {
+        nombre: "Perjuicio estético",
+        descripcion: "Indemnización adicional cuando el accidente provoca cicatrices, cojeras u otras alteraciones físicas visibles.",
+      },
+
     ],
     lesiones: [
       "Latigazo cervical",
@@ -400,54 +667,80 @@ export const provinciasSEO: Record<string, ProvinciaSEO> = {
     h1: "Abogados especialistas en accidentes de tráfico en Córdoba",
     introduccion:
       "Nuestro equipo puede estudiar los accidentes de tráfico ocurridos en Córdoba y valorar las lesiones, secuelas, daños materiales y demás perjuicios que puedan derivarse del siniestro.",
+    introduccionProvincial: [
+      "Las consecuencias de un accidente de tráfico en Córdoba pueden ser complejas. Es importante valorar no solo las lesiones físicas, sino también los perjuicios económicos y morales. Nuestro equipo analiza cada caso para fundamentar una reclamación sólida.",
+      "Gestionamos la comunicación con las aseguradoras para defender tus derechos. Ofrecemos nuestros servicios en toda la provincia de Córdoba, con la posibilidad de gestionar tu caso a distancia para tu comodidad.",
+    ],
     localidades: [
       "Córdoba",
       "Lucena",
-      "Puente Genil",
-      "Montilla",
-      "Priego de Córdoba",
-      "Cabra",
-      "Pozoblanco",
-      "Palma del Río",
+      "Puente Genil", // Added
+      "Montilla", // Added
+      "Priego de Córdoba", // Added
+      "Cabra", // Added
+      "Pozoblanco", // Added
+      "Palma del Río", // Added
     ],
     tiposAccidente: [
       {
         nombre: "Accidente de coche",
+        descripcion: "Reclamamos indemnizaciones por lesiones, secuelas y daños derivados de accidentes entre vehículos.",
         slug: "/accidentes/accidente-coche",
       },
       {
         nombre: "Accidente de moto",
+        descripcion: "Estudiamos las lesiones y consecuencias de accidentes de motocicleta y gestionamos la reclamación.",
         slug: "/accidentes/accidente-moto",
       },
       {
         nombre: "Atropello",
+        descripcion: "Analizamos las lesiones y perjuicios sufridos por peatones atropellados y las posibles indemnizaciones.",
         slug: "/accidentes/atropello",
       },
       {
         nombre: "Accidente de bicicleta",
+        descripcion: "Reclamamos los daños y lesiones sufridos por ciclistas en accidentes de circulación.",
         slug: "/accidentes/accidente-bicicleta",
       },
       {
         nombre: "Accidente con patinete",
+        descripcion: "Estudiamos accidentes con patinetes eléctricos y las responsabilidades que puedan existir.",
         slug: "/accidentes/accidente-patinete",
+      },
+      {
+        nombre: "Accidente como pasajero",
+        descripcion: "Los pasajeros lesionados también pueden tener derecho a reclamar una indemnización por las lesiones sufridas.",
+        slug: "/accidentes/accidente-pasajero",
       },
     ],
     indemnizaciones: [
       {
         nombre: "Indemnización por lesiones",
+        descripcion: "Compensación por los días de recuperación, desde el perjuicio personal básico hasta el moderado o grave.",
         slug: "/indemnizaciones/lesiones",
       },
       {
         nombre: "Indemnización por secuelas",
+        descripcion: "Valoración de las limitaciones o dolores permanentes que quedan tras el alta médica, según el baremo oficial.",
         slug: "/indemnizaciones/secuelas",
       },
       {
         nombre: "Lucro cesante",
+        descripcion: "Compensación por la pérdida de ingresos que sufre la víctima durante el periodo de baja laboral o incapacidad.",
         slug: "/indemnizaciones/lucro-cesante",
       },
       {
         nombre: "Daños materiales",
+        descripcion: "Reclamación del coste de reparación del vehículo, su valor venal o el valor de otros objetos dañados en el siniestro.",
         slug: "/indemnizaciones/danos-materiales",
+      },
+      {
+        nombre: "Gastos médicos y de rehabilitación",
+        descripcion: "Reclamación de los costes de tratamientos, farmacia, fisioterapia y otras terapias necesarias para la recuperación.",
+      },
+      {
+        nombre: "Perjuicio estético",
+        descripcion: "Indemnización adicional cuando el accidente provoca cicatrices, cojeras u otras alteraciones físicas visibles.",
       },
     ],
     lesiones: [
@@ -483,54 +776,80 @@ export const provinciasSEO: Record<string, ProvinciaSEO> = {
     h1: "Abogados especialistas en accidentes de tráfico en Huelva",
     introduccion:
       "Si has sufrido un accidente de tráfico en Huelva, estudiamos las circunstancias del siniestro y la documentación disponible para valorar las posibles reclamaciones por lesiones, secuelas, daños materiales y otros perjuicios.",
+    introduccionProvincial: [
+      "Un siniestro vial en Huelva puede alterar tu día a día. Desde las lesiones que requieren tratamiento hasta los daños en tu vehículo, cada perjuicio cuenta. Estudiamos la documentación para orientar la reclamación frente a la aseguradora.",
+      "Nos encargamos de la gestión con las compañías de seguros, defendiendo tus intereses para reclamar la indemnización que pueda corresponder. Prestamos servicio en toda la provincia de Huelva, con la posibilidad de gestionar tu caso a distancia.",
+    ],
     localidades: [
       "Huelva",
       "Lepe",
-      "Almonte",
-      "Ayamonte",
-      "Isla Cristina",
-      "Moguer",
-      "Cartaya",
-      "Punta Umbría",
+      "Almonte", // Added
+      "Ayamonte", // Added
+      "Isla Cristina", // Added
+      "Moguer", // Added
+      "Cartaya", // Added
+      "Punta Umbría", // Added
     ],
     tiposAccidente: [
       {
         nombre: "Accidente de coche",
+        descripcion: "Reclamamos indemnizaciones por lesiones, secuelas y daños derivados de accidentes entre vehículos.",
         slug: "/accidentes/accidente-coche",
       },
       {
         nombre: "Accidente de moto",
+        descripcion: "Estudiamos las lesiones y consecuencias de accidentes de motocicleta y gestionamos la reclamación.",
         slug: "/accidentes/accidente-moto",
       },
       {
         nombre: "Atropello",
+        descripcion: "Analizamos las lesiones y perjuicios sufridos por peatones atropellados y las posibles indemnizaciones.",
         slug: "/accidentes/atropello",
       },
       {
         nombre: "Accidente de bicicleta",
+        descripcion: "Reclamamos los daños y lesiones sufridos por ciclistas en accidentes de circulación.",
         slug: "/accidentes/accidente-bicicleta",
       },
       {
         nombre: "Accidente con patinete",
+        descripcion: "Estudiamos accidentes con patinetes eléctricos y las responsabilidades que puedan existir.",
         slug: "/accidentes/accidente-patinete",
+      },
+      {
+        nombre: "Accidente como pasajero",
+        descripcion: "Los pasajeros lesionados también pueden tener derecho a reclamar una indemnización por las lesiones sufridas.",
+        slug: "/accidentes/accidente-pasajero",
       },
     ],
     indemnizaciones: [
       {
         nombre: "Indemnización por lesiones",
+        descripcion: "Compensación por los días de recuperación, desde el perjuicio personal básico hasta el moderado o grave.",
         slug: "/indemnizaciones/lesiones",
       },
       {
         nombre: "Indemnización por secuelas",
+        descripcion: "Valoración de las limitaciones o dolores permanentes que quedan tras el alta médica, según el baremo oficial.",
         slug: "/indemnizaciones/secuelas",
       },
       {
         nombre: "Lucro cesante",
+        descripcion: "Compensación por la pérdida de ingresos que sufre la víctima durante el periodo de baja laboral o incapacidad.",
         slug: "/indemnizaciones/lucro-cesante",
       },
       {
         nombre: "Daños materiales",
+        descripcion: "Reclamación del coste de reparación del vehículo, su valor venal o el valor de otros objetos dañados en el siniestro.",
         slug: "/indemnizaciones/danos-materiales",
+      },
+      {
+        nombre: "Gastos médicos y de rehabilitación",
+        descripcion: "Reclamación de los costes de tratamientos, farmacia, fisioterapia y otras terapias necesarias para la recuperación.",
+      },
+      {
+        nombre: "Perjuicio estético",
+        descripcion: "Indemnización adicional cuando el accidente provoca cicatrices, cojeras u otras alteraciones físicas visibles.",
       },
     ],
     lesiones: [
@@ -565,54 +884,80 @@ export const provinciasSEO: Record<string, ProvinciaSEO> = {
     h1: "Abogados especialistas en accidentes de tráfico en Jaén",
     introduccion:
       "Nuestro equipo estudia las circunstancias de los accidentes de tráfico ocurridos en Jaén y analiza la documentación disponible para valorar las posibles indemnizaciones por lesiones, secuelas, daños materiales y otros perjuicios.",
+    introduccionProvincial: [
+      "Tras un accidente de tráfico en Jaén, es fundamental una correcta valoración de todos los daños sufridos. Analizamos la documentación médica y pericial para asegurar que la reclamación contempla todos los conceptos indemnizables.",
+      "Defendemos tus intereses frente a la compañía aseguradora, gestionando las comunicaciones y negociaciones necesarias. Ofrecemos atención online en toda la provincia de Jaén para facilitar el proceso.",
+    ],
     localidades: [
       "Jaén",
       "Linares",
-      "Úbeda",
-      "Andújar",
-      "Martos",
-      "Alcalá la Real",
-      "Baeza",
-      "Bailén",
+      "Úbeda", // Added
+      "Andújar", // Added
+      "Martos", // Added
+      "Alcalá la Real", // Added
+      "Baeza", // Added
+      "Bailén", // Added
     ],
     tiposAccidente: [
       {
         nombre: "Accidente de coche",
+        descripcion: "Reclamamos indemnizaciones por lesiones, secuelas y daños derivados de accidentes entre vehículos.",
         slug: "/accidentes/accidente-coche",
       },
       {
         nombre: "Accidente de moto",
+        descripcion: "Estudiamos las lesiones y consecuencias de accidentes de motocicleta y gestionamos la reclamación.",
         slug: "/accidentes/accidente-moto",
       },
       {
         nombre: "Atropello",
+        descripcion: "Analizamos las lesiones y perjuicios sufridos por peatones atropellados y las posibles indemnizaciones.",
         slug: "/accidentes/atropello",
       },
       {
         nombre: "Accidente de bicicleta",
+        descripcion: "Reclamamos los daños y lesiones sufridos por ciclistas en accidentes de circulación.",
         slug: "/accidentes/accidente-bicicleta",
       },
       {
         nombre: "Accidente con patinete",
+        descripcion: "Estudiamos accidentes con patinetes eléctricos y las responsabilidades que puedan existir.",
         slug: "/accidentes/accidente-patinete",
+      },
+      {
+        nombre: "Accidente como pasajero",
+        descripcion: "Los pasajeros lesionados también pueden tener derecho a reclamar una indemnización por las lesiones sufridas.",
+        slug: "/accidentes/accidente-pasajero",
       },
     ],
     indemnizaciones: [
       {
         nombre: "Indemnización por lesiones",
+        descripcion: "Compensación por los días de recuperación, desde el perjuicio personal básico hasta el moderado o grave.",
         slug: "/indemnizaciones/lesiones",
       },
       {
         nombre: "Indemnización por secuelas",
+        descripcion: "Valoración de las limitaciones o dolores permanentes que quedan tras el alta médica, según el baremo oficial.",
         slug: "/indemnizaciones/secuelas",
       },
       {
         nombre: "Lucro cesante",
+        descripcion: "Compensación por la pérdida de ingresos que sufre la víctima durante el periodo de baja laboral o incapacidad.",
         slug: "/indemnizaciones/lucro-cesante",
       },
       {
         nombre: "Daños materiales",
+        descripcion: "Reclamación del coste de reparación del vehículo, su valor venal o el valor de otros objetos dañados en el siniestro.",
         slug: "/indemnizaciones/danos-materiales",
+      },
+      {
+        nombre: "Gastos médicos y de rehabilitación",
+        descripcion: "Reclamación de los costes de tratamientos, farmacia, fisioterapia y otras terapias necesarias para la recuperación.",
+      },
+      {
+        nombre: "Perjuicio estético",
+        descripcion: "Indemnización adicional cuando el accidente provoca cicatrices, cojeras u otras alteraciones físicas visibles.",
       },
     ],
     lesiones: [
@@ -647,55 +992,81 @@ export const provinciasSEO: Record<string, ProvinciaSEO> = {
     h1: "Abogados especialistas en accidentes de tráfico en Almería",
     introduccion:
       "Si has sufrido un accidente de tráfico en Almería, nuestro equipo puede estudiar las circunstancias del accidente, las lesiones y los perjuicios sufridos para orientarte sobre una posible reclamación frente a la compañía aseguradora.",
+    introduccionProvincial: [
+      "Un accidente de circulación en Almería puede generar dudas sobre los pasos a seguir. Analizamos la responsabilidad y los daños para ofrecer una orientación clara sobre las posibilidades de reclamación.",
+      "Gestionamos el expediente frente a la aseguradora, buscando defender tus derechos en relación con las lesiones, secuelas y otros perjuicios acreditados. Prestamos servicio a distancia en toda la provincia.",
+    ],
     localidades: [
       "Almería",
       "Roquetas de Mar",
-      "El Ejido",
-      "Níjar",
-      "Adra",
-      "Vera",
-      "Huércal-Overa",
-      "Vícar",
-      "Mojácar",
+      "El Ejido", // Added
+      "Níjar", // Added
+      "Adra", // Added
+      "Vera", // Added
+      "Huércal-Overa", // Added
+      "Vícar", // Added
+      "Mojácar", // Added
     ],
     tiposAccidente: [
       {
         nombre: "Accidente de coche",
+        descripcion: "Reclamamos indemnizaciones por lesiones, secuelas y daños derivados de accidentes entre vehículos.",
         slug: "/accidentes/accidente-coche",
       },
       {
         nombre: "Accidente de moto",
+        descripcion: "Estudiamos las lesiones y consecuencias de accidentes de motocicleta y gestionamos la reclamación.",
         slug: "/accidentes/accidente-moto",
       },
       {
         nombre: "Atropello",
+        descripcion: "Analizamos las lesiones y perjuicios sufridos por peatones atropellados y las posibles indemnizaciones.",
         slug: "/accidentes/atropello",
       },
       {
         nombre: "Accidente de bicicleta",
+        descripcion: "Reclamamos los daños y lesiones sufridos por ciclistas en accidentes de circulación.",
         slug: "/accidentes/accidente-bicicleta",
       },
       {
         nombre: "Accidente con patinete",
+        descripcion: "Estudiamos accidentes con patinetes eléctricos y las responsabilidades que puedan existir.",
         slug: "/accidentes/accidente-patinete",
+      },
+      {
+        nombre: "Accidente como pasajero",
+        descripcion: "Los pasajeros lesionados también pueden tener derecho a reclamar una indemnización por las lesiones sufridas.",
+        slug: "/accidentes/accidente-pasajero",
       },
     ],
     indemnizaciones: [
       {
         nombre: "Indemnización por lesiones",
+        descripcion: "Compensación por los días de recuperación, desde el perjuicio personal básico hasta el moderado o grave.",
         slug: "/indemnizaciones/lesiones",
       },
       {
         nombre: "Indemnización por secuelas",
+        descripcion: "Valoración de las limitaciones o dolores permanentes que quedan tras el alta médica, según el baremo oficial.",
         slug: "/indemnizaciones/secuelas",
       },
       {
         nombre: "Lucro cesante",
+        descripcion: "Compensación por la pérdida de ingresos que sufre la víctima durante el periodo de baja laboral o incapacidad.",
         slug: "/indemnizaciones/lucro-cesante",
       },
       {
         nombre: "Daños materiales",
+        descripcion: "Reclamación del coste de reparación del vehículo, su valor venal o el valor de otros objetos dañados en el siniestro.",
         slug: "/indemnizaciones/danos-materiales",
+      },
+      {
+        nombre: "Gastos médicos y de rehabilitación",
+        descripcion: "Reclamación de los costes de tratamientos, farmacia, fisioterapia y otras terapias necesarias para la recuperación.",
+      },
+      {
+        nombre: "Perjuicio estético",
+        descripcion: "Indemnización adicional cuando el accidente provoca cicatrices, cojeras u otras alteraciones físicas visibles.",
       },
     ],
     lesiones: [
